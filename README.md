@@ -10,6 +10,7 @@ npm run dev
 ```
 
 Backend defaults to port `3001`.
+Tren Railway, backend se tu dong bind vao `PORT` duoc cap.
 
 ## Local env
 
