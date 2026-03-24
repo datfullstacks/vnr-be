@@ -9,6 +9,12 @@ import {
   demoQuizzes,
   demoSources,
 } from '@/data/demo-content'
+import {
+  demoLeaders,
+  leaderContentReferencesBySlug,
+  periodMetadataBySlug,
+  supplementalPeriods,
+} from '@/data/leader-content'
 import type {
   BoundaryEpochRecord,
   CampaignRecord,
@@ -16,6 +22,7 @@ import type {
   ExplorerSnapshot,
   ExplorerRecord,
   HistoricalAdminUnitRecord,
+  LeaderRecord,
   OverlayRecord,
   PeriodRecord,
   PlaceRecord,
@@ -75,8 +82,73 @@ function makePeriodId(slug: string) {
   return `period:${slug}`
 }
 
+function makeLeaderId(slug: string) {
+  return `leader:${slug}`
+}
+
 function makeRecordId(prefix: string, slug: string) {
   return `${prefix}:${slug}`
+}
+
+function normalizeStringArray(value: unknown) {
+  if (!Array.isArray(value)) {
+    return undefined
+  }
+
+  const items = value.filter((item): item is string => typeof item === 'string')
+  return items.length > 0 ? items : undefined
+}
+
+function indexSources(sources: SourceRecord[]) {
+  const map = new Map<string, SourceRecord>()
+
+  for (const source of sources) {
+    map.set(source.id, source)
+    map.set(source.slug, source)
+  }
+
+  return map
+}
+
+function withPeriodMetadata(
+  period: Omit<PeriodRecord, 'displayOrder' | 'officialLeaderSlugs' | 'periodType'> &
+    Pick<
+      Partial<PeriodRecord>,
+      'displayOrder' | 'featuredLeaderSlug' | 'leadershipLabel' | 'officialLeaderSlugs' | 'periodType'
+    >,
+): PeriodRecord {
+  const metadata = periodMetadataBySlug[period.slug]
+  const featuredLeaderSlug = period.featuredLeaderSlug ?? metadata?.featuredLeaderSlug
+  const officialLeaderSlugs =
+    period.officialLeaderSlugs ?? metadata?.officialLeaderSlugs ?? (featuredLeaderSlug ? [featuredLeaderSlug] : [])
+
+  return {
+    ...period,
+    displayOrder: period.displayOrder ?? metadata?.displayOrder ?? period.startYear,
+    featuredLeaderSlug,
+    leadershipLabel: period.leadershipLabel ?? metadata?.leadershipLabel,
+    officialLeaderSlugs,
+    periodType: period.periodType ?? metadata?.periodType ?? 'party-era',
+  }
+}
+
+function buildLeaderRecords(sourceMap: Map<string, SourceRecord>) {
+  return demoLeaders
+    .map<LeaderRecord>((leader) => ({
+      endYear: leader.endYear,
+      id: makeLeaderId(leader.slug),
+      isFeaturedChairmanHighlight: leader.isFeaturedChairmanHighlight,
+      name: leader.name,
+      officeLabel: leader.officeLabel,
+      officeType: leader.officeType,
+      overview: leader.overview,
+      portraitUrl: leader.portraitUrl,
+      slug: leader.slug,
+      sources: leader.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
+      startYear: leader.startYear,
+      summary: leader.summary,
+    }))
+    .sort((left, right) => left.startYear - right.startYear)
 }
 
 function buildFallbackSnapshot(): ExplorerSnapshot {
@@ -89,15 +161,20 @@ function buildFallbackSnapshot(): ExplorerSnapshot {
     id: makeSourceId(source.slug),
   }))
 
-  const sourceMap = new Map(sources.map((source) => [source.slug, source]))
+  const sourceMap = indexSources(sources)
 
-  const periods: PeriodRecord[] = demoPeriods.map((period) => ({
-    ...period,
-    id: makePeriodId(period.slug),
-    keyThemes: period.keyThemes.map((theme) => theme.label),
-  }))
+  const periods: PeriodRecord[] = [...demoPeriods, ...supplementalPeriods]
+    .map((period) =>
+      withPeriodMetadata({
+        ...period,
+        id: makePeriodId(period.slug),
+        keyThemes: period.keyThemes.map((theme) => theme.label),
+      }),
+    )
+    .sort((left, right) => left.displayOrder - right.displayOrder)
 
   const periodMap = new Map(periods.map((period) => [period.slug, period]))
+  const leaders = buildLeaderRecords(sourceMap)
 
   const { epochs: generatedEpochs, units: generatedUnits } = buildHistoricalBoundaryBundle()
 
@@ -221,6 +298,7 @@ function buildFallbackSnapshot(): ExplorerSnapshot {
     boundaryEpochs,
     campaigns,
     events,
+    leaders,
     overlays,
     periods,
     places,
@@ -249,17 +327,36 @@ function mapSourceDoc(doc: any): SourceRecord {
 }
 
 function mapPeriodDoc(doc: any): PeriodRecord {
-  return {
+  const featuredLeaderSlug =
+    typeof doc.featuredLeaderSlug === 'string'
+      ? doc.featuredLeaderSlug
+      : typeof doc.leaderSlug === 'string'
+        ? doc.leaderSlug
+        : undefined
+
+  return withPeriodMetadata({
     accentColor: doc.accentColor ?? '#ab2f24',
     endYear: doc.endYear,
+    featuredLeaderSlug,
     id: String(doc.id),
     keyThemes: Array.isArray(doc.keyThemes) ? doc.keyThemes.map((item: any) => item.label) : [],
+    leadershipLabel:
+      typeof doc.leadershipLabel === 'string'
+        ? doc.leadershipLabel
+        : typeof doc.officeLabel === 'string'
+          ? doc.officeLabel
+          : undefined,
+    officialLeaderSlugs:
+      normalizeStringArray(doc.officialLeaderSlugs) ??
+      normalizeStringArray(doc.leaderSlugs) ??
+      (featuredLeaderSlug ? [featuredLeaderSlug] : undefined),
     overview: toPlainText(doc.overview),
+    periodType: doc.periodType === 'formation' || doc.periodType === 'party-era' ? doc.periodType : undefined,
     slug: doc.slug,
     startYear: doc.startYear,
     summary: doc.summary ?? '',
     title: doc.title,
-  }
+  })
 }
 
 function mapPlaceDoc(
@@ -406,10 +503,30 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       payload.find({ collection: 'quizzes', depth: 2, limit: 100, pagination: false, where }),
     ])
 
-    const sources = sourceDocs.docs.map(mapSourceDoc)
-    const sourceMap = new Map(sources.map((source) => [source.id, source]))
-    const periods = periodDocs.docs.map(mapPeriodDoc)
+    const payloadSources = sourceDocs.docs.map(mapSourceDoc)
+    const supplementalSources: SourceRecord[] = demoSources
+      .filter((source) => !payloadSources.some((item) => item.slug === source.slug))
+      .map((source) => ({
+        ...source,
+        id: makeSourceId(source.slug),
+      }))
+    const sources = [...payloadSources, ...supplementalSources]
+    const sourceMap = indexSources(sources)
+    const payloadPeriods = periodDocs.docs.map(mapPeriodDoc)
+    const supplementalPeriodRecords = supplementalPeriods
+      .filter((period) => !payloadPeriods.some((item) => item.slug === period.slug))
+      .map((period) =>
+        withPeriodMetadata({
+          ...period,
+          id: makePeriodId(period.slug),
+          keyThemes: period.keyThemes.map((theme) => theme.label),
+        }),
+      )
+    const periods = [...payloadPeriods, ...supplementalPeriodRecords].sort(
+      (left, right) => left.displayOrder - right.displayOrder,
+    )
     const periodMap = new Map(periods.map((period) => [period.id, period]))
+    const leaders = buildLeaderRecords(sourceMap)
 
     const adminUnits = adminUnitDocs.docs.map((doc: any) => mapHistoricalAdminUnitDoc(doc, sourceMap))
     const adminUnitMap = new Map(adminUnits.map((unit) => [unit.id, unit]))
@@ -530,6 +647,7 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       boundaryEpochs,
       campaigns,
       events,
+      leaders,
       overlays,
       periods,
       places,
@@ -598,6 +716,92 @@ function periodMatchesYear(period: PeriodRecord, year: number) {
   return period.startYear <= year && period.endYear >= year
 }
 
+function findLeader(snapshot: ExplorerSnapshot, slug?: string) {
+  if (!slug) {
+    return null
+  }
+
+  return snapshot.leaders.find((leader) => leader.slug === slug) ?? null
+}
+
+function periodHasFeaturedLeader(period: PeriodRecord, leaderSlug: string) {
+  return period.featuredLeaderSlug === leaderSlug
+}
+
+function periodHasOfficialLeader(period: PeriodRecord, leaderSlug: string) {
+  return period.officialLeaderSlugs.includes(leaderSlug)
+}
+
+type LeaderSelectionContext = {
+  campaignSlugs: Set<string>
+  eventSlugs: Set<string>
+  featuredPeriods: PeriodRecord[]
+  leader: LeaderRecord
+  officialPeriods: PeriodRecord[]
+  periodSlugs: Set<string>
+  placeSlugs: Set<string>
+}
+
+function buildLeaderSelectionContext(
+  snapshot: ExplorerSnapshot,
+  leaderOrSlug?: LeaderRecord | string | null,
+): LeaderSelectionContext | null {
+  const leader =
+    typeof leaderOrSlug === 'string'
+      ? findLeader(snapshot, leaderOrSlug)
+      : leaderOrSlug ?? null
+
+  if (!leader) {
+    return null
+  }
+
+  const featuredPeriods = snapshot.periods.filter((period) => periodHasFeaturedLeader(period, leader.slug))
+  const officialPeriods = snapshot.periods.filter((period) => periodHasOfficialLeader(period, leader.slug))
+  const refs = leaderContentReferencesBySlug[leader.slug]
+
+  return {
+    campaignSlugs: new Set(refs?.campaignSlugs ?? []),
+    eventSlugs: new Set(refs?.eventSlugs ?? []),
+    featuredPeriods,
+    leader,
+    officialPeriods,
+    periodSlugs: new Set([...featuredPeriods, ...officialPeriods].map((period) => period.slug)),
+    placeSlugs: new Set(refs?.placeSlugs ?? []),
+  }
+}
+
+function resolveLeaderForYear(snapshot: ExplorerSnapshot, year: number, activePeriod?: PeriodRecord | null) {
+  if (activePeriod?.featuredLeaderSlug) {
+    return findLeader(snapshot, activePeriod.featuredLeaderSlug)
+  }
+
+  if (activePeriod?.officialLeaderSlugs.length) {
+    const matchingInPeriod = activePeriod.officialLeaderSlugs
+      .map((slug) => findLeader(snapshot, slug))
+      .filter((leader): leader is LeaderRecord => Boolean(leader))
+      .sort((left, right) => right.startYear - left.startYear)
+
+    const coveringLeader =
+      matchingInPeriod.find((leader) => year >= leader.startYear && year <= leader.endYear) ?? null
+
+    if (coveringLeader) {
+      return coveringLeader
+    }
+
+    return matchingInPeriod[0] ?? null
+  }
+
+  if (activePeriod?.periodType === 'formation') {
+    return null
+  }
+
+  const coveringLeaders = snapshot.leaders
+    .filter((leader) => year >= leader.startYear && year <= leader.endYear)
+    .sort((left, right) => right.startYear - left.startYear)
+
+  return coveringLeaders[0] ?? null
+}
+
 function withinYearRange(
   startDate: string | undefined,
   endDate: string | undefined,
@@ -653,6 +857,77 @@ function recordMatchesYear(
   return withinYearRange(startDate, endDate, filters)
 }
 
+function dateRangeOverlapsYears(
+  startDate: string | undefined,
+  endDate: string | undefined,
+  startYear: number,
+  endYear: number,
+) {
+  if (!startDate) {
+    return false
+  }
+
+  const recordStartYear = new Date(startDate).getUTCFullYear()
+  const recordEndYear = endDate ? new Date(endDate).getUTCFullYear() : recordStartYear
+
+  return recordStartYear <= endYear && recordEndYear >= startYear
+}
+
+function recordOverlapsLeaderYears(
+  leader: LeaderRecord,
+  displayYear?: number,
+  startDate?: string,
+  endDate?: string,
+) {
+  if (typeof displayYear === 'number') {
+    return displayYear >= leader.startYear && displayYear <= leader.endYear
+  }
+
+  return dateRangeOverlapsYears(startDate, endDate, leader.startYear, leader.endYear)
+}
+
+function recordMatchesLeaderPeriods(
+  period: PeriodRecord,
+  context: LeaderSelectionContext,
+  displayYear?: number,
+  startDate?: string,
+  endDate?: string,
+) {
+  if (!context.periodSlugs.has(period.slug)) {
+    return false
+  }
+
+  return recordOverlapsLeaderYears(context.leader, displayYear, startDate, endDate)
+}
+
+function eventMatchesLeader(event: EventRecord, context: LeaderSelectionContext) {
+  return (
+    context.eventSlugs.has(event.slug) ||
+    recordMatchesLeaderPeriods(event.period, context, event.displayYear, event.startDate, event.endDate)
+  )
+}
+
+function campaignMatchesLeader(campaign: CampaignRecord, context: LeaderSelectionContext) {
+  return (
+    context.campaignSlugs.has(campaign.slug) ||
+    recordMatchesLeaderPeriods(
+      campaign.period,
+      context,
+      campaign.displayYear,
+      campaign.startDate,
+      campaign.endDate,
+    )
+  )
+}
+
+function overlayMatchesLeader(overlay: OverlayRecord, context: LeaderSelectionContext) {
+  return recordMatchesLeaderPeriods(overlay.period, context, undefined, overlay.validFrom, overlay.validTo)
+}
+
+function quizMatchesLeader(quiz: QuizRecord, context: LeaderSelectionContext) {
+  return context.periodSlugs.has(quiz.period.slug)
+}
+
 function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
   if (typeof filters.year === 'number') {
     return filters.year
@@ -667,6 +942,48 @@ function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
 
     if (period) {
       return period.endYear
+    }
+  }
+
+  if (filters.leader) {
+    const leaderContext = buildLeaderSelectionContext(snapshot, filters.leader)
+
+    if (leaderContext) {
+      const leaderRecordYears = [
+        ...snapshot.events
+          .filter((event) => eventMatchesLeader(event, leaderContext))
+          .map((event) => event.displayYear),
+        ...snapshot.campaigns
+          .filter((campaign) => campaignMatchesLeader(campaign, leaderContext))
+          .map((campaign) => campaign.displayYear),
+      ]
+
+      if (leaderRecordYears.length > 0) {
+        return Math.max(...leaderRecordYears)
+      }
+
+      const maxPeriodYear = [...leaderContext.featuredPeriods, ...leaderContext.officialPeriods].reduce(
+        (maxYear, period) => Math.max(maxYear, period.endYear),
+        0,
+      )
+
+      if (maxPeriodYear > 0) {
+        return maxPeriodYear
+      }
+
+      const maxBoundaryYear = snapshot.boundaryEpochs.reduce(
+        (maxYear, epoch) =>
+          epoch.validFromYear <= leaderContext.leader.endYear
+            ? Math.max(maxYear, Math.min(epoch.validToYear, leaderContext.leader.endYear))
+            : maxYear,
+        0,
+      )
+
+      if (maxBoundaryYear > 0) {
+        return maxBoundaryYear
+      }
+
+      return leaderContext.leader.endYear
     }
   }
 
@@ -693,10 +1010,30 @@ function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
 
 export function filterSnapshot(snapshot: ExplorerSnapshot, filters: SearchState): ExplorerSnapshot {
   const activeYear = resolveActiveYear(snapshot, filters)
-  const activeBoundaryEpoch = findBoundaryEpochForYear(snapshot.boundaryEpochs, activeYear)
+  const leaderContext = buildLeaderSelectionContext(snapshot, filters.leader)
+  const selectedLeader = leaderContext?.leader ?? null
+  const periods = leaderContext
+    ? snapshot.periods.filter((period) => leaderContext.periodSlugs.has(period.slug))
+    : snapshot.periods
+  const boundaryEpochs = selectedLeader
+    ? snapshot.boundaryEpochs.filter(
+        (epoch) => epoch.validFromYear <= selectedLeader.endYear && epoch.validToYear >= selectedLeader.startYear,
+      )
+    : snapshot.boundaryEpochs
+  const activeBoundaryEpoch =
+    findBoundaryEpochForYear(boundaryEpochs, activeYear) ??
+    findBoundaryEpochForYear(snapshot.boundaryEpochs, activeYear)
+  const activePeriod =
+    (filters.period ? periods.find((period) => period.slug === filters.period) : null) ??
+    periods.find((period) => periodMatchesYear(period, activeYear)) ??
+    null
+  const activeLeader = selectedLeader ?? resolveLeaderForYear(snapshot, activeYear, activePeriod)
 
   const events = snapshot.events.filter((event) => {
     if (filters.period && event.period.slug !== filters.period) return false
+    if (leaderContext && !eventMatchesLeader(event, leaderContext)) {
+      return false
+    }
     if (typeof filters.year === 'number' && !periodMatchesYear(event.period, filters.year)) return false
     if (filters.region && event.region !== filters.region) return false
     if (!matchesQuery(event, filters.q)) return false
@@ -705,14 +1042,25 @@ export function filterSnapshot(snapshot: ExplorerSnapshot, filters: SearchState)
 
   const campaigns = snapshot.campaigns.filter((campaign) => {
     if (filters.period && campaign.period.slug !== filters.period) return false
+    if (leaderContext && !campaignMatchesLeader(campaign, leaderContext)) {
+      return false
+    }
     if (typeof filters.year === 'number' && !periodMatchesYear(campaign.period, filters.year)) return false
     if (filters.region && campaign.region !== filters.region) return false
     if (!matchesQuery(campaign, filters.q)) return false
     return recordMatchesYear(campaign.displayYear, campaign.startDate, campaign.endDate, filters)
   })
 
+  const linkedPlaceSlugs = new Set<string>([
+    ...events.flatMap((event) => event.places.map((place) => place.slug)),
+    ...campaigns.flatMap((campaign) => campaign.relatedPlaces.map((place) => place.slug)),
+  ])
+
   const places = snapshot.places.filter((place) => {
     if (filters.period && place.period.slug !== filters.period) return false
+    if (leaderContext && !leaderContext.placeSlugs.has(place.slug) && !linkedPlaceSlugs.has(place.slug)) {
+      return false
+    }
     if (typeof filters.year === 'number' && !periodMatchesYear(place.period, filters.year)) return false
     if (filters.region && place.region !== filters.region) return false
     return matchesQuery(place, filters.q)
@@ -720,6 +1068,9 @@ export function filterSnapshot(snapshot: ExplorerSnapshot, filters: SearchState)
 
   const overlays = snapshot.overlays.filter((overlay) => {
     if (filters.period && overlay.period.slug !== filters.period) return false
+    if (leaderContext && !overlayMatchesLeader(overlay, leaderContext)) {
+      return false
+    }
     if (typeof filters.year === 'number' && !periodMatchesYear(overlay.period, filters.year)) return false
     if (filters.region && overlay.region !== filters.region) return false
     if (
@@ -738,15 +1089,27 @@ export function filterSnapshot(snapshot: ExplorerSnapshot, filters: SearchState)
 
   return {
     activeBoundaryEpoch,
+    activeLeader,
     activeYear,
     adminUnits: activeBoundaryEpoch?.units ?? [],
-    boundaryEpochs: snapshot.boundaryEpochs,
+    boundaryEpochs,
     campaigns,
     events,
+    leaders: snapshot.leaders,
     overlays,
-    periods: snapshot.periods,
+    periods,
     places,
-    quizzes: snapshot.quizzes.filter((quiz) => !filters.period || quiz.period.slug === filters.period),
+    quizzes: snapshot.quizzes.filter((quiz) => {
+      if (filters.period && quiz.period.slug !== filters.period) {
+        return false
+      }
+
+      if (leaderContext && !quizMatchesLeader(quiz, leaderContext)) {
+        return false
+      }
+
+      return true
+    }),
     sources: snapshot.sources,
   }
 }
@@ -769,6 +1132,30 @@ export async function getPeriod(slug: string) {
   const filters: SearchState = { layer: 'all', period: slug, type: 'all' }
   const records = filterSnapshot(snapshot, filters)
   return { period, ...records }
+}
+
+export async function getLeaders() {
+  const snapshot = await getExplorerSnapshot()
+  return snapshot.leaders
+}
+
+export async function getLeader(slug: string) {
+  const snapshot = await getExplorerSnapshot()
+  const leader = snapshot.leaders.find((item) => item.slug === slug)
+
+  if (!leader) {
+    return undefined
+  }
+
+  const leaderContext = buildLeaderSelectionContext(snapshot, leader)
+  const records = filterSnapshot(snapshot, { layer: 'all', leader: slug, type: 'all' })
+
+  return {
+    featuredPeriods: leaderContext?.featuredPeriods ?? [],
+    leader,
+    officialPeriods: leaderContext?.officialPeriods ?? [],
+    ...records,
+  }
 }
 
 export async function getEvent(slug: string) {

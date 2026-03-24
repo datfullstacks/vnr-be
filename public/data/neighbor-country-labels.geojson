@@ -1,0 +1,53 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          104.9,
+          23.25
+        ]
+      },
+      "properties": {
+        "color": "#ccb992",
+        "kind": "neighbor-country",
+        "title": "Trung Quốc",
+        "summary": "Nước láng giềng phía bắc, được hiển thị như lớp tham chiếu khu vực quanh Việt Nam."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          102.9,
+          18.2
+        ]
+      },
+      "properties": {
+        "color": "#d7c6a3",
+        "kind": "neighbor-country",
+        "title": "Lào",
+        "summary": "Nước láng giềng phía tây, được hiển thị như lớp tham chiếu khu vực quanh Việt Nam."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          104.5,
+          12.25
+        ]
+      },
+      "properties": {
+        "color": "#d2bc97",
+        "kind": "neighbor-country",
+        "title": "Campuchia",
+        "summary": "Nước láng giềng phía tây nam, được hiển thị như lớp tham chiếu khu vực quanh Việt Nam."
+      }
+    }
+  ]
+}

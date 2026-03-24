@@ -9,6 +9,8 @@ export type HistoricalBoundaryUnitType =
   | 'merged_province'
   | 'municipality'
   | 'province'
+export type LeaderOfficeType = 'general-secretary' | 'party-chairman'
+export type PeriodType = 'formation' | 'party-era'
 
 export type SourceRecord = {
   author?: string
@@ -25,12 +27,32 @@ export type SourceRecord = {
   year: number
 }
 
-export type PeriodRecord = {
-  accentColor: string
+export type LeaderRecord = {
   endYear: number
   id: string
-  keyThemes: string[]
+  isFeaturedChairmanHighlight?: boolean
+  name: string
+  officeLabel: string
+  officeType: LeaderOfficeType
   overview: string
+  portraitUrl?: string
+  slug: string
+  sources: SourceRecord[]
+  startYear: number
+  summary: string
+}
+
+export type PeriodRecord = {
+  accentColor: string
+  displayOrder: number
+  endYear: number
+  featuredLeaderSlug?: string
+  id: string
+  keyThemes: string[]
+  leadershipLabel?: string
+  officialLeaderSlugs: string[]
+  overview: string
+  periodType: PeriodType
   slug: string
   startYear: number
   summary: string
@@ -170,11 +192,13 @@ export type ExplorerRecord = CampaignRecord | EventRecord | PlaceRecord
 
 export type ExplorerSnapshot = {
   activeBoundaryEpoch?: BoundaryEpochRecord | null
+  activeLeader?: LeaderRecord | null
   activeYear?: number
   adminUnits: HistoricalAdminUnitRecord[]
   boundaryEpochs: BoundaryEpochRecord[]
   campaigns: CampaignRecord[]
   events: EventRecord[]
+  leaders: LeaderRecord[]
   overlays: OverlayRecord[]
   periods: PeriodRecord[]
   places: PlaceRecord[]

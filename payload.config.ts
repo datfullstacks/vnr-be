@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -48,7 +50,7 @@ function resolveServerUrl() {
     return `https://${vercelUrl.replace(/^https?:\/\//, '')}`
   }
 
-  return 'http://localhost:3001'
+  return 'http://localhost:3000'
 }
 
 const serverUrl = resolveServerUrl()

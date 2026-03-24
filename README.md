@@ -1,27 +1,17 @@
 # VNR Backend
 
-Payload CMS + public API for frontend `VNR`.
+Express backend cho VNR, dùng Payload local API để lấy dữ liệu từ MongoDB.
 
-## Run locally
+## Chạy cục bộ
 
 ```bash
 npm install
 npm run dev
 ```
 
-Backend defaults to port `3001`.
-Tren Railway, backend se tu dong bind vao `PORT` duoc cap.
+Khai báo `MONGODB_URI`, `PAYLOAD_SECRET` và `PAYLOAD_PUBLIC_SERVER_URL`.
 
-## Local env
+## Endpoint chính
 
-Tao `.env.local` tu [`.env.example`](/d:/vnr-be/.env.example) va dien:
-
-- `PAYLOAD_SECRET`
-- `MONGODB_URI`
-- `PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3001`
-
-## Public API
-
-- `/api/public/health`
-- `/api/public/explorer`
-- `/api/public/snapshot`
+- Health/info: `/`
+- Public snapshot cho frontend: `/api/public/snapshot`

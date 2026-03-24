@@ -6,6 +6,7 @@ export type LayerType = 'all' | 'boundaries' | 'historical' | 'records'
 export type SearchState = {
   from?: number
   layer: LayerType
+  leader?: string
   period?: string
   q?: string
   region?: RecordRegion
@@ -34,6 +35,7 @@ export function parseSearchState(
       layer === 'boundaries' || layer === 'historical' || layer === 'records'
         ? layer
         : 'all',
+    leader: first(searchParams.leader) ?? undefined,
     period: first(searchParams.period) ?? undefined,
     q: first(searchParams.q)?.trim() || undefined,
     region:
