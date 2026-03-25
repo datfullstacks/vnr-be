@@ -38,7 +38,7 @@ export const demoLeaders: DemoLeader[] = [
       'Trần Phú gắn với quá trình xác lập cương lĩnh, kỷ luật tổ chức và nhịp hoạt động đầu tiên của Đảng trong bối cảnh thực dân đàn áp gay gắt.',
     portraitUrl: '/images/leaders/tran-phu.jpg',
     slug: 'tran-phu',
-    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam', 'van-kien-dang-toan-tap'],
     startYear: 1930,
     summary: 'Tổng Bí thư đầu tiên, đại diện cho chặng xác lập hệ thống lãnh đạo ban đầu của Đảng.',
   },
@@ -366,8 +366,13 @@ export const periodMetadataBySlug: Record<string, PeriodMetadata> = {
 
 export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenceSet> = {
   'tran-phu': {
-    eventSlugs: ['thanh-lap-dang-cong-san-viet-nam', 'luan-cuong-chinh-tri-1930'],
-    placeSlugs: ['nghe-tinh-xo-viet'],
+    eventSlugs: [
+      'thanh-lap-dang-cong-san-viet-nam',
+      'luan-cuong-chinh-tri-1930',
+      'hoi-nghi-trung-uong-thang-10-1930',
+      'tran-phu-bi-bat-va-hy-sinh-1931',
+    ],
+    placeSlugs: ['nghe-tinh-xo-viet', 'huong-cang', 'nha-thuong-cho-quan'],
   },
   'le-hong-phong': {
     eventSlugs: ['dai-hoi-lan-thu-nhat-1935', 'phong-trao-dan-chu-1936-1939'],

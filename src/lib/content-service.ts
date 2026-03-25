@@ -10,6 +10,12 @@ import {
   demoSources,
 } from '../data/demo-content.js'
 import {
+  supplementalLeaderCopyBySlug,
+  supplementalLeaderEvents,
+  supplementalLeaderPlaces,
+  supplementalLeaderQuizzes,
+} from '../data/leader-detail-backfills.js'
+import {
   demoLeaders,
   leaderContentReferencesBySlug,
   periodMetadataBySlug,
@@ -47,6 +53,9 @@ let explorerSnapshotCache:
   | null = null
 
 const SNAPSHOT_CACHE_TTL_MS = 60_000
+const mergedDemoPlaces = [...demoPlaces, ...supplementalLeaderPlaces]
+const mergedDemoEvents = [...demoEvents, ...supplementalLeaderEvents]
+const mergedDemoQuizzes = [...demoQuizzes, ...supplementalLeaderQuizzes]
 
 async function getPayloadSafe() {
   if (!getMongoConnectionString()) {
@@ -134,20 +143,24 @@ function withPeriodMetadata(
 
 function buildLeaderRecords(sourceMap: Map<string, SourceRecord>) {
   return demoLeaders
-    .map<LeaderRecord>((leader) => ({
-      endYear: leader.endYear,
-      id: makeLeaderId(leader.slug),
-      isFeaturedChairmanHighlight: leader.isFeaturedChairmanHighlight,
-      name: leader.name,
-      officeLabel: leader.officeLabel,
-      officeType: leader.officeType,
-      overview: leader.overview,
-      portraitUrl: leader.portraitUrl,
-      slug: leader.slug,
-      sources: leader.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
-      startYear: leader.startYear,
-      summary: leader.summary,
-    }))
+    .map<LeaderRecord>((leader) => {
+      const copyOverride = supplementalLeaderCopyBySlug[leader.slug]
+
+      return {
+        endYear: leader.endYear,
+        id: makeLeaderId(leader.slug),
+        isFeaturedChairmanHighlight: leader.isFeaturedChairmanHighlight,
+        name: leader.name,
+        officeLabel: leader.officeLabel,
+        officeType: leader.officeType,
+        overview: copyOverride?.overview ?? leader.overview,
+        portraitUrl: leader.portraitUrl,
+        slug: leader.slug,
+        sources: leader.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
+        startYear: leader.startYear,
+        summary: copyOverride?.summary ?? leader.summary,
+      }
+    })
     .sort((left, right) => left.startYear - right.startYear)
 }
 
@@ -215,7 +228,7 @@ function buildFallbackSnapshot(): ExplorerSnapshot {
     validToYear: epoch.validToYear,
   }))
 
-  const places: PlaceRecord[] = demoPlaces.map((place) => ({
+  const places: PlaceRecord[] = mergedDemoPlaces.map((place) => ({
     body: place.body,
     historicalGeometry: place.historicalGeometry,
     id: makeRecordId('place', place.slug),
@@ -230,7 +243,7 @@ function buildFallbackSnapshot(): ExplorerSnapshot {
 
   const placeMap = new Map(places.map((place) => [place.slug, place]))
 
-  const events: EventRecord[] = demoEvents.map((event) => ({
+  const events: EventRecord[] = mergedDemoEvents.map((event) => ({
     content: event.content,
     datePrecision: event.datePrecision,
     displayYear: event.displayYear,
@@ -282,7 +295,7 @@ function buildFallbackSnapshot(): ExplorerSnapshot {
     sources: overlay.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
   }))
 
-  const quizzes: QuizRecord[] = demoQuizzes.map((quiz) => ({
+  const quizzes: QuizRecord[] = mergedDemoQuizzes.map((quiz) => ({
     ...quiz,
     id: makeRecordId('quiz', quiz.slug),
     period: periodMap.get(quiz.period)!,
@@ -545,7 +558,7 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
     )
 
     const payloadPlaces = placeDocs.docs.map((doc) => mapPlaceDoc(doc, periodMap, sourceMap))
-    const supplementalPlaces: PlaceRecord[] = demoPlaces
+    const supplementalPlaces: PlaceRecord[] = mergedDemoPlaces
       .filter((place) => !payloadPlaces.some((item) => item.slug === place.slug))
       .map((place) => ({
         body: place.body,
@@ -591,7 +604,7 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       title: doc.title,
       topics: Array.isArray(doc.topics) ? doc.topics : [],
     }))
-    const supplementalEvents: EventRecord[] = demoEvents
+    const supplementalEvents: EventRecord[] = mergedDemoEvents
       .filter((event) => !payloadEvents.some((item) => item.slug === event.slug))
       .map((event) => ({
         content: event.content,
@@ -726,7 +739,7 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       summary: doc.summary ?? '',
       title: doc.title,
     }))
-    const supplementalQuizzes: QuizRecord[] = demoQuizzes
+    const supplementalQuizzes: QuizRecord[] = mergedDemoQuizzes
       .filter((quiz) => !payloadQuizzes.some((item) => item.slug === quiz.slug))
       .map((quiz) => ({
         ...quiz,
@@ -860,15 +873,21 @@ function buildLeaderDetailSnapshot(
   context: LeaderSelectionContext,
 ): ExplorerSnapshot {
   const broadSnapshot = filterSnapshot(snapshot, { layer: 'all', leader: leader.slug, type: 'all' })
-  const directEvents = snapshot.events.filter((event) => context.eventSlugs.has(event.slug))
-  const directCampaigns = snapshot.campaigns.filter((campaign) => context.campaignSlugs.has(campaign.slug))
+  const directEvents = snapshot.events
+    .filter((event) => context.eventSlugs.has(event.slug))
+    .sort((left, right) => new Date(left.startDate).getTime() - new Date(right.startDate).getTime())
+  const directCampaigns = snapshot.campaigns
+    .filter((campaign) => context.campaignSlugs.has(campaign.slug))
+    .sort((left, right) => new Date(left.startDate).getTime() - new Date(right.startDate).getTime())
   const linkedPlaceSlugs = new Set<string>([
     ...directEvents.flatMap((event) => event.places.map((place) => place.slug)),
     ...directCampaigns.flatMap((campaign) => campaign.relatedPlaces.map((place) => place.slug)),
   ])
-  const directPlaces = snapshot.places.filter(
-    (place) => context.placeSlugs.has(place.slug) || linkedPlaceSlugs.has(place.slug),
+  const explicitPlaces = snapshot.places.filter((place) => context.placeSlugs.has(place.slug))
+  const linkedPlaces = snapshot.places.filter(
+    (place) => !context.placeSlugs.has(place.slug) && linkedPlaceSlugs.has(place.slug),
   )
+  const directPlaces = [...explicitPlaces, ...linkedPlaces]
   const directQuizzes = snapshot.quizzes.filter((quiz) =>
     quizReferencesAnyDirectRecord(quiz, directEvents, directCampaigns),
   )
