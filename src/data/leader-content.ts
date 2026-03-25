@@ -376,12 +376,14 @@ export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenc
   },
   'le-hong-phong': {
     eventSlugs: ['dai-hoi-lan-thu-nhat-1935', 'phong-trao-dan-chu-1936-1939'],
+    placeSlugs: ['ma-cao'],
   },
   'ha-huy-tap': {
     eventSlugs: ['phong-trao-dan-chu-1936-1939'],
   },
   'nguyen-van-cu': {
     eventSlugs: ['tu-chi-trich-1939', 'hoi-nghi-trung-uong-6-1939'],
+    placeSlugs: ['ba-diem-hoc-mon'],
   },
   'truong-chinh': {
     campaignSlugs: ['chien-dich-dien-bien-phu'],
@@ -403,15 +405,15 @@ export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenc
   },
   'do-muoi': {
     eventSlugs: ['dai-hoi-vii-1991', 'viet-nam-gia-nhap-asean-1995'],
-    placeSlugs: ['hoi-truong-ba-dinh', 'tru-so-trung-uong-dang'],
+    placeSlugs: ['hoi-truong-ba-dinh', 'tru-so-trung-uong-dang', 'bandar-seri-begawan'],
   },
   'le-kha-phieu': {
     eventSlugs: ['nghi-quyet-trung-uong-6-lan-2-1999', 'hiep-dinh-thuong-mai-viet-my-2000'],
-    placeSlugs: ['tru-so-trung-uong-dang'],
+    placeSlugs: ['tru-so-trung-uong-dang', 'washington-dc'],
   },
   'nong-duc-manh': {
     eventSlugs: ['dai-hoi-ix-2001', 'viet-nam-gia-nhap-wto-2007'],
-    placeSlugs: ['trung-tam-hoi-nghi-quoc-gia'],
+    placeSlugs: ['trung-tam-hoi-nghi-quoc-gia', 'geneva'],
   },
   'nguyen-phu-trong': {
     eventSlugs: [

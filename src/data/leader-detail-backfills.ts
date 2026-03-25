@@ -13,6 +13,78 @@ export const supplementalLeaderCopyBySlug: Record<
     summary:
       'Tổng Bí thư đầu tiên, gắn với Hội nghị Trung ương tháng 10/1930, Luận cương chính trị và khí tiết cộng sản trong chặng 1930-1931.',
   },
+  'le-hong-phong': {
+    overview:
+      'Lê Hồng Phong gắn với chặng khôi phục hệ thống tổ chức của Đảng sau thời kỳ bị khủng bố nặng nề, nối lại mạch lãnh đạo trong nước với phong trào cộng sản quốc tế và mở lại nhịp hoạt động qua Đại hội lần thứ nhất năm 1935.',
+    summary:
+      'Tổng Bí thư của giai đoạn khôi phục tổ chức, gắn với Đại hội I năm 1935 và bước nối lại nhịp lãnh đạo của Đảng.',
+  },
+  'ha-huy-tap': {
+    overview:
+      'Hà Huy Tập để lại dấu ấn ở năng lực lý luận và tổ chức trong lúc phong trào dân chủ 1936-1939 phát triển, giúp Đảng mở rộng ảnh hưởng trong quần chúng và thử nghiệm nhiều hình thức vận động công khai, bán công khai.',
+    summary:
+      'Tổng Bí thư gắn với chặng phát triển đường lối và mở rộng ảnh hưởng của Đảng trong phong trào dân chủ 1936-1939.',
+  },
+  'nguyen-van-cu': {
+    overview:
+      'Nguyễn Văn Cừ nhấn mạnh yêu cầu tự chỉnh đốn và nâng cao năng lực lãnh đạo khi tình hình thế giới, trong nước chuyển nhanh. Các mốc Tự chỉ trích năm 1939 và Hội nghị Trung ương 6 cho thấy rõ nỗ lực đặt lại nhiều vấn đề chiến lược của phong trào cách mạng.',
+    summary:
+      'Tổng Bí thư tiêu biểu của chặng tự chỉnh đốn, gắn với Tự chỉ trích năm 1939 và bước điều chỉnh chiến lược cuối thập niên 1930.',
+  },
+  'truong-chinh': {
+    overview:
+      'Trường Chinh là nhà lý luận và tổ chức then chốt của nhiều bước ngoặt: hoàn chỉnh chuyển hướng giải phóng dân tộc, lãnh đạo Tổng khởi nghĩa, định hình đường lối kháng chiến kiến quốc và sau đó giữ vai trò chuyển tiếp ở ngưỡng mở đầu đổi mới năm 1986.',
+    summary:
+      'Một Tổng Bí thư gắn với nhiều bước ngoặt lớn từ chuyển hướng chiến lược năm 1941 đến kháng chiến kiến quốc và chặng chuyển tiếp năm 1986.',
+  },
+  'ho-chi-minh': {
+    overview:
+      'Chủ tịch Hồ Chí Minh là điểm quy tụ chiến lược của cách mạng Việt Nam, từ chuẩn bị đường lối giải phóng dân tộc, giành chính quyền, tuyên bố độc lập đến định hình tầm nhìn xây dựng đất nước và chủ nghĩa xã hội trong giai đoạn mới.',
+    summary:
+      'Người sáng lập Đảng, gắn với những cột mốc mở đường cho độc lập dân tộc, nhà nước mới và định hướng phát triển lâu dài.',
+  },
+  'le-duan': {
+    overview:
+      'Lê Duẩn gắn với chặng chiến tranh cách mạng quy mô lớn, giữ vai trò trung tâm trong đường lối giải phóng miền Nam, thống nhất đất nước và xử lý những bài toán đầu tiên của thời kỳ sau 1975.',
+    summary:
+      'Tổng Bí thư của giai đoạn chiến tranh chống Mỹ, đại thắng mùa Xuân 1975 và bước đầu xây dựng đất nước thống nhất.',
+  },
+  'nguyen-van-linh': {
+    overview:
+      'Nguyễn Văn Linh gắn với bước mở đầu của công cuộc đổi mới, nhấn mạnh yêu cầu nhìn thẳng vào sự thật, điều chỉnh tư duy phát triển và đưa các quyết sách cải cách đi vào đời sống sản xuất, xã hội.',
+    summary:
+      'Tổng Bí thư mở đầu đổi mới, gắn với Đại hội VI năm 1986 và các quyết sách tháo gỡ cho sản xuất, nhất là trong nông nghiệp.',
+  },
+  'do-muoi': {
+    overview:
+      'Đỗ Mười tiếp nối đường lối đổi mới trong bối cảnh thế giới biến động mạnh, đồng thời gắn với chặng xác nhận cương lĩnh phát triển mới và mở rộng không gian hội nhập khu vực qua việc Việt Nam gia nhập ASEAN.',
+    summary:
+      'Tổng Bí thư của chặng tiếp tục đổi mới, củng cố cương lĩnh phát triển và mở rộng hội nhập khu vực trong thập niên 1990.',
+  },
+  'le-kha-phieu': {
+    overview:
+      'Lê Khả Phiêu gắn với yêu cầu xây dựng, chỉnh đốn Đảng ở cuối thế kỷ XX và những bước chuyển quan trọng của tiến trình hội nhập kinh tế quốc tế, trong đó có Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000.',
+    summary:
+      'Tổng Bí thư của giai đoạn nhấn mạnh chỉnh đốn Đảng và mở thêm cửa cho hội nhập kinh tế quốc tế.',
+  },
+  'nong-duc-manh': {
+    overview:
+      'Nông Đức Mạnh gắn với giai đoạn đẩy mạnh phát triển và hội nhập sâu hơn, trong đó Đại hội IX xác lập nhịp phát triển mới và việc gia nhập WTO năm 2007 đánh dấu bước hội nhập toàn cầu nổi bật.',
+    summary:
+      'Tổng Bí thư của chặng tăng tốc hội nhập, gắn với Đại hội IX năm 2001 và cột mốc gia nhập WTO năm 2007.',
+  },
+  'nguyen-phu-trong': {
+    overview:
+      'Nguyễn Phú Trọng gắn với chặng nhấn mạnh xây dựng, chỉnh đốn Đảng, củng cố kỷ luật chính trị và đẩy mạnh phòng, chống tham nhũng, tiêu cực, đồng thời định hình các ưu tiên phát triển trong bối cảnh cạnh tranh quốc tế và chuyển đổi số ngày càng mạnh.',
+    summary:
+      'Tổng Bí thư của giai đoạn nhấn mạnh xây dựng, chỉnh đốn Đảng và phòng, chống tham nhũng trong bối cảnh phát triển mới.',
+  },
+  'to-lam': {
+    overview:
+      'Tô Lâm mở ra chặng lãnh đạo đương nhiệm trong dữ liệu của site, gắn với yêu cầu giữ ổn định chiến lược, tinh gọn bộ máy và nâng hiệu quả điều hành trong bối cảnh đất nước bước vào nhịp cải cách mới.',
+    summary:
+      'Tổng Bí thư đương nhiệm trong lát cắt hiện nay, gắn với bước mở đầu nhiệm kỳ từ năm 2024 và chủ trương tinh gọn bộ máy.',
+  },
 }
 
 export const supplementalLeaderPresentationBySlug: Record<
@@ -132,6 +204,81 @@ export const supplementalLeaderPlaces: DemoPlace[] = [
     summary: 'Địa điểm gắn với chặng cuối đời và lời nhắn bất hủ của Trần Phú.',
     title: 'Nhà thương Chợ Quán',
   },
+  {
+    body: 'Ma Cao gắn với Đại hội lần thứ nhất của Đảng năm 1935, cột mốc khôi phục hệ thống tổ chức và nhịp lãnh đạo sau giai đoạn bị khủng bố nặng nề, đồng thời gắn trực tiếp với vai trò của Lê Hồng Phong trong việc nối lại mạch hoạt động của Đảng.',
+    modernLocation: {
+      label: 'Ma Cao',
+      latitude: 22.1987,
+      longitude: 113.5439,
+      province: 'Ma Cao',
+    },
+    period: '1930-1945',
+    region: 'international',
+    slug: 'ma-cao',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Địa điểm gắn với Đại hội I năm 1935 và vai trò của Lê Hồng Phong trong chặng khôi phục tổ chức.',
+    title: 'Ma Cao',
+  },
+  {
+    body: 'Bà Điểm - Hóc Môn là địa điểm gắn với Hội nghị Trung ương 6 năm 1939, cột mốc điều chỉnh chiến lược quan trọng của Đảng trong thời kỳ Nguyễn Văn Cừ giữ cương vị Tổng Bí thư.',
+    modernLocation: {
+      label: 'Bà Điểm - Hóc Môn',
+      latitude: 10.8898,
+      longitude: 106.5965,
+      province: 'TP. Hồ Chí Minh',
+    },
+    period: '1930-1945',
+    region: 'south',
+    slug: 'ba-diem-hoc-mon',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    summary: 'Địa điểm gắn với Hội nghị Trung ương 6 năm 1939 trong thời kỳ Nguyễn Văn Cừ.',
+    title: 'Bà Điểm - Hóc Môn',
+  },
+  {
+    body: 'Bandar Seri Begawan gắn với việc Việt Nam chính thức gia nhập ASEAN ngày 28/7/1995, một bước mở rộng không gian hội nhập khu vực trong thời kỳ Đỗ Mười giữ cương vị Tổng Bí thư.',
+    modernLocation: {
+      label: 'Bandar Seri Begawan',
+      latitude: 4.9031,
+      longitude: 114.9398,
+      province: 'Brunei',
+    },
+    period: '1991-1997',
+    region: 'international',
+    slug: 'bandar-seri-begawan',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Địa điểm gắn với cột mốc Việt Nam gia nhập ASEAN năm 1995 trong thời kỳ Đỗ Mười.',
+    title: 'Bandar Seri Begawan',
+  },
+  {
+    body: 'Washington, D.C. gắn với Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000, một cột mốc mở rộng hội nhập kinh tế quốc tế ở giai đoạn Lê Khả Phiêu giữ cương vị Tổng Bí thư.',
+    modernLocation: {
+      label: 'Washington, D.C.',
+      latitude: 38.9072,
+      longitude: -77.0369,
+      province: 'District of Columbia',
+    },
+    period: '1997-2001',
+    region: 'international',
+    slug: 'washington-dc',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Địa điểm gắn với Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000 trong thời kỳ Lê Khả Phiêu.',
+    title: 'Washington, D.C.',
+  },
+  {
+    body: 'Geneva gắn với việc Việt Nam gia nhập WTO ngày 11/1/2007, cột mốc hội nhập toàn cầu nổi bật trong giai đoạn Nông Đức Mạnh giữ cương vị Tổng Bí thư.',
+    modernLocation: {
+      label: 'Geneva',
+      latitude: 46.2044,
+      longitude: 6.1432,
+      province: 'Geneva',
+    },
+    period: '2001-2011',
+    region: 'international',
+    slug: 'geneva',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Địa điểm gắn với cột mốc Việt Nam gia nhập WTO năm 2007 trong thời kỳ Nông Đức Mạnh.',
+    title: 'Geneva',
+  },
 ]
 
 export const supplementalLeaderEvents: DemoEvent[] = [
@@ -226,5 +373,502 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
     summary: 'Ôn tập nhanh về Trần Phú, Luận cương chính trị và chặng 1930-1931.',
     title: 'Ôn tập Trần Phú 1930-1931',
+  },
+  {
+    period: '1930-1945',
+    questions: [
+      {
+        explanation:
+          'Đại hội lần thứ nhất của Đảng năm 1935 là cột mốc khôi phục tổ chức và nối lại nhịp lãnh đạo trong giai đoạn Lê Hồng Phong.',
+        options: [
+          { isCorrect: true, label: 'Đại hội lần thứ nhất của Đảng năm 1935' },
+          { isCorrect: false, label: 'Hội nghị Trung ương 8 năm 1941' },
+          { isCorrect: false, label: 'Đại hội VI năm 1986' },
+        ],
+        prompt: 'Mốc nào gắn rõ nhất với chặng khôi phục tổ chức dưới thời Lê Hồng Phong?',
+      },
+      {
+        explanation:
+          'Phong trào dân chủ 1936-1939 mở rộng khả năng vận động quần chúng bằng các hình thức công khai, bán công khai và hợp pháp.',
+        options: [
+          { isCorrect: true, label: 'Phong trào dân chủ 1936-1939' },
+          { isCorrect: false, label: 'Tổng khởi nghĩa Tháng Tám 1945' },
+          { isCorrect: false, label: 'Tổng tuyển cử năm 1976' },
+        ],
+        prompt: 'Phong trào quần chúng nào nối tiếp trực tiếp thời kỳ Lê Hồng Phong lãnh đạo?',
+      },
+      {
+        explanation:
+          'Ma Cao là địa điểm gắn với Đại hội I năm 1935, cột mốc gắn trực tiếp với vai trò của Lê Hồng Phong.',
+        options: [
+          { isCorrect: true, label: 'Ma Cao' },
+          { isCorrect: false, label: 'Pác Bó' },
+          { isCorrect: false, label: 'Bandar Seri Begawan' },
+        ],
+        prompt: 'Địa điểm nào gắn với Đại hội I năm 1935 trong thời kỳ Lê Hồng Phong?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['dai-hoi-lan-thu-nhat-1935'],
+    slug: 'quiz-le-hong-phong-1935-1936',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Ôn tập nhanh về Lê Hồng Phong, Đại hội I năm 1935 và chặng khôi phục tổ chức.',
+    title: 'Ôn tập Lê Hồng Phong 1935-1936',
+  },
+  {
+    period: '1930-1945',
+    questions: [
+      {
+        explanation:
+          'Hà Huy Tập gắn chặt với phong trào dân chủ 1936-1939, giai đoạn Đảng mở rộng ảnh hưởng trong xã hội thuộc địa.',
+        options: [
+          { isCorrect: true, label: 'Phong trào dân chủ 1936-1939' },
+          { isCorrect: false, label: 'Đại thắng mùa Xuân 1975' },
+          { isCorrect: false, label: 'Cao điểm phòng, chống tham nhũng năm 2023' },
+        ],
+        prompt: 'Phong trào nào là lát cắt nổi bật nhất khi đọc về Hà Huy Tập?',
+      },
+      {
+        explanation:
+          'Phong trào dân chủ 1936-1939 nổi bật ở việc kết hợp nhiều hình thức vận động: công khai, bán công khai và hợp pháp.',
+        options: [
+          { isCorrect: true, label: 'Đấu tranh công khai, bán công khai và hợp pháp' },
+          { isCorrect: false, label: 'Chỉ hoạt động vũ trang bí mật' },
+          { isCorrect: false, label: 'Chỉ tập trung vào ngoại giao quốc tế' },
+        ],
+        prompt: 'Điểm nổi bật về phương thức vận động của phong trào dân chủ 1936-1939 là gì?',
+      },
+      {
+        explanation:
+          'Phong trào dân chủ 1936-1939 giúp Đảng mở rộng ảnh hưởng trong quần chúng và thử nghiệm hình thức vận động rộng rãi hơn.',
+        options: [
+          { isCorrect: true, label: 'Mở rộng ảnh hưởng của Đảng trong quần chúng' },
+          { isCorrect: false, label: 'Hoàn thành thống nhất đất nước' },
+          { isCorrect: false, label: 'Gia nhập ASEAN' },
+        ],
+        prompt: 'Kết quả dễ nhận thấy nhất của phong trào gắn với Hà Huy Tập là gì?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['phong-trao-dan-chu-1936-1939'],
+    slug: 'quiz-ha-huy-tap-1936-1938',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    summary: 'Ôn tập nhanh về Hà Huy Tập và phong trào dân chủ 1936-1939.',
+    title: 'Ôn tập Hà Huy Tập 1936-1938',
+  },
+  {
+    period: '1930-1945',
+    questions: [
+      {
+        explanation:
+          'Tác phẩm Tự chỉ trích năm 1939 là dấu ấn lý luận nổi bật gắn trực tiếp với Nguyễn Văn Cừ.',
+        options: [
+          { isCorrect: true, label: 'Tự chỉ trích năm 1939' },
+          { isCorrect: false, label: 'Luận cương chính trị tháng 10/1930' },
+          { isCorrect: false, label: 'Nghị quyết Trung ương 4 khóa XI năm 2012' },
+        ],
+        prompt: 'Văn kiện nào gắn rõ nhất với Nguyễn Văn Cừ?',
+      },
+      {
+        explanation:
+          'Hội nghị Trung ương 6 cuối năm 1939 đánh dấu bước điều chỉnh chiến lược quan trọng của Đảng trong thời kỳ Nguyễn Văn Cừ.',
+        options: [
+          { isCorrect: true, label: 'Hội nghị Trung ương 6 năm 1939' },
+          { isCorrect: false, label: 'Đại hội IX năm 2001' },
+          { isCorrect: false, label: 'Đại hội XIII năm 2021' },
+        ],
+        prompt: 'Mốc nào thể hiện bước điều chỉnh chiến lược quan trọng ở cuối thập niên 1930?',
+      },
+      {
+        explanation:
+          'Bà Điểm - Hóc Môn là địa điểm gắn với Hội nghị Trung ương 6 năm 1939 trong thời kỳ Nguyễn Văn Cừ.',
+        options: [
+          { isCorrect: true, label: 'Bà Điểm - Hóc Môn' },
+          { isCorrect: false, label: 'Geneva' },
+          { isCorrect: false, label: 'Quảng trường Ba Đình' },
+        ],
+        prompt: 'Địa điểm nào gắn với Hội nghị Trung ương 6 năm 1939?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['tu-chi-trich-1939', 'hoi-nghi-trung-uong-6-1939'],
+    slug: 'quiz-nguyen-van-cu-1938-1940',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    summary: 'Ôn tập nhanh về Nguyễn Văn Cừ, Tự chỉ trích và bước điều chỉnh chiến lược năm 1939.',
+    title: 'Ôn tập Nguyễn Văn Cừ 1938-1940',
+  },
+  {
+    period: '1945-1954',
+    questions: [
+      {
+        explanation:
+          'Hội nghị Trung ương 8 năm 1941 hoàn chỉnh bước chuyển hướng chiến lược, đặt nhiệm vụ giải phóng dân tộc lên hàng đầu.',
+        options: [
+          { isCorrect: true, label: 'Hội nghị Trung ương 8 năm 1941' },
+          { isCorrect: false, label: 'Đại hội VII năm 1991' },
+          { isCorrect: false, label: 'Nghị quyết 10 năm 1988' },
+        ],
+        prompt: 'Mốc nào gắn với bước chuyển hướng chiến lược đầu thời kỳ Trường Chinh?',
+      },
+      {
+        explanation:
+          'Chiến dịch Điện Biên Phủ là chiến dịch lớn gắn với chặng kháng chiến kiến quốc mà Trường Chinh là một trong những lãnh đạo trung tâm.',
+        options: [
+          { isCorrect: true, label: 'Chiến dịch Điện Biên Phủ' },
+          { isCorrect: false, label: 'Chiến dịch Hồ Chí Minh' },
+          { isCorrect: false, label: 'Vận tải chiến lược Trường Sơn' },
+        ],
+        prompt: 'Chiến dịch nào là lát cắt quân sự tiêu biểu trên trang Trường Chinh?',
+      },
+      {
+        explanation:
+          'Pác Bó là địa điểm gắn với Hội nghị Trung ương 8 năm 1941, còn Việt Bắc là căn cứ địa nổi bật của thời kỳ kháng chiến.',
+        options: [
+          { isCorrect: true, label: 'Pác Bó' },
+          { isCorrect: false, label: 'Washington, D.C.' },
+          { isCorrect: false, label: 'Bandar Seri Begawan' },
+        ],
+        prompt: 'Địa điểm nào gắn trực tiếp với Hội nghị Trung ương 8 năm 1941?',
+      },
+    ],
+    relatedCampaigns: ['chien-dich-dien-bien-phu'],
+    relatedEvents: ['tong-khoi-nghia-thang-tam-1945'],
+    slug: 'quiz-truong-chinh-1941-1956',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    summary: 'Ôn tập nhanh về Trường Chinh qua chuyển hướng chiến lược, tổng khởi nghĩa và kháng chiến kiến quốc.',
+    title: 'Ôn tập Trường Chinh 1941-1956',
+  },
+  {
+    period: '1945-1954',
+    questions: [
+      {
+        explanation:
+          'Tuyên ngôn Độc lập ngày 2/9/1945 là mốc gắn trực tiếp với Hồ Chí Minh và sự ra đời của nước Việt Nam Dân chủ Cộng hòa.',
+        options: [
+          { isCorrect: true, label: 'Tuyên ngôn Độc lập' },
+          { isCorrect: false, label: 'Hiệp định Paris năm 1973' },
+          { isCorrect: false, label: 'Việt Nam gia nhập WTO năm 2007' },
+        ],
+        prompt: 'Sự kiện nào gắn trực tiếp nhất với việc khai sinh nhà nước mới dưới sự lãnh đạo của Hồ Chí Minh?',
+      },
+      {
+        explanation:
+          'Đại hội II năm 1951 gắn với cương vị Chủ tịch Đảng của Hồ Chí Minh trong danh mục trình bày của site.',
+        options: [
+          { isCorrect: true, label: 'Đại hội II của Đảng năm 1951' },
+          { isCorrect: false, label: 'Đại hội IX của Đảng năm 2001' },
+          { isCorrect: false, label: 'Đại hội XIII của Đảng năm 2021' },
+        ],
+        prompt: 'Đại hội nào gắn với cương vị Chủ tịch Đảng của Hồ Chí Minh?',
+      },
+      {
+        explanation:
+          'Quảng trường Ba Đình là không gian lịch sử gắn với Tuyên ngôn Độc lập ngày 2/9/1945.',
+        options: [
+          { isCorrect: true, label: 'Quảng trường Ba Đình' },
+          { isCorrect: false, label: 'Tòa nhà Quốc hội' },
+          { isCorrect: false, label: 'Nhà thương Chợ Quán' },
+        ],
+        prompt: 'Địa danh nào gắn trực tiếp với Tuyên ngôn Độc lập?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['tuyen-ngon-doc-lap'],
+    slug: 'quiz-ho-chi-minh-1941-1960',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    summary: 'Ôn tập nhanh về Hồ Chí Minh qua những mốc giải phóng dân tộc, lập quốc và định hướng giai đoạn mới.',
+    title: 'Ôn tập Hồ Chí Minh 1941-1960',
+  },
+  {
+    period: '1965-1973',
+    questions: [
+      {
+        explanation:
+          'Đại hội III năm 1960 là mốc gắn với chặng mở đầu vai trò lãnh đạo của Lê Duẩn trong tư cách người đứng đầu Đảng.',
+        options: [
+          { isCorrect: true, label: 'Đại hội III của Đảng năm 1960' },
+          { isCorrect: false, label: 'Đại hội VI của Đảng năm 1986' },
+          { isCorrect: false, label: 'Đại hội XI của Đảng năm 2011' },
+        ],
+        prompt: 'Mốc nào gắn với chặng mở đầu vai trò lãnh đạo của Lê Duẩn?',
+      },
+      {
+        explanation:
+          'Chiến dịch Hồ Chí Minh và Đại thắng mùa Xuân 1975 là lát cắt tiêu biểu của chặng kết thúc chiến tranh, thống nhất đất nước.',
+        options: [
+          { isCorrect: true, label: 'Chiến dịch Hồ Chí Minh và Đại thắng mùa Xuân 1975' },
+          { isCorrect: false, label: 'Phong trào dân chủ 1936-1939' },
+          { isCorrect: false, label: 'Việt Nam gia nhập ASEAN năm 1995' },
+        ],
+        prompt: 'Tổ hợp mốc nào gắn rõ nhất với chặng kết thúc chiến tranh dưới thời Lê Duẩn?',
+      },
+      {
+        explanation:
+          'Đường Trường Sơn là trục hậu cần chiến lược nổi bật gắn với giai đoạn chiến tranh cách mạng dưới thời Lê Duẩn.',
+        options: [
+          { isCorrect: true, label: 'Đường Trường Sơn' },
+          { isCorrect: false, label: 'Ma Cao' },
+          { isCorrect: false, label: 'Geneva' },
+        ],
+        prompt: 'Địa danh nào là biểu tượng của trục hậu cần chiến lược trong thời kỳ Lê Duẩn?',
+      },
+    ],
+    relatedCampaigns: ['chien-dich-ho-chi-minh'],
+    relatedEvents: ['tet-mau-than-1968', 'dai-thang-mua-xuan-1975'],
+    slug: 'quiz-le-duan-1960-1986',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Ôn tập nhanh về Lê Duẩn qua chiến tranh chống Mỹ, đại thắng mùa Xuân và bước đầu thống nhất đất nước.',
+    title: 'Ôn tập Lê Duẩn 1960-1986',
+  },
+  {
+    period: '1986-1991',
+    questions: [
+      {
+        explanation:
+          'Đại hội VI năm 1986 mở ra đường lối đổi mới, gắn trực tiếp với chặng Nguyễn Văn Linh giữ cương vị Tổng Bí thư.',
+        options: [
+          { isCorrect: true, label: 'Đại hội VI của Đảng năm 1986' },
+          { isCorrect: false, label: 'Đại hội VII của Đảng năm 1991' },
+          { isCorrect: false, label: 'Đại hội XIII của Đảng năm 2021' },
+        ],
+        prompt: 'Mốc nào mở đầu công cuộc đổi mới trong thời kỳ Nguyễn Văn Linh?',
+      },
+      {
+        explanation:
+          'Nghị quyết 10 năm 1988 là quyết sách quan trọng giúp đổi mới đi vào sản xuất nông nghiệp.',
+        options: [
+          { isCorrect: true, label: 'Nghị quyết 10 năm 1988 về đổi mới nông nghiệp' },
+          { isCorrect: false, label: 'Nghị quyết Trung ương 6 lần 2 năm 1999' },
+          { isCorrect: false, label: 'Nghị quyết 202/2025/QH15' },
+        ],
+        prompt: 'Quyết sách nào giúp đổi mới đi sâu vào sản xuất nông nghiệp dưới thời Nguyễn Văn Linh?',
+      },
+      {
+        explanation:
+          'Hội trường Ba Đình là địa danh nổi bật gắn với Đại hội VI trong lát cắt trình bày của site.',
+        options: [
+          { isCorrect: true, label: 'Hội trường Ba Đình' },
+          { isCorrect: false, label: 'Pác Bó' },
+          { isCorrect: false, label: 'Washington, D.C.' },
+        ],
+        prompt: 'Địa danh nào gắn với Đại hội VI năm 1986?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['dai-hoi-vi-1986', 'nghi-quyet-10-1988'],
+    slug: 'quiz-nguyen-van-linh-1986-1991',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Ôn tập nhanh về Nguyễn Văn Linh, Đại hội VI và bước đầu của công cuộc đổi mới.',
+    title: 'Ôn tập Nguyễn Văn Linh 1986-1991',
+  },
+  {
+    period: '1991-1997',
+    questions: [
+      {
+        explanation:
+          'Đại hội VII năm 1991 xác nhận tiếp tục đổi mới và thông qua Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội.',
+        options: [
+          { isCorrect: true, label: 'Đại hội VII của Đảng năm 1991' },
+          { isCorrect: false, label: 'Đại hội I của Đảng năm 1935' },
+          { isCorrect: false, label: 'Đại hội IX của Đảng năm 2001' },
+        ],
+        prompt: 'Mốc nào mở đầu thời kỳ Đỗ Mười với cương lĩnh phát triển mới?',
+      },
+      {
+        explanation:
+          'Việt Nam gia nhập ASEAN ngày 28/7/1995 là bước ngoặt hội nhập khu vực tiêu biểu trong thời kỳ Đỗ Mười.',
+        options: [
+          { isCorrect: true, label: 'Việt Nam gia nhập ASEAN năm 1995' },
+          { isCorrect: false, label: 'Việt Nam gia nhập WTO năm 2007' },
+          { isCorrect: false, label: 'Hiệp định Paris năm 1973' },
+        ],
+        prompt: 'Bước ngoặt hội nhập khu vực nào gắn trực tiếp với thời kỳ Đỗ Mười?',
+      },
+      {
+        explanation:
+          'Bandar Seri Begawan là địa điểm gắn với lễ kết nạp Việt Nam vào ASEAN năm 1995.',
+        options: [
+          { isCorrect: true, label: 'Bandar Seri Begawan' },
+          { isCorrect: false, label: 'Geneva' },
+          { isCorrect: false, label: 'Hương Cảng' },
+        ],
+        prompt: 'Việt Nam gia nhập ASEAN năm 1995 tại đâu?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['dai-hoi-vii-1991', 'viet-nam-gia-nhap-asean-1995'],
+    slug: 'quiz-do-muoi-1991-1997',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Ôn tập nhanh về Đỗ Mười qua Đại hội VII, cương lĩnh 1991 và bước mở rộng hội nhập khu vực.',
+    title: 'Ôn tập Đỗ Mười 1991-1997',
+  },
+  {
+    period: '1997-2001',
+    questions: [
+      {
+        explanation:
+          'Nghị quyết Trung ương 6 lần 2 khóa VIII năm 1999 nhấn mạnh nhiệm vụ xây dựng, chỉnh đốn Đảng trong thời kỳ Lê Khả Phiêu.',
+        options: [
+          { isCorrect: true, label: 'Nghị quyết Trung ương 6 lần 2 khóa VIII năm 1999' },
+          { isCorrect: false, label: 'Nghị quyết 10 năm 1988' },
+          { isCorrect: false, label: 'Nghị quyết Trung ương 4 khóa XI năm 2012' },
+        ],
+        prompt: 'Văn kiện nào nhấn mạnh xây dựng, chỉnh đốn Đảng trong thời kỳ Lê Khả Phiêu?',
+      },
+      {
+        explanation:
+          'Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000 là bước mở rộng hội nhập kinh tế quốc tế tiêu biểu trong giai đoạn này.',
+        options: [
+          { isCorrect: true, label: 'Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000' },
+          { isCorrect: false, label: 'Việt Nam gia nhập ASEAN năm 1995' },
+          { isCorrect: false, label: 'Việt Nam gia nhập WTO năm 2007' },
+        ],
+        prompt: 'Sự kiện nào mở thêm cửa cho hội nhập kinh tế quốc tế thời Lê Khả Phiêu?',
+      },
+      {
+        explanation:
+          'Washington, D.C. là địa điểm gắn với Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000.',
+        options: [
+          { isCorrect: true, label: 'Washington, D.C.' },
+          { isCorrect: false, label: 'Bandar Seri Begawan' },
+          { isCorrect: false, label: 'Bà Điểm - Hóc Môn' },
+        ],
+        prompt: 'Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000 gắn với địa điểm nào?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['nghi-quyet-trung-uong-6-lan-2-1999', 'hiep-dinh-thuong-mai-viet-my-2000'],
+    slug: 'quiz-le-kha-phieu-1997-2001',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Ôn tập nhanh về Lê Khả Phiêu qua nhiệm vụ chỉnh đốn Đảng và bước mở rộng hội nhập kinh tế quốc tế.',
+    title: 'Ôn tập Lê Khả Phiêu 1997-2001',
+  },
+  {
+    period: '2001-2011',
+    questions: [
+      {
+        explanation:
+          'Đại hội IX năm 2001 mở đầu giai đoạn Nông Đức Mạnh giữ cương vị Tổng Bí thư trong danh mục của site.',
+        options: [
+          { isCorrect: true, label: 'Đại hội IX của Đảng năm 2001' },
+          { isCorrect: false, label: 'Đại hội III của Đảng năm 1960' },
+          { isCorrect: false, label: 'Đại hội VI của Đảng năm 1986' },
+        ],
+        prompt: 'Mốc nào mở đầu thời kỳ Nông Đức Mạnh trên trục lãnh đạo?',
+      },
+      {
+        explanation:
+          'Việt Nam gia nhập WTO ngày 11/1/2007 là cột mốc hội nhập toàn cầu nổi bật của giai đoạn này.',
+        options: [
+          { isCorrect: true, label: 'Việt Nam gia nhập WTO năm 2007' },
+          { isCorrect: false, label: 'Việt Nam gia nhập ASEAN năm 1995' },
+          { isCorrect: false, label: 'Hiệp định Paris năm 1973' },
+        ],
+        prompt: 'Cột mốc hội nhập toàn cầu nổi bật nhất trong thời kỳ Nông Đức Mạnh là gì?',
+      },
+      {
+        explanation:
+          'Geneva là địa điểm gắn với việc Việt Nam gia nhập WTO năm 2007.',
+        options: [
+          { isCorrect: true, label: 'Geneva' },
+          { isCorrect: false, label: 'Ma Cao' },
+          { isCorrect: false, label: 'Pác Bó' },
+        ],
+        prompt: 'Việt Nam gia nhập WTO năm 2007 gắn với địa điểm nào?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['dai-hoi-ix-2001', 'viet-nam-gia-nhap-wto-2007'],
+    slug: 'quiz-nong-duc-manh-2001-2011',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Ôn tập nhanh về Nông Đức Mạnh qua Đại hội IX và cột mốc gia nhập WTO năm 2007.',
+    title: 'Ôn tập Nông Đức Mạnh 2001-2011',
+  },
+  {
+    period: '2011-2024',
+    questions: [
+      {
+        explanation:
+          'Đại hội XI năm 2011 mở đầu thời kỳ Nguyễn Phú Trọng giữ cương vị Tổng Bí thư trong cấu trúc dữ liệu của site.',
+        options: [
+          { isCorrect: true, label: 'Đại hội XI của Đảng năm 2011' },
+          { isCorrect: false, label: 'Đại hội I của Đảng năm 1935' },
+          { isCorrect: false, label: 'Đại hội VI của Đảng năm 1986' },
+        ],
+        prompt: 'Mốc nào mở đầu thời kỳ Nguyễn Phú Trọng trên trục lãnh đạo?',
+      },
+      {
+        explanation:
+          'Nghị quyết Trung ương 4 khóa XI năm 2012 là cột mốc nhấn mạnh xây dựng, chỉnh đốn Đảng trong thời kỳ Nguyễn Phú Trọng.',
+        options: [
+          { isCorrect: true, label: 'Nghị quyết Trung ương 4 khóa XI năm 2012' },
+          { isCorrect: false, label: 'Nghị quyết Trung ương 6 năm 1939' },
+          { isCorrect: false, label: 'Nghị quyết 10 năm 1988' },
+        ],
+        prompt: 'Văn kiện nào gắn trực tiếp với yêu cầu xây dựng, chỉnh đốn Đảng thời Nguyễn Phú Trọng?',
+      },
+      {
+        explanation:
+          'Cao điểm phòng, chống tham nhũng năm 2023 là nét nổi bật của giai đoạn Nguyễn Phú Trọng trong dữ liệu hiện có của site.',
+        options: [
+          { isCorrect: true, label: 'Cao điểm phòng, chống tham nhũng năm 2023' },
+          { isCorrect: false, label: 'Tổng tuyển cử năm 1976' },
+          { isCorrect: false, label: 'Việt Nam gia nhập ASEAN năm 1995' },
+        ],
+        prompt: 'Điểm nhấn quản trị nào nổi bật trên trang Nguyễn Phú Trọng?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: [
+      'dai-hoi-xi-2011',
+      'nghi-quyet-trung-uong-4-khoa-xi-2012',
+      'dai-hoi-xiii-2021',
+      'chien-dich-phong-chong-tham-nhung-2023',
+    ],
+    slug: 'quiz-nguyen-phu-trong-2011-2024',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Ôn tập nhanh về Nguyễn Phú Trọng qua các mốc xây dựng, chỉnh đốn Đảng và phòng, chống tham nhũng.',
+    title: 'Ôn tập Nguyễn Phú Trọng 2011-2024',
+  },
+  {
+    period: '2024-2026',
+    questions: [
+      {
+        explanation:
+          'Việc Tô Lâm được bầu làm Tổng Bí thư năm 2024 là mốc mở đầu chặng lãnh đạo đương nhiệm trong dữ liệu của site.',
+        options: [
+          { isCorrect: true, label: 'Tô Lâm được bầu làm Tổng Bí thư năm 2024' },
+          { isCorrect: false, label: 'Đại hội IX năm 2001' },
+          { isCorrect: false, label: 'Hội nghị Trung ương 8 năm 1941' },
+        ],
+        prompt: 'Mốc nào mở đầu chặng lãnh đạo của Tô Lâm trên site?',
+      },
+      {
+        explanation:
+          'Chủ trương tinh gọn bộ máy năm 2025 là điểm nhấn cải cách tổ chức nổi bật trong lát cắt hiện nay.',
+        options: [
+          { isCorrect: true, label: 'Chủ trương tinh gọn bộ máy năm 2025' },
+          { isCorrect: false, label: 'Phong trào dân chủ 1936-1939' },
+          { isCorrect: false, label: 'Đại hội VII năm 1991' },
+        ],
+        prompt: 'Điểm nhấn cải cách tổ chức nào nổi bật trong lát cắt về Tô Lâm?',
+      },
+      {
+        explanation:
+          'Tòa nhà Quốc hội là địa danh chính được dùng để đặt bối cảnh cho giai đoạn mở đầu nhiệm kỳ của Tô Lâm.',
+        options: [
+          { isCorrect: true, label: 'Tòa nhà Quốc hội' },
+          { isCorrect: false, label: 'Nhà thương Chợ Quán' },
+          { isCorrect: false, label: 'Bandar Seri Begawan' },
+        ],
+        prompt: 'Địa danh nào đang được dùng để đặt bối cảnh cho lát cắt về Tô Lâm?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['to-lam-duoc-bau-tong-bi-thu-2024', 'chu-truong-tinh-gon-bo-may-2025'],
+    slug: 'quiz-to-lam-2024-2026',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Ôn tập nhanh về Tô Lâm qua mốc mở đầu nhiệm kỳ và chủ trương tinh gọn bộ máy.',
+    title: 'Ôn tập Tô Lâm 2024-2026',
   },
 ]
