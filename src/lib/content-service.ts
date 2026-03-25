@@ -513,6 +513,15 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
     const sources = [...payloadSources, ...supplementalSources]
     const sourceMap = indexSources(sources)
     const payloadPeriods = periodDocs.docs.map(mapPeriodDoc)
+    const supplementalCorePeriods = demoPeriods
+      .filter((period) => !payloadPeriods.some((item) => item.slug === period.slug))
+      .map((period) =>
+        withPeriodMetadata({
+          ...period,
+          id: makePeriodId(period.slug),
+          keyThemes: period.keyThemes.map((theme) => theme.label),
+        }),
+      )
     const supplementalPeriodRecords = supplementalPeriods
       .filter((period) => !payloadPeriods.some((item) => item.slug === period.slug))
       .map((period) =>
@@ -522,10 +531,11 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
           keyThemes: period.keyThemes.map((theme) => theme.label),
         }),
       )
-    const periods = [...payloadPeriods, ...supplementalPeriodRecords].sort(
+    const periods = [...payloadPeriods, ...supplementalCorePeriods, ...supplementalPeriodRecords].sort(
       (left, right) => left.displayOrder - right.displayOrder,
     )
     const periodMap = new Map(periods.map((period) => [period.id, period]))
+    const periodMapBySlug = new Map(periods.map((period) => [period.slug, period]))
     const leaders = buildLeaderRecords(sourceMap)
 
     const adminUnits = adminUnitDocs.docs.map((doc: any) => mapHistoricalAdminUnitDoc(doc, sourceMap))
@@ -534,10 +544,26 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       mapBoundaryEpochDoc(doc, adminUnitMap, sourceMap),
     )
 
-    const places = placeDocs.docs.map((doc) => mapPlaceDoc(doc, periodMap, sourceMap))
+    const payloadPlaces = placeDocs.docs.map((doc) => mapPlaceDoc(doc, periodMap, sourceMap))
+    const supplementalPlaces: PlaceRecord[] = demoPlaces
+      .filter((place) => !payloadPlaces.some((item) => item.slug === place.slug))
+      .map((place) => ({
+        body: place.body,
+        historicalGeometry: place.historicalGeometry,
+        id: makeRecordId('place', place.slug),
+        modernLocation: place.modernLocation,
+        period: periodMapBySlug.get(place.period)!,
+        region: place.region,
+        slug: place.slug,
+        sources: place.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
+        summary: place.summary,
+        title: place.title,
+      }))
+    const places = [...payloadPlaces, ...supplementalPlaces]
     const placeMap = new Map(places.map((place) => [place.id, place]))
+    const placeMapBySlug = new Map(places.map((place) => [place.slug, place]))
 
-    const events: EventRecord[] = eventDocs.docs.map((doc: any) => ({
+    const payloadEvents: EventRecord[] = eventDocs.docs.map((doc: any) => ({
       content: toPlainText(doc.content),
       datePrecision: doc.datePrecision,
       displayYear:
@@ -565,10 +591,32 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       title: doc.title,
       topics: Array.isArray(doc.topics) ? doc.topics : [],
     }))
-
+    const supplementalEvents: EventRecord[] = demoEvents
+      .filter((event) => !payloadEvents.some((item) => item.slug === event.slug))
+      .map((event) => ({
+        content: event.content,
+        datePrecision: event.datePrecision,
+        displayYear: event.displayYear,
+        endDate: event.endDate,
+        historicalGeometry: event.historicalGeometry,
+        id: makeRecordId('event', event.slug),
+        mediaUrls: [],
+        modernLocation: event.modernLocation,
+        period: periodMapBySlug.get(event.period)!,
+        places: event.places.map((slug) => placeMapBySlug.get(slug)!).filter(Boolean),
+        region: event.region,
+        slug: event.slug,
+        sources: event.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
+        startDate: event.startDate,
+        summary: event.summary,
+        title: event.title,
+        topics: event.topics,
+      }))
+    const events = [...payloadEvents, ...supplementalEvents]
     const eventMap = new Map(events.map((event) => [event.id, event]))
+    const eventMapBySlug = new Map(events.map((event) => [event.slug, event]))
 
-    const campaigns: CampaignRecord[] = campaignDocs.docs.map((doc: any) => ({
+    const payloadCampaigns: CampaignRecord[] = campaignDocs.docs.map((doc: any) => ({
       body: toPlainText(doc.body),
       datePrecision: doc.datePrecision,
       displayYear:
@@ -599,8 +647,35 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       summary: doc.summary ?? '',
       title: doc.title,
     }))
+    const supplementalCampaigns: CampaignRecord[] = demoCampaigns
+      .filter((campaign) => !payloadCampaigns.some((item) => item.slug === campaign.slug))
+      .map((campaign) => ({
+        body: campaign.body,
+        datePrecision: campaign.datePrecision,
+        displayYear: campaign.displayYear,
+        endDate: campaign.endDate,
+        historicalGeometry: campaign.historicalGeometry,
+        id: makeRecordId('campaign', campaign.slug),
+        mediaUrls: [],
+        modernLocation: campaign.modernLocation,
+        outcome: campaign.outcome,
+        period: periodMapBySlug.get(campaign.period)!,
+        region: campaign.region,
+        relatedEvents: campaign.relatedEvents
+          .map((slug) => eventMapBySlug.get(slug)!)
+          .filter(Boolean),
+        relatedPlaces: campaign.relatedPlaces
+          .map((slug) => placeMapBySlug.get(slug)!)
+          .filter(Boolean),
+        slug: campaign.slug,
+        sources: campaign.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
+        startDate: campaign.startDate,
+        summary: campaign.summary,
+        title: campaign.title,
+      }))
+    const campaigns = [...payloadCampaigns, ...supplementalCampaigns]
 
-    const overlays: OverlayRecord[] = overlayDocs.docs.map((doc: any) => ({
+    const payloadOverlays: OverlayRecord[] = overlayDocs.docs.map((doc: any) => ({
       color: doc.color ?? '#ab2f24',
       historicalGeometry: doc.historicalGeometry ?? { type: 'Point', coordinates: [105.8, 21.02] },
       id: String(doc.id),
@@ -621,10 +696,20 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       validFrom: doc.validFrom,
       validTo: doc.validTo ?? undefined,
     }))
+    const supplementalOverlays: OverlayRecord[] = demoHistoricalOverlays
+      .filter((overlay) => !payloadOverlays.some((item) => item.slug === overlay.slug))
+      .map((overlay) => ({
+        ...overlay,
+        id: makeRecordId('overlay', overlay.slug),
+        period: periodMapBySlug.get(overlay.period)!,
+        sources: overlay.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
+      }))
+    const overlays = [...payloadOverlays, ...supplementalOverlays]
 
     const campaignMap = new Map(campaigns.map((campaign) => [campaign.id, campaign]))
+    const campaignMapBySlug = new Map(campaigns.map((campaign) => [campaign.slug, campaign]))
 
-    const quizzes: QuizRecord[] = quizDocs.docs.map((doc: any) => ({
+    const payloadQuizzes: QuizRecord[] = quizDocs.docs.map((doc: any) => ({
       id: String(doc.id),
       period: periodMap.get(String(doc.period?.id))!,
       questions: Array.isArray(doc.questions) ? doc.questions : [],
@@ -641,6 +726,19 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       summary: doc.summary ?? '',
       title: doc.title,
     }))
+    const supplementalQuizzes: QuizRecord[] = demoQuizzes
+      .filter((quiz) => !payloadQuizzes.some((item) => item.slug === quiz.slug))
+      .map((quiz) => ({
+        ...quiz,
+        id: makeRecordId('quiz', quiz.slug),
+        period: periodMapBySlug.get(quiz.period)!,
+        relatedCampaigns: quiz.relatedCampaigns
+          .map((slug) => campaignMapBySlug.get(slug)!)
+          .filter(Boolean),
+        relatedEvents: quiz.relatedEvents.map((slug) => eventMapBySlug.get(slug)!).filter(Boolean),
+        sources: quiz.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
+      }))
+    const quizzes = [...payloadQuizzes, ...supplementalQuizzes]
 
     return {
       adminUnits,
