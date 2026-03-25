@@ -742,6 +742,50 @@ type LeaderSelectionContext = {
   placeSlugs: Set<string>
 }
 
+function quizReferencesAnyDirectRecord(
+  quiz: QuizRecord,
+  events: EventRecord[],
+  campaigns: CampaignRecord[],
+) {
+  const eventSlugs = new Set(events.map((event) => event.slug))
+  const campaignSlugs = new Set(campaigns.map((campaign) => campaign.slug))
+
+  return (
+    quiz.relatedEvents.some((event) => eventSlugs.has(event.slug)) ||
+    quiz.relatedCampaigns.some((campaign) => campaignSlugs.has(campaign.slug))
+  )
+}
+
+function buildLeaderDetailSnapshot(
+  snapshot: ExplorerSnapshot,
+  leader: LeaderRecord,
+  context: LeaderSelectionContext,
+): ExplorerSnapshot {
+  const broadSnapshot = filterSnapshot(snapshot, { layer: 'all', leader: leader.slug, type: 'all' })
+  const directEvents = snapshot.events.filter((event) => context.eventSlugs.has(event.slug))
+  const directCampaigns = snapshot.campaigns.filter((campaign) => context.campaignSlugs.has(campaign.slug))
+  const linkedPlaceSlugs = new Set<string>([
+    ...directEvents.flatMap((event) => event.places.map((place) => place.slug)),
+    ...directCampaigns.flatMap((campaign) => campaign.relatedPlaces.map((place) => place.slug)),
+  ])
+  const directPlaces = snapshot.places.filter(
+    (place) => context.placeSlugs.has(place.slug) || linkedPlaceSlugs.has(place.slug),
+  )
+  const directQuizzes = snapshot.quizzes.filter((quiz) =>
+    quizReferencesAnyDirectRecord(quiz, directEvents, directCampaigns),
+  )
+
+  return {
+    ...broadSnapshot,
+    activeLeader: leader,
+    campaigns: directCampaigns.length > 0 ? directCampaigns : broadSnapshot.campaigns,
+    events: directEvents.length > 0 ? directEvents : broadSnapshot.events,
+    periods: snapshot.periods.filter((period) => context.periodSlugs.has(period.slug)),
+    places: directPlaces.length > 0 ? directPlaces : broadSnapshot.places,
+    quizzes: directQuizzes.length > 0 ? directQuizzes : broadSnapshot.quizzes,
+  }
+}
+
 function buildLeaderSelectionContext(
   snapshot: ExplorerSnapshot,
   leaderOrSlug?: LeaderRecord | string | null,
@@ -1148,7 +1192,9 @@ export async function getLeader(slug: string) {
   }
 
   const leaderContext = buildLeaderSelectionContext(snapshot, leader)
-  const records = filterSnapshot(snapshot, { layer: 'all', leader: slug, type: 'all' })
+  const records = leaderContext
+    ? buildLeaderDetailSnapshot(snapshot, leader, leaderContext)
+    : filterSnapshot(snapshot, { layer: 'all', leader: slug, type: 'all' })
 
   return {
     featuredPeriods: leaderContext?.featuredPeriods ?? [],
