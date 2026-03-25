@@ -397,8 +397,14 @@ export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenc
     quizSlugs: ['quiz-ha-huy-tap-1936-1938'],
   },
   'nguyen-van-cu': {
-    eventSlugs: ['tu-chi-trich-1939', 'hoi-nghi-trung-uong-6-1939'],
-    placeSlugs: ['ba-diem-hoc-mon'],
+    eventSlugs: [
+      'hoi-nghi-ba-diem-thang-3-1938',
+      'tu-chi-trich-1939',
+      'hoi-nghi-trung-uong-6-1939',
+      'nguyen-van-cu-bi-xu-ban-1941',
+    ],
+    placeSlugs: ['ba-diem-hoc-mon', 'nga-tu-gieng-nuoc'],
+    quizSlugs: ['quiz-nguyen-van-cu-1938-1940'],
   },
   'truong-chinh': {
     campaignSlugs: ['chien-dich-dien-bien-phu'],

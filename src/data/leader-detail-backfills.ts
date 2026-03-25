@@ -27,9 +27,9 @@ export const supplementalLeaderCopyBySlug: Record<
   },
   'nguyen-van-cu': {
     overview:
-      'Nguyễn Văn Cừ nhấn mạnh yêu cầu tự chỉnh đốn và nâng cao năng lực lãnh đạo khi tình hình thế giới, trong nước chuyển nhanh. Các mốc Tự chỉ trích năm 1939 và Hội nghị Trung ương 6 cho thấy rõ nỗ lực đặt lại nhiều vấn đề chiến lược của phong trào cách mạng.',
+      'Nguyễn Văn Cừ nhấn mạnh yêu cầu tự chỉnh đốn và nâng cao năng lực lãnh đạo khi tình hình thế giới, trong nước chuyển nhanh. Từ Hội nghị Bà Điểm tháng 3/1938, dấu ấn của đồng chí thể hiện rõ ở Tự chỉ trích năm 1939, Hội nghị Trung ương 6 và bản lĩnh kiên trung cho tới khi bị xử bắn năm 1941.',
     summary:
-      'Tổng Bí thư tiêu biểu của chặng tự chỉnh đốn, gắn với Tự chỉ trích năm 1939 và bước điều chỉnh chiến lược cuối thập niên 1930.',
+      'Tổng Bí thư tiêu biểu của chặng tự chỉnh đốn, gắn với Hội nghị Bà Điểm năm 1938, Tự chỉ trích và bước điều chỉnh chiến lược cuối thập niên 1930.',
   },
   'truong-chinh': {
     overview:
@@ -515,6 +515,27 @@ export const supplementalLeaderEvents: DemoEvent[] = [
     title: 'Hà Huy Tập bị xử bắn năm 1941',
     topics: ['repression', 'leadership'],
   },
+  {
+    content:
+      'Ngày 28/8/1941, Nguyễn Văn Cừ bị thực dân Pháp xử bắn tại Hóc Môn, Gia Định cùng nhiều chiến sĩ cách mạng khác. Sự hy sinh của đồng chí khép lại chặng đời của một Tổng Bí thư tiêu biểu cho tinh thần tự chỉnh đốn, kiên cường trước khủng bố và thử thách lịch sử.',
+    datePrecision: 'day',
+    displayYear: 1941,
+    modernLocation: {
+      label: 'Ngã tư Giếng Nước, Hóc Môn',
+      latitude: 10.8882,
+      longitude: 106.5949,
+      province: 'TP. Hồ Chí Minh',
+    },
+    period: '1930-1945',
+    places: ['nga-tu-gieng-nuoc'],
+    region: 'south',
+    slug: 'nguyen-van-cu-bi-xu-ban-1941',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    startDate: '1941-08-28T00:00:00.000Z',
+    summary: 'Chặng cuối cuộc đời của Nguyễn Văn Cừ, gắn với sự hy sinh tại Hóc Môn năm 1941.',
+    title: 'Nguyễn Văn Cừ bị xử bắn năm 1941',
+    topics: ['repression', 'leadership'],
+  },
 ]
 
 export const supplementalLeaderQuizzes: DemoQuiz[] = [
@@ -655,6 +676,16 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
     questions: [
       {
         explanation:
+          'Hội nghị Bà Điểm cuối tháng 3/1938 là mốc gắn với việc Nguyễn Văn Cừ được bầu làm Tổng Bí thư của Đảng.',
+        options: [
+          { isCorrect: true, label: 'Hội nghị Bà Điểm tháng 3/1938' },
+          { isCorrect: false, label: 'Đại hội VII Quốc tế Cộng sản năm 1935' },
+          { isCorrect: false, label: 'Đại hội IX của Đảng năm 2001' },
+        ],
+        prompt: 'Mốc nào gắn trực tiếp với việc Nguyễn Văn Cừ được bầu làm Tổng Bí thư?',
+      },
+      {
+        explanation:
           'Tác phẩm Tự chỉ trích năm 1939 là dấu ấn lý luận nổi bật gắn trực tiếp với Nguyễn Văn Cừ.',
         options: [
           { isCorrect: true, label: 'Tự chỉ trích năm 1939' },
@@ -665,30 +696,25 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
       {
         explanation:
-          'Hội nghị Trung ương 6 cuối năm 1939 đánh dấu bước điều chỉnh chiến lược quan trọng của Đảng trong thời kỳ Nguyễn Văn Cừ.',
+          'Ngày 28/8/1941, Nguyễn Văn Cừ bị xử bắn tại Ngã tư Giếng Nước ở Hóc Môn, Gia Định.',
         options: [
-          { isCorrect: true, label: 'Hội nghị Trung ương 6 năm 1939' },
-          { isCorrect: false, label: 'Đại hội IX năm 2001' },
-          { isCorrect: false, label: 'Đại hội XIII năm 2021' },
-        ],
-        prompt: 'Mốc nào thể hiện bước điều chỉnh chiến lược quan trọng ở cuối thập niên 1930?',
-      },
-      {
-        explanation:
-          'Bà Điểm - Hóc Môn là địa điểm gắn với Hội nghị Trung ương 6 năm 1939 trong thời kỳ Nguyễn Văn Cừ.',
-        options: [
-          { isCorrect: true, label: 'Bà Điểm - Hóc Môn' },
+          { isCorrect: true, label: 'Ngã tư Giếng Nước, Hóc Môn' },
           { isCorrect: false, label: 'Geneva' },
           { isCorrect: false, label: 'Quảng trường Ba Đình' },
         ],
-        prompt: 'Địa điểm nào gắn với Hội nghị Trung ương 6 năm 1939?',
+        prompt: 'Địa điểm nào gắn với chặng cuối cuộc đời của Nguyễn Văn Cừ?',
       },
     ],
     relatedCampaigns: [],
-    relatedEvents: ['tu-chi-trich-1939', 'hoi-nghi-trung-uong-6-1939'],
+    relatedEvents: [
+      'hoi-nghi-ba-diem-thang-3-1938',
+      'tu-chi-trich-1939',
+      'hoi-nghi-trung-uong-6-1939',
+      'nguyen-van-cu-bi-xu-ban-1941',
+    ],
     slug: 'quiz-nguyen-van-cu-1938-1940',
     sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
-    summary: 'Ôn tập nhanh về Nguyễn Văn Cừ, Tự chỉ trích và bước điều chỉnh chiến lược năm 1939.',
+    summary: 'Ôn tập nhanh về Nguyễn Văn Cừ qua Hội nghị Bà Điểm năm 1938, Tự chỉ trích và chặng hy sinh năm 1941.',
     title: 'Ôn tập Nguyễn Văn Cừ 1938-1940',
   },
   {
