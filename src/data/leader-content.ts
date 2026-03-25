@@ -26,6 +26,7 @@ export type LeaderContentReferenceSet = {
   campaignSlugs?: string[]
   eventSlugs?: string[]
   placeSlugs?: string[]
+  quizSlugs?: string[]
 }
 
 export const demoLeaders: DemoLeader[] = [
@@ -375,8 +376,14 @@ export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenc
     placeSlugs: ['nghe-tinh-xo-viet', 'huong-cang', 'nha-thuong-cho-quan'],
   },
   'le-hong-phong': {
-    eventSlugs: ['dai-hoi-lan-thu-nhat-1935', 'phong-trao-dan-chu-1936-1939'],
-    placeSlugs: ['ma-cao'],
+    eventSlugs: [
+      'dai-hoi-lan-thu-nhat-1935',
+      'phong-trao-dan-chu-1936-1939',
+      'dai-hoi-vii-quoc-te-cong-san-1935',
+      'hoi-nghi-thuong-hai-1936',
+    ],
+    placeSlugs: ['ma-cao', 'matxcova', 'thuong-hai'],
+    quizSlugs: ['quiz-le-hong-phong-1935-1936'],
   },
   'ha-huy-tap': {
     eventSlugs: ['phong-trao-dan-chu-1936-1939'],

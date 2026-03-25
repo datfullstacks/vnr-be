@@ -15,9 +15,9 @@ export const supplementalLeaderCopyBySlug: Record<
   },
   'le-hong-phong': {
     overview:
-      'Lê Hồng Phong gắn với chặng khôi phục hệ thống tổ chức của Đảng sau thời kỳ bị khủng bố nặng nề, nối lại mạch lãnh đạo trong nước với phong trào cộng sản quốc tế và mở lại nhịp hoạt động qua Đại hội lần thứ nhất năm 1935.',
+      'Lê Hồng Phong gắn với chặng khôi phục hệ thống tổ chức của Đảng sau thời kỳ bị khủng bố nặng nề, nối lại mạch lãnh đạo trong nước với phong trào cộng sản quốc tế, chủ trì chuẩn bị Đại hội I năm 1935 và tiếp tục định hình bước chuyển chiến lược mới qua Đại hội VII Quốc tế Cộng sản và Hội nghị Thượng Hải năm 1936.',
     summary:
-      'Tổng Bí thư của giai đoạn khôi phục tổ chức, gắn với Đại hội I năm 1935 và bước nối lại nhịp lãnh đạo của Đảng.',
+      'Tổng Bí thư của giai đoạn khôi phục tổ chức, gắn với Đại hội I năm 1935, Đại hội VII Quốc tế Cộng sản và bước chuyển hướng năm 1936.',
   },
   'ha-huy-tap': {
     overview:
@@ -220,6 +220,36 @@ export const supplementalLeaderPlaces: DemoPlace[] = [
     title: 'Ma Cao',
   },
   {
+    body: 'Mátxcơva là địa bàn hoạt động chính của Lê Hồng Phong từ tháng 3/1935 đến tháng 7/1936 trên cương vị Tổng Bí thư Đảng Cộng sản Đông Dương và Ủy viên Ban Chấp hành Quốc tế Cộng sản, đồng thời là nơi diễn ra Đại hội VII Quốc tế Cộng sản năm 1935.',
+    modernLocation: {
+      label: 'Mátxcơva',
+      latitude: 55.7558,
+      longitude: 37.6173,
+      province: 'Moscow',
+    },
+    period: '1930-1945',
+    region: 'international',
+    slug: 'matxcova',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    summary: 'Địa bàn hoạt động nổi bật của Lê Hồng Phong trong giai đoạn 1935-1936 và nơi diễn ra Đại hội VII Quốc tế Cộng sản.',
+    title: 'Mátxcơva',
+  },
+  {
+    body: 'Thượng Hải gắn với Hội nghị tháng 7/1936, nơi dưới sự lãnh đạo của Lê Hồng Phong, Đảng hoạch định bước chuyển chiến lược mới theo tinh thần Đại hội VII Quốc tế Cộng sản, hướng tới Mặt trận Dân chủ rộng rãi chống phát xít và phản động thuộc địa.',
+    modernLocation: {
+      label: 'Thượng Hải',
+      latitude: 31.2304,
+      longitude: 121.4737,
+      province: 'Thượng Hải',
+    },
+    period: '1930-1945',
+    region: 'international',
+    slug: 'thuong-hai',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    summary: 'Địa điểm gắn với Hội nghị Thượng Hải tháng 7/1936 và bước chuyển chiến lược mới thời Lê Hồng Phong.',
+    title: 'Thượng Hải',
+  },
+  {
     body: 'Bà Điểm - Hóc Môn là địa điểm gắn với Hội nghị Trung ương 6 năm 1939, cột mốc điều chỉnh chiến lược quan trọng của Đảng trong thời kỳ Nguyễn Văn Cừ giữ cương vị Tổng Bí thư.',
     modernLocation: {
       label: 'Bà Điểm - Hóc Môn',
@@ -326,6 +356,49 @@ export const supplementalLeaderEvents: DemoEvent[] = [
     title: 'Trần Phú bị bắt và hy sinh năm 1931',
     topics: ['leadership', 'repression'],
   },
+  {
+    content:
+      'Đại hội VII Quốc tế Cộng sản khai mạc ngày 25/7/1935 tại Mátxcơva. Lê Hồng Phong tham dự với tư cách Trưởng đoàn đại biểu Đảng Cộng sản Đông Dương, trình bày tham luận quan trọng về phong trào cách mạng Đông Dương giai đoạn 1930-1935 và sau đó được bầu vào Ban Chấp hành Quốc tế Cộng sản.',
+    datePrecision: 'range',
+    displayYear: 1935,
+    endDate: '1935-08-20T00:00:00.000Z',
+    modernLocation: {
+      label: 'Mátxcơva',
+      latitude: 55.7558,
+      longitude: 37.6173,
+      province: 'Moscow',
+    },
+    period: '1930-1945',
+    places: ['matxcova'],
+    region: 'international',
+    slug: 'dai-hoi-vii-quoc-te-cong-san-1935',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    startDate: '1935-07-25T00:00:00.000Z',
+    summary: 'Mốc quốc tế nổi bật của Lê Hồng Phong với vai trò Trưởng đoàn đại biểu và Ủy viên Ban Chấp hành Quốc tế Cộng sản.',
+    title: 'Lê Hồng Phong dự Đại hội VII Quốc tế Cộng sản năm 1935',
+    topics: ['organization', 'international'],
+  },
+  {
+    content:
+      'Hội nghị Thượng Hải tháng 7/1936 đánh dấu bước chuyển chiến lược quan trọng của Đảng dưới sự lãnh đạo của Lê Hồng Phong. Từ ảnh hưởng của Đại hội VII Quốc tế Cộng sản, hội nghị xác định yêu cầu thành lập mặt trận dân chủ rộng rãi chống phát xít và phản động thuộc địa, mở ra nhịp vận động mới cho phong trào cách mạng.',
+    datePrecision: 'month',
+    displayYear: 1936,
+    modernLocation: {
+      label: 'Thượng Hải',
+      latitude: 31.2304,
+      longitude: 121.4737,
+      province: 'Thượng Hải',
+    },
+    period: '1930-1945',
+    places: ['thuong-hai'],
+    region: 'international',
+    slug: 'hoi-nghi-thuong-hai-1936',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    startDate: '1936-07-01T00:00:00.000Z',
+    summary: 'Mốc chuyển hướng sách lược năm 1936 theo tinh thần Đại hội VII Quốc tế Cộng sản dưới sự lãnh đạo của Lê Hồng Phong.',
+    title: 'Hội nghị Thượng Hải tháng 7/1936',
+    topics: ['strategy', 'organization'],
+  },
 ]
 
 export const supplementalLeaderQuizzes: DemoQuiz[] = [
@@ -389,30 +462,30 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
       {
         explanation:
-          'Phong trào dân chủ 1936-1939 mở rộng khả năng vận động quần chúng bằng các hình thức công khai, bán công khai và hợp pháp.',
+          'Đại hội VII Quốc tế Cộng sản năm 1935 là mốc quốc tế nổi bật, tại đó Lê Hồng Phong tham dự với tư cách Trưởng đoàn đại biểu Đảng Cộng sản Đông Dương và được bầu vào Ban Chấp hành Quốc tế Cộng sản.',
         options: [
-          { isCorrect: true, label: 'Phong trào dân chủ 1936-1939' },
-          { isCorrect: false, label: 'Tổng khởi nghĩa Tháng Tám 1945' },
-          { isCorrect: false, label: 'Tổng tuyển cử năm 1976' },
+          { isCorrect: true, label: 'Đại hội VII Quốc tế Cộng sản năm 1935' },
+          { isCorrect: false, label: 'Hội nghị Trung ương 8 năm 1941' },
+          { isCorrect: false, label: 'Đại hội IX của Đảng năm 2001' },
         ],
-        prompt: 'Phong trào quần chúng nào nối tiếp trực tiếp thời kỳ Lê Hồng Phong lãnh đạo?',
+        prompt: 'Mốc quốc tế nào gắn trực tiếp với vai trò Trưởng đoàn đại biểu của Lê Hồng Phong?',
       },
       {
         explanation:
-          'Ma Cao là địa điểm gắn với Đại hội I năm 1935, cột mốc gắn trực tiếp với vai trò của Lê Hồng Phong.',
+          'Hội nghị Thượng Hải tháng 7/1936 đánh dấu bước chuyển chiến lược mới dưới sự lãnh đạo của Lê Hồng Phong, hướng tới mặt trận dân chủ rộng rãi chống phát xít và phản động thuộc địa.',
         options: [
-          { isCorrect: true, label: 'Ma Cao' },
-          { isCorrect: false, label: 'Pác Bó' },
-          { isCorrect: false, label: 'Bandar Seri Begawan' },
+          { isCorrect: true, label: 'Hội nghị Thượng Hải tháng 7/1936' },
+          { isCorrect: false, label: 'Tổng tuyển cử năm 1976' },
+          { isCorrect: false, label: 'Việt Nam gia nhập WTO năm 2007' },
         ],
-        prompt: 'Địa điểm nào gắn với Đại hội I năm 1935 trong thời kỳ Lê Hồng Phong?',
+        prompt: 'Mốc nào cho thấy bước chuyển chiến lược mới của Đảng trong năm 1936 dưới thời Lê Hồng Phong?',
       },
     ],
     relatedCampaigns: [],
-    relatedEvents: ['dai-hoi-lan-thu-nhat-1935'],
+    relatedEvents: ['dai-hoi-lan-thu-nhat-1935', 'dai-hoi-vii-quoc-te-cong-san-1935', 'hoi-nghi-thuong-hai-1936'],
     slug: 'quiz-le-hong-phong-1935-1936',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
-    summary: 'Ôn tập nhanh về Lê Hồng Phong, Đại hội I năm 1935 và chặng khôi phục tổ chức.',
+    summary: 'Ôn tập nhanh về Lê Hồng Phong qua Đại hội I năm 1935, vai trò quốc tế và bước chuyển chiến lược năm 1936.',
     title: 'Ôn tập Lê Hồng Phong 1935-1936',
   },
   {

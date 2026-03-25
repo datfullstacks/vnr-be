@@ -880,6 +880,7 @@ type LeaderSelectionContext = {
   officialPeriods: PeriodRecord[]
   periodSlugs: Set<string>
   placeSlugs: Set<string>
+  quizSlugs: Set<string>
 }
 
 function quizReferencesAnyDirectRecord(
@@ -917,9 +918,11 @@ function buildLeaderDetailSnapshot(
     (place) => !context.placeSlugs.has(place.slug) && linkedPlaceSlugs.has(place.slug),
   )
   const directPlaces = [...explicitPlaces, ...linkedPlaces]
-  const directQuizzes = snapshot.quizzes.filter((quiz) =>
-    quizReferencesAnyDirectRecord(quiz, directEvents, directCampaigns),
-  )
+  const referencedQuizzes = snapshot.quizzes.filter((quiz) => context.quizSlugs.has(quiz.slug))
+  const directQuizzes =
+    referencedQuizzes.length > 0
+      ? referencedQuizzes
+      : snapshot.quizzes.filter((quiz) => quizReferencesAnyDirectRecord(quiz, directEvents, directCampaigns))
 
   return {
     ...broadSnapshot,
@@ -957,6 +960,7 @@ function buildLeaderSelectionContext(
     officialPeriods,
     periodSlugs: new Set([...featuredPeriods, ...officialPeriods].map((period) => period.slug)),
     placeSlugs: new Set(refs?.placeSlugs ?? []),
+    quizSlugs: new Set(refs?.quizSlugs ?? []),
   }
 }
 
