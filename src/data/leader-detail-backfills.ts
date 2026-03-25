@@ -750,13 +750,64 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
         ],
         prompt: 'Địa điểm nào gắn trực tiếp với Hội nghị Trung ương 8 năm 1941?',
       },
+      {
+        explanation:
+          'Lời kêu gọi Toàn quốc kháng chiến cuối năm 1946 đánh dấu quyết tâm bảo vệ chính quyền cách mạng non trẻ và mở đầu cuộc kháng chiến chống Pháp trên phạm vi cả nước.',
+        options: [
+          { isCorrect: true, label: 'Toàn quốc kháng chiến' },
+          { isCorrect: false, label: 'Đại thắng mùa Xuân 1975' },
+          { isCorrect: false, label: 'Hiệp định Paris năm 1973' },
+        ],
+        prompt: 'Mốc nào gắn với bước chuyển từ kiến quốc sang kháng chiến toàn quốc trên trang Trường Chinh?',
+      },
     ],
     relatedCampaigns: ['chien-dich-dien-bien-phu'],
-    relatedEvents: ['tong-khoi-nghia-thang-tam-1945'],
+    relatedEvents: ['hoi-nghi-trung-uong-8-1941', 'tong-khoi-nghia-thang-tam-1945', 'toan-quoc-khang-chien'],
     slug: 'quiz-truong-chinh-1941-1956',
     sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
     summary: 'Ôn tập nhanh về Trường Chinh qua chuyển hướng chiến lược, tổng khởi nghĩa và kháng chiến kiến quốc.',
     title: 'Ôn tập Trường Chinh 1941-1956',
+  },
+  {
+    period: '1986-1991',
+    questions: [
+      {
+        explanation:
+          'Đại hội VI tháng 12/1986 là mốc chuyển hướng mở đầu công cuộc đổi mới, gắn với vai trò Tổng Bí thư chuyển tiếp của Trường Chinh.',
+        options: [
+          { isCorrect: true, label: 'Đại hội VI của Đảng năm 1986' },
+          { isCorrect: false, label: 'Đại hội VII của Đảng năm 1991' },
+          { isCorrect: false, label: 'Nghị quyết Trung ương 4 khóa XI' },
+        ],
+        prompt: 'Sự kiện nào gắn trực tiếp với chặng chuyển tiếp của Trường Chinh trong năm 1986?',
+      },
+      {
+        explanation:
+          'Trong lát cắt trình bày của site, Trường Chinh được nhấn như người giữ vai trò chuyển tiếp ở ngưỡng mở đầu đổi mới trước khi bàn giao sang nhiệm kỳ kế tiếp.',
+        options: [
+          { isCorrect: true, label: 'Vai trò chuyển tiếp mở đầu đổi mới năm 1986' },
+          { isCorrect: false, label: 'Lãnh đạo chiến dịch Hồ Chí Minh năm 1975' },
+          { isCorrect: false, label: 'Chủ trì gia nhập WTO năm 2007' },
+        ],
+        prompt: 'Vai trò nào phản ánh đúng nhất vị trí của Trường Chinh ở lát cắt năm 1986?',
+      },
+      {
+        explanation:
+          'Hội trường Ba Đình là địa danh gắn với Đại hội VI trong hệ thống dữ liệu và bản đồ trình bày của sản phẩm.',
+        options: [
+          { isCorrect: true, label: 'Hội trường Ba Đình' },
+          { isCorrect: false, label: 'Pác Bó' },
+          { isCorrect: false, label: 'Dinh Độc Lập' },
+        ],
+        prompt: 'Địa danh nào gắn trực tiếp với Đại hội VI năm 1986 trên trang Trường Chinh?',
+      },
+    ],
+    relatedCampaigns: [],
+    relatedEvents: ['dai-hoi-vi-1986'],
+    slug: 'quiz-truong-chinh-1986',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Ôn tập nhanh về Trường Chinh trong vai trò chuyển tiếp ở ngưỡng mở đầu đổi mới năm 1986.',
+    title: 'Ôn tập Trường Chinh năm 1986',
   },
   {
     period: '1945-1954',
