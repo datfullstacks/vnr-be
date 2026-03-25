@@ -4,14 +4,14 @@ import {
   canDeleteContent,
   canManageContent,
   publishedOnlyOrAuthenticated,
-} from '@/payload/access'
+} from '../access.js'
 import {
   editorialStateField,
   ensurePublishReadiness,
   summaryField,
   versionedContent,
-} from '@/payload/editorial'
-import { slugHook } from '@/payload/slug'
+} from '../editorial.js'
+import { slugHook } from '../slug.js'
 
 export const Periods: CollectionConfig = {
   slug: 'periods',

@@ -4,7 +4,7 @@ import {
   canDeleteContent,
   canManageContent,
   publishedOnlyOrAuthenticated,
-} from '@/payload/access'
+} from '../access.js'
 import {
   editorialStateField,
   ensurePublishReadiness,
@@ -14,8 +14,8 @@ import {
   sourcesField,
   summaryField,
   versionedContent,
-} from '@/payload/editorial'
-import { slugHook } from '@/payload/slug'
+} from '../editorial.js'
+import { slugHook } from '../slug.js'
 
 export const HistoricalOverlays: CollectionConfig = {
   slug: 'historical-overlays',

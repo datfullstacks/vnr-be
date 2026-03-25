@@ -7,8 +7,8 @@ import {
   demoBoundaryTransitions,
   type DemoBoundaryTransition,
   type DemoBoundaryUnitChange,
-} from '@/data/demo-content'
-import type { HistoricalBoundaryChangeType, HistoricalBoundaryUnitType } from '@/lib/content-types'
+} from '../data/demo-content.js'
+import type { HistoricalBoundaryChangeType, HistoricalBoundaryUnitType } from './content-types.js'
 
 type ModernBoundaryFeature = Feature<
   Polygon | MultiPolygon,

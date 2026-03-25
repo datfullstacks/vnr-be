@@ -8,13 +8,13 @@ import {
   demoPlaces,
   demoQuizzes,
   demoSources,
-} from '@/data/demo-content'
+} from '../data/demo-content.js'
 import {
   demoLeaders,
   leaderContentReferencesBySlug,
   periodMetadataBySlug,
   supplementalPeriods,
-} from '@/data/leader-content'
+} from '../data/leader-content.js'
 import type {
   BoundaryEpochRecord,
   CampaignRecord,
@@ -28,14 +28,14 @@ import type {
   PlaceRecord,
   QuizRecord,
   SourceRecord,
-} from '@/lib/content-types'
+} from './content-types.js'
 import {
   buildHistoricalBoundaryBundle,
   findBoundaryEpochForYear,
-} from '@/lib/historical-boundaries'
-import { parseSearchState, type SearchState } from '@/lib/search-state'
-import { getMongoConnectionString, isDemoFallbackEnabled } from '@/lib/storage-config'
-import { toPlainText } from '@/lib/richtext'
+} from './historical-boundaries.js'
+import { parseSearchState, type SearchState } from './search-state.js'
+import { getMongoConnectionString, isDemoFallbackEnabled } from './storage-config.js'
+import { toPlainText } from './richtext.js'
 
 let payloadPromise: Promise<Awaited<ReturnType<typeof getPayload>> | null> | null = null
 let fallbackSnapshotCache: ExplorerSnapshot | null = null
@@ -60,7 +60,7 @@ async function getPayloadSafe() {
   }
 
   if (!payloadPromise) {
-    payloadPromise = import('@payload-config')
+    payloadPromise = import('../../payload.config.js')
       .then(({ default: config }) => getPayload({ config }))
       .catch((error) => {
         if (isDemoFallbackEnabled()) {

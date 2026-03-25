@@ -1,6 +1,6 @@
 import type { CollectionBeforeChangeHook, CollectionConfig, Field } from 'payload'
 
-import { hasRole } from '@/payload/access'
+import { hasRole } from './access.js'
 
 const versions = {
   drafts: {

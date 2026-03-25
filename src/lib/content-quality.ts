@@ -9,7 +9,7 @@ import type {
   PlaceRecord,
   QuizRecord,
   SourceRecord,
-} from '@/lib/content-types'
+} from './content-types.js'
 
 export type ContentQualitySeverity = 'error' | 'warning' | 'info'
 

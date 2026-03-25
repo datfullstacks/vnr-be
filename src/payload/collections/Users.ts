@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { isAdminOnly } from '@/payload/access'
+import { isAdminOnly } from '../access.js'
 
 export const Users: CollectionConfig = {
   slug: 'users',

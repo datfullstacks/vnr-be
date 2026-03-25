@@ -1,4 +1,4 @@
-import type { RecordRegion } from '@/lib/content-types'
+import type { RecordRegion } from './content-types.js'
 
 export type ExplorerType = 'all' | 'campaigns' | 'events' | 'places'
 export type LayerType = 'all' | 'boundaries' | 'historical' | 'records'

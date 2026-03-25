@@ -1,4 +1,4 @@
-import type { DemoPeriod } from '@/data/demo-content'
+import type { DemoPeriod } from './demo-content.js'
 
 export type DemoLeader = {
   endYear: number

@@ -4,7 +4,7 @@ import {
   canDeleteContent,
   canManageContent,
   publishedOnlyOrAuthenticated,
-} from '@/payload/access'
+} from '../access.js'
 import {
   dateFields,
   displayYearField,
@@ -17,8 +17,8 @@ import {
   sourcesField,
   summaryField,
   versionedContent,
-} from '@/payload/editorial'
-import { slugHook } from '@/payload/slug'
+} from '../editorial.js'
+import { slugHook } from '../slug.js'
 
 export const Events: CollectionConfig = {
   slug: 'events',
