@@ -49,7 +49,7 @@ export const demoLeaders: DemoLeader[] = [
     officeType: 'general-secretary',
     overview:
       'Lê Hồng Phong góp phần khôi phục hệ thống tổ chức của Đảng, kết nối phong trào trong nước với mạng lưới cách mạng quốc tế sau những tổn thất đầu thập niên 1930.',
-    portraitUrl: '/images/leaders/le-hong-phong.gif',
+    portraitUrl: '/images/leaders/le-hong-phong.jpg',
     slug: 'le-hong-phong',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
     startYear: 1935,
@@ -115,7 +115,7 @@ export const demoLeaders: DemoLeader[] = [
     officeType: 'general-secretary',
     overview:
       'Lê Duẩn gắn với giai đoạn chiến tranh cách mạng quy mô lớn, quyết tâm giải phóng miền Nam và những thử thách đầu tiên của đất nước sau thống nhất.',
-    portraitUrl: '/images/leaders/le-duan.png',
+    portraitUrl: '/images/leaders/le-duan.jpg',
     slug: 'le-duan',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam', 'van-kien-dang-toan-tap'],
     startYear: 1960,
