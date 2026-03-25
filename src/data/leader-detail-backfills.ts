@@ -21,9 +21,9 @@ export const supplementalLeaderCopyBySlug: Record<
   },
   'ha-huy-tap': {
     overview:
-      'Hà Huy Tập để lại dấu ấn ở năng lực lý luận và tổ chức trong lúc phong trào dân chủ 1936-1939 phát triển, giúp Đảng mở rộng ảnh hưởng trong quần chúng và thử nghiệm nhiều hình thức vận động công khai, bán công khai.',
+      'Hà Huy Tập để lại dấu ấn ở năng lực lý luận và tổ chức trong bước chuyển từ phục hồi hệ thống lãnh đạo sang mở rộng phong trào dân chủ 1936-1939, gắn với Hội nghị Thượng Hải năm 1936, việc tổ chức lại Trung ương trong nước và các hội nghị tại Hóc Môn, Bà Điểm trước khi hy sinh năm 1941.',
     summary:
-      'Tổng Bí thư gắn với chặng phát triển đường lối và mở rộng ảnh hưởng của Đảng trong phong trào dân chủ 1936-1939.',
+      'Tổng Bí thư gắn với bước chuyển hướng năm 1936, việc tổ chức lại Trung ương và chặng phát triển phong trào dân chủ 1936-1939.',
   },
   'nguyen-van-cu': {
     overview:
@@ -235,7 +235,7 @@ export const supplementalLeaderPlaces: DemoPlace[] = [
     title: 'Mátxcơva',
   },
   {
-    body: 'Thượng Hải gắn với Hội nghị tháng 7/1936, nơi dưới sự lãnh đạo của Lê Hồng Phong, Đảng hoạch định bước chuyển chiến lược mới theo tinh thần Đại hội VII Quốc tế Cộng sản, hướng tới Mặt trận Dân chủ rộng rãi chống phát xít và phản động thuộc địa.',
+    body: 'Thượng Hải gắn với Hội nghị tháng 7/1936, nơi Trung ương Đảng điều chỉnh một số điểm trong nghị quyết Đại hội I theo tinh thần Đại hội VII Quốc tế Cộng sản, xác định bước chuyển chiến lược mới và bầu Hà Huy Tập làm Tổng Bí thư để về nước tổ chức lại Ban Chấp hành Trung ương.',
     modernLocation: {
       label: 'Thượng Hải',
       latitude: 31.2304,
@@ -246,11 +246,11 @@ export const supplementalLeaderPlaces: DemoPlace[] = [
     region: 'international',
     slug: 'thuong-hai',
     sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
-    summary: 'Địa điểm gắn với Hội nghị Thượng Hải tháng 7/1936 và bước chuyển chiến lược mới thời Lê Hồng Phong.',
+    summary: 'Địa điểm gắn với Hội nghị Thượng Hải tháng 7/1936, bước chuyển chiến lược mới và việc Hà Huy Tập được bầu làm Tổng Bí thư.',
     title: 'Thượng Hải',
   },
   {
-    body: 'Bà Điểm - Hóc Môn là địa điểm gắn với Hội nghị Trung ương 6 năm 1939, cột mốc điều chỉnh chiến lược quan trọng của Đảng trong thời kỳ Nguyễn Văn Cừ giữ cương vị Tổng Bí thư.',
+    body: 'Bà Điểm - Hóc Môn là không gian hội họp bí mật quan trọng của Trung ương Đảng ở cuối thập niên 1930, gắn với các hội nghị do Hà Huy Tập và sau đó là Nguyễn Văn Cừ chủ trì trong quá trình điều chỉnh chiến lược và kiện toàn lãnh đạo.',
     modernLocation: {
       label: 'Bà Điểm - Hóc Môn',
       latitude: 10.8898,
@@ -261,8 +261,38 @@ export const supplementalLeaderPlaces: DemoPlace[] = [
     region: 'south',
     slug: 'ba-diem-hoc-mon',
     sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
-    summary: 'Địa điểm gắn với Hội nghị Trung ương 6 năm 1939 trong thời kỳ Nguyễn Văn Cừ.',
+    summary: 'Địa điểm gắn với chuỗi hội nghị Trung ương cuối thập niên 1930, từ Hà Huy Tập đến Nguyễn Văn Cừ.',
     title: 'Bà Điểm - Hóc Môn',
+  },
+  {
+    body: 'Hóc Môn - Gia Định gắn với Hội nghị Trung ương tháng 3/1937 do Hà Huy Tập chủ trì, một mốc tiếp tục củng cố hệ thống lãnh đạo trong nước và triển khai bước chuyển sách lược mới sau Hội nghị Thượng Hải năm 1936.',
+    modernLocation: {
+      label: 'Hóc Môn - Gia Định',
+      latitude: 10.8896,
+      longitude: 106.596,
+      province: 'TP. Hồ Chí Minh',
+    },
+    period: '1930-1945',
+    region: 'south',
+    slug: 'hoc-mon-gia-dinh',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    summary: 'Địa điểm gắn với Hội nghị Trung ương tháng 3/1937 do Hà Huy Tập chủ trì.',
+    title: 'Hóc Môn - Gia Định',
+  },
+  {
+    body: 'Ngã tư Giếng Nước ở Hóc Môn là nơi thực dân Pháp xử bắn Hà Huy Tập ngày 28/8/1941. Địa điểm này gắn với chặng cuối cuộc đời của một nhà lý luận và lãnh đạo kiên trung của Đảng.',
+    modernLocation: {
+      label: 'Ngã tư Giếng Nước, Hóc Môn',
+      latitude: 10.8882,
+      longitude: 106.5949,
+      province: 'TP. Hồ Chí Minh',
+    },
+    period: '1930-1945',
+    region: 'south',
+    slug: 'nga-tu-gieng-nuoc',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Địa điểm gắn với chặng cuối cuộc đời và sự hy sinh của Hà Huy Tập.',
+    title: 'Ngã tư Giếng Nước',
   },
   {
     body: 'Bandar Seri Begawan gắn với việc Việt Nam chính thức gia nhập ASEAN ngày 28/7/1995, một bước mở rộng không gian hội nhập khu vực trong thời kỳ Đỗ Mười giữ cương vị Tổng Bí thư.',
@@ -380,7 +410,7 @@ export const supplementalLeaderEvents: DemoEvent[] = [
   },
   {
     content:
-      'Hội nghị Thượng Hải tháng 7/1936 đánh dấu bước chuyển chiến lược quan trọng của Đảng dưới sự lãnh đạo của Lê Hồng Phong. Từ ảnh hưởng của Đại hội VII Quốc tế Cộng sản, hội nghị xác định yêu cầu thành lập mặt trận dân chủ rộng rãi chống phát xít và phản động thuộc địa, mở ra nhịp vận động mới cho phong trào cách mạng.',
+      'Hội nghị Thượng Hải tháng 7/1936 đánh dấu bước chuyển chiến lược quan trọng của Đảng theo tinh thần Đại hội VII Quốc tế Cộng sản. Hội nghị điều chỉnh một số điểm trong nghị quyết Đại hội I, xác định yêu cầu thành lập mặt trận dân chủ rộng rãi chống phát xít và phản động thuộc địa, đồng thời bầu Hà Huy Tập làm Tổng Bí thư để về nước tổ chức lại Trung ương.',
     datePrecision: 'month',
     displayYear: 1936,
     modernLocation: {
@@ -395,9 +425,95 @@ export const supplementalLeaderEvents: DemoEvent[] = [
     slug: 'hoi-nghi-thuong-hai-1936',
     sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
     startDate: '1936-07-01T00:00:00.000Z',
-    summary: 'Mốc chuyển hướng sách lược năm 1936 theo tinh thần Đại hội VII Quốc tế Cộng sản dưới sự lãnh đạo của Lê Hồng Phong.',
+    summary: 'Mốc chuyển hướng sách lược năm 1936 theo tinh thần Đại hội VII Quốc tế Cộng sản và cột mốc Hà Huy Tập được bầu làm Tổng Bí thư.',
     title: 'Hội nghị Thượng Hải tháng 7/1936',
     topics: ['strategy', 'organization'],
+  },
+  {
+    content:
+      'Ngày 12/10/1936, Hà Huy Tập triệu tập Hội nghị cán bộ Trung ương, bầu ra Ban Chấp hành Trung ương Đảng và trực tiếp đứng đầu với cương vị Tổng Bí thư. Đây là mốc tổ chức lại hệ thống lãnh đạo trong nước sau thời gian đứt gãy và chuẩn bị cho nhịp phát triển mới của phong trào dân chủ.',
+    datePrecision: 'day',
+    displayYear: 1936,
+    modernLocation: {
+      label: 'Nam Kỳ',
+      latitude: 10.7769,
+      longitude: 106.7009,
+      province: 'TP. Hồ Chí Minh',
+    },
+    period: '1930-1945',
+    places: [],
+    region: 'south',
+    slug: 'hoi-nghi-can-bo-trung-uong-thang-10-1936',
+    sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
+    startDate: '1936-10-12T00:00:00.000Z',
+    summary: 'Mốc tổ chức lại Ban Chấp hành Trung ương trong nước do Hà Huy Tập trực tiếp triệu tập và lãnh đạo.',
+    title: 'Hội nghị cán bộ Trung ương ngày 12/10/1936',
+    topics: ['organization'],
+  },
+  {
+    content:
+      'Từ ngày 13 đến 14/3/1937, Hà Huy Tập chủ trì Hội nghị Ban Chấp hành Trung ương Đảng tại Hóc Môn, Gia Định. Hội nghị thể hiện rõ vai trò trực tiếp của đồng chí trong việc củng cố Trung ương và triển khai đường lối vận động dân chủ sau bước chuyển sách lược năm 1936.',
+    datePrecision: 'range',
+    displayYear: 1937,
+    endDate: '1937-03-14T00:00:00.000Z',
+    modernLocation: {
+      label: 'Hóc Môn - Gia Định',
+      latitude: 10.8896,
+      longitude: 106.596,
+      province: 'TP. Hồ Chí Minh',
+    },
+    period: '1930-1945',
+    places: ['hoc-mon-gia-dinh'],
+    region: 'south',
+    slug: 'hoi-nghi-hoc-mon-thang-3-1937',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    startDate: '1937-03-13T00:00:00.000Z',
+    summary: 'Mốc củng cố Trung ương và triển khai đường lối vận động dân chủ do Hà Huy Tập chủ trì tại Hóc Môn.',
+    title: 'Hội nghị Trung ương tại Hóc Môn tháng 3/1937',
+    topics: ['organization', 'strategy'],
+  },
+  {
+    content:
+      'Cuối tháng 3/1938, Ban Chấp hành Trung ương họp tại Bà Điểm, Hóc Môn, Gia Định. Hội nghị bầu Nguyễn Văn Cừ làm Tổng Bí thư, đánh dấu chặng chuyển giao cương vị lãnh đạo sau thời kỳ Hà Huy Tập trực tiếp tổ chức lại Trung ương và thúc đẩy phong trào dân chủ.',
+    datePrecision: 'range',
+    displayYear: 1938,
+    endDate: '1938-03-30T00:00:00.000Z',
+    modernLocation: {
+      label: 'Bà Điểm - Hóc Môn',
+      latitude: 10.8898,
+      longitude: 106.5965,
+      province: 'TP. Hồ Chí Minh',
+    },
+    period: '1930-1945',
+    places: ['ba-diem-hoc-mon'],
+    region: 'south',
+    slug: 'hoi-nghi-ba-diem-thang-3-1938',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    startDate: '1938-03-29T00:00:00.000Z',
+    summary: 'Hội nghị đánh dấu chặng chuyển giao cương vị Tổng Bí thư từ Hà Huy Tập sang Nguyễn Văn Cừ.',
+    title: 'Hội nghị Bà Điểm tháng 3/1938',
+    topics: ['organization'],
+  },
+  {
+    content:
+      'Ngày 28/8/1941, Hà Huy Tập bị thực dân Pháp xử bắn tại Hóc Môn, Gia Định sau khi bị giam giữ và kết án trong bối cảnh khởi nghĩa Nam Kỳ. Sự hy sinh của đồng chí khép lại chặng đời của một nhà lý luận xuất sắc và một Tổng Bí thư kiên trung của Đảng.',
+    datePrecision: 'day',
+    displayYear: 1941,
+    modernLocation: {
+      label: 'Ngã tư Giếng Nước, Hóc Môn',
+      latitude: 10.8882,
+      longitude: 106.5949,
+      province: 'TP. Hồ Chí Minh',
+    },
+    period: '1930-1945',
+    places: ['nga-tu-gieng-nuoc'],
+    region: 'south',
+    slug: 'ha-huy-tap-bi-xu-ban-1941',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    startDate: '1941-08-28T00:00:00.000Z',
+    summary: 'Chặng cuối cuộc đời của Hà Huy Tập, gắn với sự hy sinh tại Hóc Môn năm 1941.',
+    title: 'Hà Huy Tập bị xử bắn năm 1941',
+    topics: ['repression', 'leadership'],
   },
 ]
 
@@ -493,40 +609,45 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
     questions: [
       {
         explanation:
-          'Hà Huy Tập gắn chặt với phong trào dân chủ 1936-1939, giai đoạn Đảng mở rộng ảnh hưởng trong xã hội thuộc địa.',
+          'Hội nghị Thượng Hải tháng 7/1936 là mốc gắn với việc Hà Huy Tập được bầu làm Tổng Bí thư và bước chuyển chiến lược mới của Đảng.',
         options: [
-          { isCorrect: true, label: 'Phong trào dân chủ 1936-1939' },
-          { isCorrect: false, label: 'Đại thắng mùa Xuân 1975' },
-          { isCorrect: false, label: 'Cao điểm phòng, chống tham nhũng năm 2023' },
+          { isCorrect: true, label: 'Hội nghị Thượng Hải tháng 7/1936' },
+          { isCorrect: false, label: 'Đại hội VII năm 1991' },
+          { isCorrect: false, label: 'Tổng tuyển cử năm 1976' },
         ],
-        prompt: 'Phong trào nào là lát cắt nổi bật nhất khi đọc về Hà Huy Tập?',
+        prompt: 'Mốc nào gắn trực tiếp với việc Hà Huy Tập được bầu làm Tổng Bí thư?',
       },
       {
         explanation:
-          'Phong trào dân chủ 1936-1939 nổi bật ở việc kết hợp nhiều hình thức vận động: công khai, bán công khai và hợp pháp.',
+          'Ngày 12/10/1936, Hà Huy Tập triệu tập Hội nghị cán bộ Trung ương để tổ chức lại Ban Chấp hành Trung ương trong nước.',
         options: [
-          { isCorrect: true, label: 'Đấu tranh công khai, bán công khai và hợp pháp' },
-          { isCorrect: false, label: 'Chỉ hoạt động vũ trang bí mật' },
-          { isCorrect: false, label: 'Chỉ tập trung vào ngoại giao quốc tế' },
+          { isCorrect: true, label: 'Hội nghị cán bộ Trung ương ngày 12/10/1936' },
+          { isCorrect: false, label: 'Đại hội II của Đảng năm 1951' },
+          { isCorrect: false, label: 'Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000' },
         ],
-        prompt: 'Điểm nổi bật về phương thức vận động của phong trào dân chủ 1936-1939 là gì?',
+        prompt: 'Mốc nào thể hiện việc Hà Huy Tập trực tiếp tổ chức lại Ban Chấp hành Trung ương trong nước?',
       },
       {
         explanation:
-          'Phong trào dân chủ 1936-1939 giúp Đảng mở rộng ảnh hưởng trong quần chúng và thử nghiệm hình thức vận động rộng rãi hơn.',
+          'Ngã tư Giếng Nước ở Hóc Môn là địa điểm gắn với sự hy sinh của Hà Huy Tập ngày 28/8/1941.',
         options: [
-          { isCorrect: true, label: 'Mở rộng ảnh hưởng của Đảng trong quần chúng' },
-          { isCorrect: false, label: 'Hoàn thành thống nhất đất nước' },
-          { isCorrect: false, label: 'Gia nhập ASEAN' },
+          { isCorrect: true, label: 'Ngã tư Giếng Nước, Hóc Môn' },
+          { isCorrect: false, label: 'Quảng trường Ba Đình' },
+          { isCorrect: false, label: 'Bandar Seri Begawan' },
         ],
-        prompt: 'Kết quả dễ nhận thấy nhất của phong trào gắn với Hà Huy Tập là gì?',
+        prompt: 'Địa điểm nào gắn với chặng cuối cuộc đời của Hà Huy Tập?',
       },
     ],
     relatedCampaigns: [],
-    relatedEvents: ['phong-trao-dan-chu-1936-1939'],
+    relatedEvents: [
+      'hoi-nghi-thuong-hai-1936',
+      'hoi-nghi-can-bo-trung-uong-thang-10-1936',
+      'hoi-nghi-hoc-mon-thang-3-1937',
+      'ha-huy-tap-bi-xu-ban-1941',
+    ],
     slug: 'quiz-ha-huy-tap-1936-1938',
     sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
-    summary: 'Ôn tập nhanh về Hà Huy Tập và phong trào dân chủ 1936-1939.',
+    summary: 'Ôn tập nhanh về Hà Huy Tập qua bước chuyển chiến lược năm 1936, việc tổ chức lại Trung ương và chặng hy sinh.',
     title: 'Ôn tập Hà Huy Tập 1936-1938',
   },
   {
