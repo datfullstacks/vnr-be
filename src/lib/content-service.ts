@@ -13,6 +13,7 @@ import {
   supplementalLeaderCopyBySlug,
   supplementalLeaderEvents,
   supplementalLeaderPlaces,
+  supplementalLeaderPresentationBySlug,
   supplementalLeaderQuizzes,
 } from '../data/leader-detail-backfills.js'
 import {
@@ -145,20 +146,24 @@ function buildLeaderRecords(sourceMap: Map<string, SourceRecord>) {
   return demoLeaders
     .map<LeaderRecord>((leader) => {
       const copyOverride = supplementalLeaderCopyBySlug[leader.slug]
+      const presentationOverride = supplementalLeaderPresentationBySlug[leader.slug]
 
       return {
+        displayName: presentationOverride?.displayName,
         endYear: leader.endYear,
         id: makeLeaderId(leader.slug),
         isFeaturedChairmanHighlight: leader.isFeaturedChairmanHighlight,
         name: leader.name,
-        officeLabel: leader.officeLabel,
+        officeLabel: presentationOverride?.officeLabel ?? leader.officeLabel,
         officeType: leader.officeType,
         overview: copyOverride?.overview ?? leader.overview,
         portraitUrl: leader.portraitUrl,
         slug: leader.slug,
         sources: leader.sources.map((slug) => sourceMap.get(slug)!).filter(Boolean),
         startYear: leader.startYear,
-        summary: copyOverride?.summary ?? leader.summary,
+        summary: presentationOverride?.summary ?? copyOverride?.summary ?? leader.summary,
+        tenureLabel: presentationOverride?.tenureLabel,
+        terms: presentationOverride?.terms,
       }
     })
     .sort((left, right) => left.startYear - right.startYear)
@@ -843,6 +848,30 @@ function periodHasOfficialLeader(period: PeriodRecord, leaderSlug: string) {
   return period.officialLeaderSlugs.includes(leaderSlug)
 }
 
+function leaderTerms(leader: LeaderRecord) {
+  return leader.terms?.length
+    ? leader.terms
+    : [{ endYear: leader.endYear, label: leader.tenureLabel ?? leader.officeLabel, startYear: leader.startYear }]
+}
+
+function leaderCoversYear(leader: LeaderRecord, year: number) {
+  return leaderTerms(leader).some((term) => year >= term.startYear && year <= term.endYear)
+}
+
+function leaderOverlapsRecordRange(
+  leader: LeaderRecord,
+  startDate: string | undefined,
+  endDate: string | undefined,
+) {
+  return leaderTerms(leader).some((term) =>
+    dateRangeOverlapsYears(startDate, endDate, term.startYear, term.endYear),
+  )
+}
+
+function leaderLatestYear(leader: LeaderRecord) {
+  return leaderTerms(leader).reduce((maxYear, term) => Math.max(maxYear, term.endYear), leader.endYear)
+}
+
 type LeaderSelectionContext = {
   campaignSlugs: Set<string>
   eventSlugs: Set<string>
@@ -942,8 +971,7 @@ function resolveLeaderForYear(snapshot: ExplorerSnapshot, year: number, activePe
       .filter((leader): leader is LeaderRecord => Boolean(leader))
       .sort((left, right) => right.startYear - left.startYear)
 
-    const coveringLeader =
-      matchingInPeriod.find((leader) => year >= leader.startYear && year <= leader.endYear) ?? null
+    const coveringLeader = matchingInPeriod.find((leader) => leaderCoversYear(leader, year)) ?? null
 
     if (coveringLeader) {
       return coveringLeader
@@ -957,7 +985,7 @@ function resolveLeaderForYear(snapshot: ExplorerSnapshot, year: number, activePe
   }
 
   const coveringLeaders = snapshot.leaders
-    .filter((leader) => year >= leader.startYear && year <= leader.endYear)
+    .filter((leader) => leaderCoversYear(leader, year))
     .sort((left, right) => right.startYear - left.startYear)
 
   return coveringLeaders[0] ?? null
@@ -1041,10 +1069,10 @@ function recordOverlapsLeaderYears(
   endDate?: string,
 ) {
   if (typeof displayYear === 'number') {
-    return displayYear >= leader.startYear && displayYear <= leader.endYear
+    return leaderCoversYear(leader, displayYear)
   }
 
-  return dateRangeOverlapsYears(startDate, endDate, leader.startYear, leader.endYear)
+  return leaderOverlapsRecordRange(leader, startDate, endDate)
 }
 
 function recordMatchesLeaderPeriods(
@@ -1134,8 +1162,8 @@ function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
 
       const maxBoundaryYear = snapshot.boundaryEpochs.reduce(
         (maxYear, epoch) =>
-          epoch.validFromYear <= leaderContext.leader.endYear
-            ? Math.max(maxYear, Math.min(epoch.validToYear, leaderContext.leader.endYear))
+          epoch.validFromYear <= leaderLatestYear(leaderContext.leader)
+            ? Math.max(maxYear, Math.min(epoch.validToYear, leaderLatestYear(leaderContext.leader)))
             : maxYear,
         0,
       )
@@ -1144,7 +1172,7 @@ function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
         return maxBoundaryYear
       }
 
-      return leaderContext.leader.endYear
+      return leaderLatestYear(leaderContext.leader)
     }
   }
 
@@ -1178,7 +1206,10 @@ export function filterSnapshot(snapshot: ExplorerSnapshot, filters: SearchState)
     : snapshot.periods
   const boundaryEpochs = selectedLeader
     ? snapshot.boundaryEpochs.filter(
-        (epoch) => epoch.validFromYear <= selectedLeader.endYear && epoch.validToYear >= selectedLeader.startYear,
+        (epoch) =>
+          leaderTerms(selectedLeader).some(
+            (term) => epoch.validFromYear <= term.endYear && epoch.validToYear >= term.startYear,
+          ),
       )
     : snapshot.boundaryEpochs
   const activeBoundaryEpoch =

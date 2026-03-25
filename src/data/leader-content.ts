@@ -324,7 +324,7 @@ export const periodMetadataBySlug: Record<string, PeriodMetadata> = {
     displayOrder: 9,
     featuredLeaderSlug: 'nguyen-van-linh',
     leadershipLabel: 'Tổng Bí thư',
-    officialLeaderSlugs: ['nguyen-van-linh'],
+    officialLeaderSlugs: ['truong-chinh', 'nguyen-van-linh'],
     periodType: 'party-era',
   },
   '1991-1997': {

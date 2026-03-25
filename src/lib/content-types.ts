@@ -11,6 +11,11 @@ export type HistoricalBoundaryUnitType =
   | 'province'
 export type LeaderOfficeType = 'general-secretary' | 'party-chairman'
 export type PeriodType = 'formation' | 'party-era'
+export type LeaderTermRecord = {
+  endYear: number
+  label: string
+  startYear: number
+}
 
 export type SourceRecord = {
   author?: string
@@ -28,6 +33,7 @@ export type SourceRecord = {
 }
 
 export type LeaderRecord = {
+  displayName?: string
   endYear: number
   id: string
   isFeaturedChairmanHighlight?: boolean
@@ -40,6 +46,8 @@ export type LeaderRecord = {
   sources: SourceRecord[]
   startYear: number
   summary: string
+  tenureLabel?: string
+  terms?: LeaderTermRecord[]
 }
 
 export type PeriodRecord = {
