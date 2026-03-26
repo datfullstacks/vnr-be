@@ -485,7 +485,12 @@ export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenc
     quizSlugs: ['quiz-nguyen-phu-trong-2011-2024'],
   },
   'to-lam': {
-    eventSlugs: ['to-lam-duoc-bau-tong-bi-thu-2024', 'chu-truong-tinh-gon-bo-may-2025'],
-    placeSlugs: ['toa-nha-quoc-hoi'],
+    eventSlugs: [
+      'to-lam-duoc-bau-tong-bi-thu-2024',
+      'ky-nguyen-moi-vuon-minh-2024',
+      'chu-truong-tinh-gon-bo-may-2025',
+    ],
+    placeSlugs: ['toa-nha-quoc-hoi', 'tru-so-trung-uong-dang'],
+    quizSlugs: ['quiz-to-lam-2024-2026'],
   },
 }

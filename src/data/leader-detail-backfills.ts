@@ -81,9 +81,9 @@ export const supplementalLeaderCopyBySlug: Record<
   },
   'to-lam': {
     overview:
-      'Tô Lâm mở ra chặng lãnh đạo đương nhiệm trong dữ liệu của site, gắn với yêu cầu giữ ổn định chiến lược, tinh gọn bộ máy và nâng hiệu quả điều hành trong bối cảnh đất nước bước vào nhịp cải cách mới.',
+      'Tô Lâm mở ra chặng lãnh đạo đương nhiệm trong dữ liệu của site, gắn với mốc được bầu làm Tổng Bí thư ngày 3/8/2024, định hướng về kỷ nguyên phát triển mới của đất nước, cùng yêu cầu giữ ổn định chiến lược, tinh gọn bộ máy và nâng hiệu quả điều hành trong bối cảnh cải cách mới.',
     summary:
-      'Tổng Bí thư đương nhiệm trong lát cắt hiện nay, gắn với bước mở đầu nhiệm kỳ từ năm 2024 và chủ trương tinh gọn bộ máy.',
+      'Tổng Bí thư đương nhiệm trong lát cắt hiện nay, gắn với bước mở đầu nhiệm kỳ từ ngày 3/8/2024, định hướng kỷ nguyên mới và chủ trương tinh gọn bộ máy.',
   },
 }
 
@@ -354,6 +354,21 @@ export const supplementalLeaderPlaces: DemoPlace[] = [
     summary: 'Địa điểm gắn với cột mốc Việt Nam gia nhập WTO năm 2007 trong thời kỳ Nông Đức Mạnh.',
     title: 'Geneva',
   },
+  {
+    body: 'Học viện Chính trị quốc gia Hồ Chí Minh gắn với các trao đổi chuyên đề của Tổng Bí thư Tô Lâm về kỷ nguyên phát triển mới, kỷ nguyên vươn mình của dân tộc Việt Nam trong giai đoạn đầu nhiệm kỳ.',
+    modernLocation: {
+      label: 'Học viện Chính trị quốc gia Hồ Chí Minh',
+      latitude: 21.0189,
+      longitude: 105.8043,
+      province: 'Hà Nội',
+    },
+    period: '2024-2026',
+    region: 'north',
+    slug: 'hoc-vien-chinh-tri-quoc-gia-ho-chi-minh',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Địa điểm gắn với trao đổi chuyên đề về kỷ nguyên phát triển mới trong giai đoạn đầu nhiệm kỳ Tô Lâm.',
+    title: 'Học viện Chính trị quốc gia Hồ Chí Minh',
+  },
 ]
 
 export const supplementalLeaderEvents: DemoEvent[] = [
@@ -464,6 +479,27 @@ export const supplementalLeaderEvents: DemoEvent[] = [
     summary: 'Cột mốc trung tâm của nhiệm kỳ Nguyễn Phú Trọng, tiếp tục nhấn mạnh xây dựng Đảng và định hướng phát triển trong giai đoạn hội nhập sâu hơn.',
     title: 'Đại hội XII của Đảng năm 2016',
     topics: ['organization', 'strategy'],
+  },
+  {
+    content:
+      'Ngày 31/10/2024, Tổng Bí thư Tô Lâm trao đổi chuyên đề về kỷ nguyên phát triển mới, kỷ nguyên vươn mình của dân tộc Việt Nam, nhấn mạnh yêu cầu đổi mới tư duy phát triển, phát huy nguồn lực quốc gia và chuẩn bị các đột phá cho chặng cải cách mới.',
+    datePrecision: 'day',
+    displayYear: 2024,
+    modernLocation: {
+      label: 'Học viện Chính trị quốc gia Hồ Chí Minh',
+      latitude: 21.0189,
+      longitude: 105.8043,
+      province: 'Hà Nội',
+    },
+    period: '2024-2026',
+    places: ['hoc-vien-chinh-tri-quoc-gia-ho-chi-minh'],
+    region: 'north',
+    slug: 'ky-nguyen-moi-vuon-minh-2024',
+    sources: ['dang-cong-san-viet-nam', 'tu-lieu-van-kien-dang'],
+    startDate: '2024-10-31T00:00:00.000Z',
+    summary: 'Mốc nhấn mạnh định hướng kỷ nguyên phát triển mới trong giai đoạn đầu nhiệm kỳ của Tô Lâm.',
+    title: 'Trao đổi chuyên đề về kỷ nguyên phát triển mới năm 2024',
+    topics: ['strategy', 'organization'],
   },
   {
     content:
@@ -1382,6 +1418,16 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
       {
         explanation:
+          'Trao đổi chuyên đề về kỷ nguyên phát triển mới ngày 31/10/2024 nhấn mạnh định hướng tư duy phát triển mới trong giai đoạn đầu nhiệm kỳ của Tô Lâm.',
+        options: [
+          { isCorrect: true, label: 'Trao đổi chuyên đề về kỷ nguyên phát triển mới năm 2024' },
+          { isCorrect: false, label: 'Đại hội X của Đảng năm 2006' },
+          { isCorrect: false, label: 'Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000' },
+        ],
+        prompt: 'Mốc nào gắn trực tiếp với định hướng kỷ nguyên phát triển mới trong chặng đầu nhiệm kỳ của Tô Lâm?',
+      },
+      {
+        explanation:
           'Tòa nhà Quốc hội là địa danh chính được dùng để đặt bối cảnh cho giai đoạn mở đầu nhiệm kỳ của Tô Lâm.',
         options: [
           { isCorrect: true, label: 'Tòa nhà Quốc hội' },
@@ -1390,12 +1436,26 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
         ],
         prompt: 'Địa danh nào đang được dùng để đặt bối cảnh cho lát cắt về Tô Lâm?',
       },
+      {
+        explanation:
+          'Học viện Chính trị quốc gia Hồ Chí Minh gắn với trao đổi chuyên đề về kỷ nguyên phát triển mới trong giai đoạn đầu nhiệm kỳ của Tô Lâm.',
+        options: [
+          { isCorrect: true, label: 'Học viện Chính trị quốc gia Hồ Chí Minh' },
+          { isCorrect: false, label: 'Pác Bó' },
+          { isCorrect: false, label: 'Washington, D.C.' },
+        ],
+        prompt: 'Địa điểm nào gắn với trao đổi chuyên đề về kỷ nguyên phát triển mới năm 2024 của Tô Lâm?',
+      },
     ],
     relatedCampaigns: [],
-    relatedEvents: ['to-lam-duoc-bau-tong-bi-thu-2024', 'chu-truong-tinh-gon-bo-may-2025'],
+    relatedEvents: [
+      'to-lam-duoc-bau-tong-bi-thu-2024',
+      'ky-nguyen-moi-vuon-minh-2024',
+      'chu-truong-tinh-gon-bo-may-2025',
+    ],
     slug: 'quiz-to-lam-2024-2026',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
-    summary: 'Ôn tập nhanh về Tô Lâm qua mốc mở đầu nhiệm kỳ và chủ trương tinh gọn bộ máy.',
+    summary: 'Ôn tập nhanh về Tô Lâm qua mốc mở đầu nhiệm kỳ, định hướng kỷ nguyên mới và chủ trương tinh gọn bộ máy.',
     title: 'Ôn tập Tô Lâm 2024-2026',
   },
 ]
