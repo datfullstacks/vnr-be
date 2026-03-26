@@ -143,6 +143,14 @@ function normalizeRelationshipSlugArray(value: unknown) {
   return items.length > 0 ? items : undefined
 }
 
+function inferPeriodType(period: Pick<PeriodRecord, 'startYear' | 'endYear' | 'periodType'>) {
+  if (period.periodType === 'formation' || period.periodType === 'party-era') {
+    return period.periodType
+  }
+
+  return period.startYear < 1930 && period.endYear <= 1930 ? 'formation' : 'party-era'
+}
+
 function indexSources(sources: SourceRecord[]) {
   const map = new Map<string, SourceRecord>()
 
@@ -172,7 +180,11 @@ function withPeriodMetadata(
     featuredLeaderSlug,
     leadershipLabel: period.leadershipLabel ?? metadata?.leadershipLabel,
     officialLeaderSlugs,
-    periodType: period.periodType ?? metadata?.periodType ?? 'party-era',
+    periodType: inferPeriodType({
+      endYear: period.endYear,
+      periodType: period.periodType ?? metadata?.periodType,
+      startYear: period.startYear,
+    }),
   }
 }
 
