@@ -9,6 +9,8 @@ const GAME_SUMMARY =
 const LEADERBOARD_LIMIT = 12
 const QUESTION_LIMIT = 10
 const QUESTION_CACHE_TTL_MS = 5 * 60_000
+const QUESTION_ROTATION_WINDOW_MS = 15 * 60_000
+const RESET_TOKEN_FALLBACK = 'vnr-party-reset-1930'
 
 type PartyGameQuestion = {
   correctIndex: number
@@ -68,6 +70,45 @@ let lastUpdatedAt = new Date().toISOString()
 
 const leaderboardEntries = new Map<string, StoredScoreEntry>()
 const streamClients = new Map<string, StreamClient>()
+
+function resolveResetToken() {
+  return process.env.PARTY_GAME_RESET_TOKEN?.trim() || RESET_TOKEN_FALLBACK
+}
+
+function hashSeed(value: string) {
+  let hash = 2166136261
+
+  for (const char of value) {
+    hash ^= char.charCodeAt(0)
+    hash = Math.imul(hash, 16777619)
+  }
+
+  return hash >>> 0
+}
+
+function createSeededRandom(seed: string) {
+  let state = hashSeed(seed) || 1
+
+  return () => {
+    state += 0x6d2b79f5
+    let value = state
+    value = Math.imul(value ^ (value >>> 15), value | 1)
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61)
+    return ((value ^ (value >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+function shuffleWithSeed<T>(items: T[], seed: string) {
+  const next = [...items]
+  const random = createSeededRandom(seed)
+
+  for (let index = next.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(random() * (index + 1))
+    ;[next[index], next[swapIndex]] = [next[swapIndex], next[index]]
+  }
+
+  return next
+}
 
 function normalizeUsernameKey(value: string) {
   return value
@@ -132,8 +173,7 @@ function broadcastLeaderboard() {
 async function buildGameQuestions() {
   const snapshot = await getExplorerSnapshot()
   const seenPrompts = new Set<string>()
-
-  return snapshot.quizzes
+  const questionPool = snapshot.quizzes
     .sort(
       (left, right) =>
         left.period.startYear - right.period.startYear || left.title.localeCompare(right.title, 'vi'),
@@ -161,7 +201,13 @@ async function buildGameQuestions() {
       seenPrompts.add(normalizedPrompt)
       return true
     })
-    .slice(0, QUESTION_LIMIT)
+
+  if (questionPool.length <= QUESTION_LIMIT) {
+    return questionPool
+  }
+
+  const rotationWindow = Math.floor(Date.now() / QUESTION_ROTATION_WINDOW_MS)
+  return shuffleWithSeed(questionPool, `${GAME_ID}:${rotationWindow}`).slice(0, QUESTION_LIMIT)
 }
 
 async function getGameQuestions() {
@@ -268,4 +314,16 @@ export function openPartyHistoryLeaderboardStream(res: Response) {
     broadcastLeaderboard()
     res.end()
   }
+}
+
+export function canResetPartyHistoryLeaderboard(token?: string | null) {
+  return Boolean(token) && token === resolveResetToken()
+}
+
+export function resetPartyHistoryLeaderboard() {
+  leaderboardEntries.clear()
+  lastUpdatedAt = new Date().toISOString()
+  broadcastLeaderboard()
+
+  return currentLeaderboardPayload()
 }

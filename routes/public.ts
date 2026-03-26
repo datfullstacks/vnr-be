@@ -12,8 +12,10 @@ import {
   getQuiz,
 } from '../src/lib/content-service.js'
 import {
+  canResetPartyHistoryLeaderboard,
   getPartyHistoryGame,
   openPartyHistoryLeaderboardStream,
+  resetPartyHistoryLeaderboard,
   submitPartyHistoryScore,
 } from '../src/lib/party-game-service.js'
 
@@ -162,6 +164,22 @@ router.get('/games/party-history-rush/stream', async (req, res, next) => {
   try {
     const cleanup = openPartyHistoryLeaderboardStream(res)
     req.on('close', cleanup)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/games/party-history-rush/reset', async (req, res, next) => {
+  try {
+    const resetToken = req.header('x-party-game-reset-token')
+
+    if (!canResetPartyHistoryLeaderboard(resetToken)) {
+      res.status(403).json({ error: 'Reset token không hợp lệ.' })
+      return
+    }
+
+    const result = resetPartyHistoryLeaderboard()
+    res.json(result)
   } catch (error) {
     next(error)
   }
