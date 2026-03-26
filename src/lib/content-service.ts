@@ -1043,6 +1043,7 @@ function matchesQuery(record: ExplorerRecord | PeriodRecord, q?: string) {
     return true
   }
 
+  const normalizedQuery = normalizeSearchText(q)
   const haystack = [
     record.title,
     record.summary,
@@ -1051,9 +1052,16 @@ function matchesQuery(record: ExplorerRecord | PeriodRecord, q?: string) {
     'content' in record ? record.content : '',
   ]
     .join(' ')
-    .toLowerCase()
+  return normalizeSearchText(haystack).includes(normalizedQuery)
+}
 
-  return haystack.includes(q.toLowerCase())
+function normalizeSearchText(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLowerCase()
 }
 
 function periodMatchesYear(period: PeriodRecord, year: number) {
@@ -1098,6 +1106,10 @@ function leaderOverlapsRecordRange(
 
 function leaderLatestYear(leader: LeaderRecord) {
   return leaderTerms(leader).reduce((maxYear, term) => Math.max(maxYear, term.endYear), leader.endYear)
+}
+
+function leaderEarliestYear(leader: LeaderRecord) {
+  return leaderTerms(leader).reduce((minYear, term) => Math.min(minYear, term.startYear), leader.startYear)
 }
 
 type LeaderSelectionContext = {
@@ -1354,12 +1366,12 @@ function matchesQuizQuery(quiz: QuizRecord, query?: string) {
     return true
   }
 
-  const normalizedQuery = query.trim().toLowerCase()
+  const normalizedQuery = normalizeSearchText(query.trim())
 
   return (
-    quiz.title.toLowerCase().includes(normalizedQuery) ||
-    quiz.summary.toLowerCase().includes(normalizedQuery) ||
-    quiz.period.title.toLowerCase().includes(normalizedQuery)
+    normalizeSearchText(quiz.title).includes(normalizedQuery) ||
+    normalizeSearchText(quiz.summary).includes(normalizedQuery) ||
+    normalizeSearchText(quiz.period.title).includes(normalizedQuery)
   )
 }
 
@@ -1384,6 +1396,8 @@ function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
     const leaderContext = buildLeaderSelectionContext(snapshot, filters.leader)
 
     if (leaderContext) {
+      const latestLeaderYear = leaderLatestYear(leaderContext.leader)
+      const earliestLeaderYear = leaderEarliestYear(leaderContext.leader)
       const leaderRecordYears = [
         ...snapshot.events
           .filter((event) => eventMatchesLeader(event, leaderContext))
@@ -1391,14 +1405,14 @@ function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
         ...snapshot.campaigns
           .filter((campaign) => campaignMatchesLeader(campaign, leaderContext))
           .map((campaign) => campaign.displayYear),
-      ]
+      ].filter((year) => leaderCoversYear(leaderContext.leader, year))
 
       if (leaderRecordYears.length > 0) {
         return Math.max(...leaderRecordYears)
       }
 
       const maxPeriodYear = [...leaderContext.featuredPeriods, ...leaderContext.officialPeriods].reduce(
-        (maxYear, period) => Math.max(maxYear, period.endYear),
+        (maxYear, period) => Math.max(maxYear, Math.min(period.endYear, latestLeaderYear)),
         0,
       )
 
@@ -1408,8 +1422,8 @@ function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
 
       const maxBoundaryYear = snapshot.boundaryEpochs.reduce(
         (maxYear, epoch) =>
-          epoch.validFromYear <= leaderLatestYear(leaderContext.leader)
-            ? Math.max(maxYear, Math.min(epoch.validToYear, leaderLatestYear(leaderContext.leader)))
+          epoch.validFromYear <= latestLeaderYear && epoch.validToYear >= earliestLeaderYear
+            ? Math.max(maxYear, Math.min(epoch.validToYear, latestLeaderYear))
             : maxYear,
         0,
       )
@@ -1418,7 +1432,7 @@ function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
         return maxBoundaryYear
       }
 
-      return leaderLatestYear(leaderContext.leader)
+      return latestLeaderYear
     }
   }
 
@@ -1513,7 +1527,7 @@ export function filterSnapshot(snapshot: ExplorerSnapshot, filters: SearchState)
     if (filters.region && overlay.region !== filters.region) return false
     if (
       !matchesQuery(overlay.period, filters.q) &&
-      !overlay.title.toLowerCase().includes((filters.q ?? '').toLowerCase())
+      !normalizeSearchText(overlay.title).includes(normalizeSearchText(filters.q ?? ''))
     ) {
       return false
     }

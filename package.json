@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "audit:atlas": "tsx ./scripts/audit-atlas-filters.ts",
     "build": "tsc --noEmit",
     "dev": "tsx watch ./bin/www.ts",
     "sync:cms:leadership": "tsx ./scripts/sync-leadership-cms.ts",
