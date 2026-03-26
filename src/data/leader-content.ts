@@ -419,8 +419,17 @@ export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenc
     quizSlugs: ['quiz-truong-chinh-1941-1956', 'quiz-truong-chinh-1986'],
   },
   'ho-chi-minh': {
-    eventSlugs: ['hoi-nghi-trung-uong-8-1941', 'tuyen-ngon-doc-lap', 'dai-hoi-ii-1951', 'dai-hoi-iii-1960'],
-    placeSlugs: ['ben-nha-rong', 'quang-truong-ba-dinh', 'viet-bac'],
+    campaignSlugs: ['chien-dich-dien-bien-phu'],
+    eventSlugs: [
+      'hoi-nghi-trung-uong-8-1941',
+      'tong-khoi-nghia-thang-tam-1945',
+      'tuyen-ngon-doc-lap',
+      'toan-quoc-khang-chien',
+      'dai-hoi-ii-1951',
+      'dai-hoi-iii-1960',
+    ],
+    placeSlugs: ['ben-nha-rong', 'pac-bo', 'quang-truong-ba-dinh', 'viet-bac', 'hoi-truong-ba-dinh'],
+    quizSlugs: ['quiz-ho-chi-minh-1941-1960'],
   },
   'le-duan': {
     campaignSlugs: ['van-tai-chien-luoc-truong-son', 'chien-dich-ho-chi-minh'],

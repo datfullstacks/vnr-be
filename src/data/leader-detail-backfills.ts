@@ -814,6 +814,16 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
     questions: [
       {
         explanation:
+          'Hội nghị Trung ương 8 năm 1941 là mốc hoàn chỉnh chuyển hướng chiến lược, đặt nhiệm vụ giải phóng dân tộc lên hàng đầu dưới sự chủ trì của Hồ Chí Minh.',
+        options: [
+          { isCorrect: true, label: 'Hội nghị Trung ương 8 năm 1941' },
+          { isCorrect: false, label: 'Đại hội VII năm 1991' },
+          { isCorrect: false, label: 'Việt Nam gia nhập ASEAN năm 1995' },
+        ],
+        prompt: 'Mốc nào gắn trực tiếp với bước hoàn chỉnh chuyển hướng chiến lược do Hồ Chí Minh chủ trì?',
+      },
+      {
+        explanation:
           'Tuyên ngôn Độc lập ngày 2/9/1945 là mốc gắn trực tiếp với Hồ Chí Minh và sự ra đời của nước Việt Nam Dân chủ Cộng hòa.',
         options: [
           { isCorrect: true, label: 'Tuyên ngôn Độc lập' },
@@ -834,6 +844,26 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
       {
         explanation:
+          'Toàn quốc kháng chiến cuối năm 1946 đánh dấu quyết tâm bảo vệ chính quyền cách mạng và mở đầu cuộc kháng chiến chống Pháp trên phạm vi cả nước.',
+        options: [
+          { isCorrect: true, label: 'Toàn quốc kháng chiến' },
+          { isCorrect: false, label: 'Chiến dịch Hồ Chí Minh' },
+          { isCorrect: false, label: 'Hiệp định Paris năm 1973' },
+        ],
+        prompt: 'Mốc nào gắn với lời kêu gọi bảo vệ chính quyền non trẻ và bước vào kháng chiến chống Pháp?',
+      },
+      {
+        explanation:
+          'Đại hội III năm 1960 là mốc Hồ Chí Minh tiếp tục giữ cương vị Chủ tịch Đảng, đồng thời khép lại giai đoạn 1956-1960 khi Người đảm nhiệm thêm vai trò Tổng Bí thư.',
+        options: [
+          { isCorrect: true, label: 'Đại hội III của Đảng năm 1960' },
+          { isCorrect: false, label: 'Đại hội VI của Đảng năm 1986' },
+          { isCorrect: false, label: 'Đại hội XIII của Đảng năm 2021' },
+        ],
+        prompt: 'Đại hội nào gắn với lát cắt cuối của giai đoạn Hồ Chí Minh giữ vai trò Tổng Bí thư 1956-1960?',
+      },
+      {
+        explanation:
           'Quảng trường Ba Đình là không gian lịch sử gắn với Tuyên ngôn Độc lập ngày 2/9/1945.',
         options: [
           { isCorrect: true, label: 'Quảng trường Ba Đình' },
@@ -843,8 +873,15 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
         prompt: 'Địa danh nào gắn trực tiếp với Tuyên ngôn Độc lập?',
       },
     ],
-    relatedCampaigns: [],
-    relatedEvents: ['tuyen-ngon-doc-lap'],
+    relatedCampaigns: ['chien-dich-dien-bien-phu'],
+    relatedEvents: [
+      'hoi-nghi-trung-uong-8-1941',
+      'tong-khoi-nghia-thang-tam-1945',
+      'tuyen-ngon-doc-lap',
+      'toan-quoc-khang-chien',
+      'dai-hoi-ii-1951',
+      'dai-hoi-iii-1960',
+    ],
     slug: 'quiz-ho-chi-minh-1941-1960',
     sources: ['tu-lieu-van-kien-dang', 'van-kien-dang-toan-tap'],
     summary: 'Ôn tập nhanh về Hồ Chí Minh qua những mốc giải phóng dân tộc, lập quốc và định hướng giai đoạn mới.',
