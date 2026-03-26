@@ -75,9 +75,9 @@ export const supplementalLeaderCopyBySlug: Record<
   },
   'nguyen-phu-trong': {
     overview:
-      'Nguyễn Phú Trọng gắn với chặng nhấn mạnh xây dựng, chỉnh đốn Đảng, củng cố kỷ luật chính trị và đẩy mạnh phòng, chống tham nhũng, tiêu cực, đồng thời định hình các ưu tiên phát triển trong bối cảnh cạnh tranh quốc tế và chuyển đổi số ngày càng mạnh.',
+      'Nguyễn Phú Trọng gắn với chặng nhấn mạnh xây dựng, chỉnh đốn Đảng, củng cố kỷ luật chính trị và đẩy mạnh phòng, chống tham nhũng, tiêu cực, đồng thời đi qua các mốc Đại hội XI năm 2011, Đại hội XII năm 2016, Đại hội XIII năm 2021 và định hình các ưu tiên phát triển trong bối cảnh cạnh tranh quốc tế, chuyển đổi số ngày càng mạnh.',
     summary:
-      'Tổng Bí thư của giai đoạn nhấn mạnh xây dựng, chỉnh đốn Đảng và phòng, chống tham nhũng trong bối cảnh phát triển mới.',
+      'Tổng Bí thư của giai đoạn nhấn mạnh xây dựng, chỉnh đốn Đảng, phòng, chống tham nhũng và các mốc đại hội lớn từ 2011 đến 2021.',
   },
   'to-lam': {
     overview:
@@ -441,6 +441,28 @@ export const supplementalLeaderEvents: DemoEvent[] = [
     startDate: '2006-04-18T00:00:00.000Z',
     summary: 'Cột mốc lớn giữa nhiệm kỳ Nông Đức Mạnh, tiếp tục định hình phương hướng phát triển và hội nhập.',
     title: 'Đại hội X của Đảng năm 2006',
+    topics: ['organization', 'strategy'],
+  },
+  {
+    content:
+      'Đại hội XII của Đảng năm 2016 tiếp tục nhấn mạnh yêu cầu xây dựng, chỉnh đốn Đảng, nâng cao năng lực lãnh đạo, sức chiến đấu của tổ chức đảng và đẩy mạnh phát triển đất nước trong bối cảnh hội nhập sâu hơn. Đây là cột mốc trung tâm ở giữa nhiệm kỳ dài của Nguyễn Phú Trọng.',
+    datePrecision: 'range',
+    displayYear: 2016,
+    endDate: '2016-01-28T00:00:00.000Z',
+    modernLocation: {
+      label: 'Hà Nội',
+      latitude: 21.0285,
+      longitude: 105.8542,
+      province: 'Hà Nội',
+    },
+    period: '2011-2024',
+    places: ['trung-tam-hoi-nghi-quoc-gia'],
+    region: 'north',
+    slug: 'dai-hoi-xii-2016',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    startDate: '2016-01-20T00:00:00.000Z',
+    summary: 'Cột mốc trung tâm của nhiệm kỳ Nguyễn Phú Trọng, tiếp tục nhấn mạnh xây dựng Đảng và định hướng phát triển trong giai đoạn hội nhập sâu hơn.',
+    title: 'Đại hội XII của Đảng năm 2016',
     topics: ['organization', 'strategy'],
   },
   {
@@ -1303,6 +1325,16 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
       {
         explanation:
+          'Đại hội XII năm 2016 là cột mốc trung tâm ở giữa nhiệm kỳ dài của Nguyễn Phú Trọng, tiếp tục nhấn mạnh xây dựng Đảng và định hướng phát triển trong bối cảnh hội nhập sâu hơn.',
+        options: [
+          { isCorrect: true, label: 'Đại hội XII của Đảng năm 2016' },
+          { isCorrect: false, label: 'Đại hội VII của Đảng năm 1991' },
+          { isCorrect: false, label: 'Đại hội IX của Đảng năm 2001' },
+        ],
+        prompt: 'Mốc nào phản ánh rõ nhịp giữa nhiệm kỳ của Nguyễn Phú Trọng?',
+      },
+      {
+        explanation:
           'Cao điểm phòng, chống tham nhũng năm 2023 là nét nổi bật của giai đoạn Nguyễn Phú Trọng trong dữ liệu hiện có của site.',
         options: [
           { isCorrect: true, label: 'Cao điểm phòng, chống tham nhũng năm 2023' },
@@ -1316,12 +1348,13 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
     relatedEvents: [
       'dai-hoi-xi-2011',
       'nghi-quyet-trung-uong-4-khoa-xi-2012',
+      'dai-hoi-xii-2016',
       'dai-hoi-xiii-2021',
       'chien-dich-phong-chong-tham-nhung-2023',
     ],
     slug: 'quiz-nguyen-phu-trong-2011-2024',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
-    summary: 'Ôn tập nhanh về Nguyễn Phú Trọng qua các mốc xây dựng, chỉnh đốn Đảng và phòng, chống tham nhũng.',
+    summary: 'Ôn tập nhanh về Nguyễn Phú Trọng qua các mốc đại hội, xây dựng, chỉnh đốn Đảng và phòng, chống tham nhũng.',
     title: 'Ôn tập Nguyễn Phú Trọng 2011-2024',
   },
   {

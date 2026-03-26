@@ -477,10 +477,12 @@ export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenc
     eventSlugs: [
       'dai-hoi-xi-2011',
       'nghi-quyet-trung-uong-4-khoa-xi-2012',
+      'dai-hoi-xii-2016',
       'dai-hoi-xiii-2021',
       'chien-dich-phong-chong-tham-nhung-2023',
     ],
     placeSlugs: ['tru-so-trung-uong-dang', 'trung-tam-hoi-nghi-quoc-gia'],
+    quizSlugs: ['quiz-nguyen-phu-trong-2011-2024'],
   },
   'to-lam': {
     eventSlugs: ['to-lam-duoc-bau-tong-bi-thu-2024', 'chu-truong-tinh-gon-bo-may-2025'],
