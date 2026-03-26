@@ -455,8 +455,9 @@ export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenc
     quizSlugs: ['quiz-nguyen-van-linh-1986-1991'],
   },
   'do-muoi': {
-    eventSlugs: ['dai-hoi-vii-1991', 'viet-nam-gia-nhap-asean-1995'],
+    eventSlugs: ['dai-hoi-vii-1991', 'viet-nam-gia-nhap-asean-1995', 'dai-hoi-viii-1996'],
     placeSlugs: ['hoi-truong-ba-dinh', 'tru-so-trung-uong-dang', 'bandar-seri-begawan'],
+    quizSlugs: ['quiz-do-muoi-1991-1997'],
   },
   'le-kha-phieu': {
     eventSlugs: ['nghi-quyet-trung-uong-6-lan-2-1999', 'hiep-dinh-thuong-mai-viet-my-2000'],

@@ -57,9 +57,9 @@ export const supplementalLeaderCopyBySlug: Record<
   },
   'do-muoi': {
     overview:
-      'Đỗ Mười tiếp nối đường lối đổi mới trong bối cảnh thế giới biến động mạnh, đồng thời gắn với chặng xác nhận cương lĩnh phát triển mới và mở rộng không gian hội nhập khu vực qua việc Việt Nam gia nhập ASEAN.',
+      'Đỗ Mười tiếp nối đường lối đổi mới trong bối cảnh thế giới biến động mạnh, đồng thời gắn với chặng xác nhận cương lĩnh phát triển mới ở Đại hội VII, mở rộng không gian hội nhập khu vực qua việc Việt Nam gia nhập ASEAN năm 1995 và tiếp tục định hình nhịp phát triển tại Đại hội VIII năm 1996.',
     summary:
-      'Tổng Bí thư của chặng tiếp tục đổi mới, củng cố cương lĩnh phát triển và mở rộng hội nhập khu vực trong thập niên 1990.',
+      'Tổng Bí thư của chặng tiếp tục đổi mới, gắn với Đại hội VII, ASEAN 1995 và Đại hội VIII năm 1996 trong nửa đầu thập niên 1990.',
   },
   'le-kha-phieu': {
     overview:
@@ -377,6 +377,28 @@ export const supplementalLeaderEvents: DemoEvent[] = [
     summary: 'Dấu ấn chính luận và tự phê bình đầu thời kỳ đổi mới, gắn trực tiếp với Nguyễn Văn Linh.',
     title: 'Loạt bài "Những việc cần làm ngay" năm 1987',
     topics: ['organization', 'society'],
+  },
+  {
+    content:
+      'Đại hội VIII của Đảng năm 1996 diễn ra trong bối cảnh công cuộc đổi mới đã qua chặng khởi đầu và bước vào yêu cầu đẩy mạnh công nghiệp hóa, hiện đại hóa. Đại hội tiếp tục khẳng định định hướng phát triển đất nước và là cột mốc lớn ở cuối nhiệm kỳ Đỗ Mười.',
+    datePrecision: 'range',
+    displayYear: 1996,
+    endDate: '1996-07-01T00:00:00.000Z',
+    modernLocation: {
+      label: 'Hà Nội',
+      latitude: 21.0285,
+      longitude: 105.8542,
+      province: 'Hà Nội',
+    },
+    period: '1991-1997',
+    places: ['hoi-truong-ba-dinh'],
+    region: 'north',
+    slug: 'dai-hoi-viii-1996',
+    sources: ['dang-cong-san-viet-nam', 'tu-lieu-van-kien-dang'],
+    startDate: '1996-06-28T00:00:00.000Z',
+    summary: 'Cột mốc lớn cuối nhiệm kỳ Đỗ Mười, tiếp tục định hình nhịp phát triển sau chặng đầu đổi mới.',
+    title: 'Đại hội VIII của Đảng năm 1996',
+    topics: ['organization', 'strategy'],
   },
   {
     content:
@@ -1081,6 +1103,16 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
       {
         explanation:
+          'Đại hội VIII năm 1996 là cột mốc lớn cuối nhiệm kỳ Đỗ Mười, tiếp tục định hình nhịp phát triển đất nước sau chặng đầu đổi mới.',
+        options: [
+          { isCorrect: true, label: 'Đại hội VIII của Đảng năm 1996' },
+          { isCorrect: false, label: 'Đại hội II của Đảng năm 1951' },
+          { isCorrect: false, label: 'Đại hội XI của Đảng năm 2011' },
+        ],
+        prompt: 'Mốc nào phản ánh rõ chặng cuối nhiệm kỳ Đỗ Mười trước khi chuyển sang giai đoạn kế tiếp?',
+      },
+      {
+        explanation:
           'Bandar Seri Begawan là địa điểm gắn với lễ kết nạp Việt Nam vào ASEAN năm 1995.',
         options: [
           { isCorrect: true, label: 'Bandar Seri Begawan' },
@@ -1091,10 +1123,10 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
     ],
     relatedCampaigns: [],
-    relatedEvents: ['dai-hoi-vii-1991', 'viet-nam-gia-nhap-asean-1995'],
+    relatedEvents: ['dai-hoi-vii-1991', 'viet-nam-gia-nhap-asean-1995', 'dai-hoi-viii-1996'],
     slug: 'quiz-do-muoi-1991-1997',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
-    summary: 'Ôn tập nhanh về Đỗ Mười qua Đại hội VII, cương lĩnh 1991 và bước mở rộng hội nhập khu vực.',
+    summary: 'Ôn tập nhanh về Đỗ Mười qua Đại hội VII, ASEAN 1995 và Đại hội VIII năm 1996.',
     title: 'Ôn tập Đỗ Mười 1991-1997',
   },
   {
