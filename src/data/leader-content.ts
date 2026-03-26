@@ -433,8 +433,16 @@ export const leaderContentReferencesBySlug: Record<string, LeaderContentReferenc
   },
   'le-duan': {
     campaignSlugs: ['van-tai-chien-luoc-truong-son', 'chien-dich-ho-chi-minh'],
-    eventSlugs: ['dai-hoi-iii-1960', 'dong-khoi-ben-tre', 'tet-mau-than-1968', 'dai-thang-mua-xuan-1975', 'tong-tuyen-cu-1976'],
-    placeSlugs: ['hien-luong-ben-hai', 'duong-truong-son', 'dinh-doc-lap'],
+    eventSlugs: [
+      'dai-hoi-iii-1960',
+      'dong-khoi-ben-tre',
+      'tet-mau-than-1968',
+      'hiep-dinh-paris-1973',
+      'dai-thang-mua-xuan-1975',
+      'tong-tuyen-cu-1976',
+    ],
+    placeSlugs: ['hien-luong-ben-hai', 'duong-truong-son', 'dinh-doc-lap', 'paris'],
+    quizSlugs: ['quiz-le-duan-1960-1986'],
   },
   'nguyen-van-linh': {
     eventSlugs: ['dai-hoi-vi-1986', 'nghi-quyet-10-1988'],

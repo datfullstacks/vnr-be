@@ -310,6 +310,21 @@ export const supplementalLeaderPlaces: DemoPlace[] = [
     title: 'Bandar Seri Begawan',
   },
   {
+    body: 'Paris gắn với Hiệp định Paris ngày 27/1/1973, cột mốc ngoại giao then chốt làm thay đổi tương quan chiến lược cuối cuộc kháng chiến chống Mỹ và tạo thêm điều kiện cho bước phát triển đi tới đại thắng mùa Xuân 1975 trong thời kỳ Lê Duẩn giữ cương vị Tổng Bí thư.',
+    modernLocation: {
+      label: 'Paris',
+      latitude: 48.8566,
+      longitude: 2.3522,
+      province: 'Ile-de-France',
+    },
+    period: '1965-1973',
+    region: 'international',
+    slug: 'paris',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    summary: 'Địa điểm gắn với Hiệp định Paris năm 1973 trong thời kỳ Lê Duẩn.',
+    title: 'Paris',
+  },
+  {
     body: 'Washington, D.C. gắn với Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000, một cột mốc mở rộng hội nhập kinh tế quốc tế ở giai đoạn Lê Khả Phiêu giữ cương vị Tổng Bí thư.',
     modernLocation: {
       label: 'Washington, D.C.',
@@ -902,6 +917,16 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
       {
         explanation:
+          'Hiệp định Paris năm 1973 là mốc ngoại giao then chốt, làm thay đổi tương quan chiến lược ở giai đoạn cuối cuộc kháng chiến chống Mỹ.',
+        options: [
+          { isCorrect: true, label: 'Hiệp định Paris năm 1973' },
+          { isCorrect: false, label: 'Đại hội I của Đảng năm 1935' },
+          { isCorrect: false, label: 'Việt Nam gia nhập WTO năm 2007' },
+        ],
+        prompt: 'Mốc ngoại giao nào gắn trực tiếp với giai đoạn cuối cuộc kháng chiến chống Mỹ dưới thời Lê Duẩn?',
+      },
+      {
+        explanation:
           'Chiến dịch Hồ Chí Minh và Đại thắng mùa Xuân 1975 là lát cắt tiêu biểu của chặng kết thúc chiến tranh, thống nhất đất nước.',
         options: [
           { isCorrect: true, label: 'Chiến dịch Hồ Chí Minh và Đại thắng mùa Xuân 1975' },
@@ -909,6 +934,16 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
           { isCorrect: false, label: 'Việt Nam gia nhập ASEAN năm 1995' },
         ],
         prompt: 'Tổ hợp mốc nào gắn rõ nhất với chặng kết thúc chiến tranh dưới thời Lê Duẩn?',
+      },
+      {
+        explanation:
+          'Tổng tuyển cử năm 1976 là cột mốc chính trị của đất nước thống nhất, mở đầu việc kiện toàn bộ máy nhà nước chung sau đại thắng mùa Xuân 1975.',
+        options: [
+          { isCorrect: true, label: 'Tổng tuyển cử năm 1976' },
+          { isCorrect: false, label: 'Hội nghị Trung ương 8 năm 1941' },
+          { isCorrect: false, label: 'Đại hội VI của Đảng năm 1986' },
+        ],
+        prompt: 'Mốc nào gắn với bước kiện toàn chính trị của đất nước thống nhất sau năm 1975?',
       },
       {
         explanation:
@@ -921,8 +956,14 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
         prompt: 'Địa danh nào là biểu tượng của trục hậu cần chiến lược trong thời kỳ Lê Duẩn?',
       },
     ],
-    relatedCampaigns: ['chien-dich-ho-chi-minh'],
-    relatedEvents: ['tet-mau-than-1968', 'dai-thang-mua-xuan-1975'],
+    relatedCampaigns: ['van-tai-chien-luoc-truong-son', 'chien-dich-ho-chi-minh'],
+    relatedEvents: [
+      'dai-hoi-iii-1960',
+      'tet-mau-than-1968',
+      'hiep-dinh-paris-1973',
+      'dai-thang-mua-xuan-1975',
+      'tong-tuyen-cu-1976',
+    ],
     slug: 'quiz-le-duan-1960-1986',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
     summary: 'Ôn tập nhanh về Lê Duẩn qua chiến tranh chống Mỹ, đại thắng mùa Xuân và bước đầu thống nhất đất nước.',
