@@ -15,6 +15,7 @@ import { Events } from './src/payload/collections/Events.js'
 import { requireMongoConnectionString } from './src/lib/storage-config.js'
 import { HistoricalAdminUnits } from './src/payload/collections/HistoricalAdminUnits.js'
 import { HistoricalOverlays } from './src/payload/collections/HistoricalOverlays.js'
+import { Leaders } from './src/payload/collections/Leaders.js'
 import { Media } from './src/payload/collections/Media.js'
 import { Periods } from './src/payload/collections/Periods.js'
 import { Places } from './src/payload/collections/Places.js'
@@ -66,6 +67,7 @@ export default buildConfig({
     Users,
     Media,
     Sources,
+    Leaders,
     Periods,
     HistoricalAdminUnits,
     BoundaryEpochs,

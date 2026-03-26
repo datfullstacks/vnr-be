@@ -68,6 +68,37 @@ export const Periods: CollectionConfig = {
       required: true,
     },
     {
+      name: 'displayOrder',
+      type: 'number',
+      admin: {
+        description: 'Optional manual ordering value for the time-slice deck.',
+      },
+    },
+    {
+      name: 'periodType',
+      type: 'select',
+      defaultValue: 'party-era',
+      options: [
+        { label: 'Formation', value: 'formation' },
+        { label: 'Party era', value: 'party-era' },
+      ],
+    },
+    {
+      name: 'leadershipLabel',
+      type: 'text',
+    },
+    {
+      name: 'featuredLeader',
+      type: 'relationship',
+      relationTo: 'leaders',
+    },
+    {
+      name: 'officialLeaders',
+      type: 'relationship',
+      hasMany: true,
+      relationTo: 'leaders',
+    },
+    {
       name: 'keyThemes',
       type: 'array',
       fields: [

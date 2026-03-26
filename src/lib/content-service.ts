@@ -19,6 +19,7 @@ import {
 import {
   demoLeaders,
   leaderContentReferencesBySlug,
+  type LeaderContentReferenceSet,
   periodMetadataBySlug,
   supplementalPeriods,
 } from '../data/leader-content.js'
@@ -52,6 +53,9 @@ let explorerSnapshotCache:
       snapshot: ExplorerSnapshot
     }
   | null = null
+let leaderReferenceMapCache = new Map<string, LeaderContentReferenceSet>(
+  Object.entries(leaderContentReferencesBySlug).map(([slug, refs]) => [slug, { ...refs }]),
+)
 
 const SNAPSHOT_CACHE_TTL_MS = 60_000
 const mergedDemoPlaces = [...demoPlaces, ...supplementalLeaderPlaces]
@@ -109,6 +113,36 @@ function normalizeStringArray(value: unknown) {
   return items.length > 0 ? items : undefined
 }
 
+function normalizeRelationshipSlugArray(value: unknown) {
+  if (!Array.isArray(value)) {
+    return undefined
+  }
+
+  const items = value
+    .map((item) => {
+      if (typeof item === 'string') {
+        return item
+      }
+
+      if (!item || typeof item !== 'object') {
+        return null
+      }
+
+      if ('slug' in item && typeof item.slug === 'string') {
+        return item.slug
+      }
+
+      if ('value' in item && typeof item.value === 'string') {
+        return item.value
+      }
+
+      return null
+    })
+    .filter((item): item is string => Boolean(item))
+
+  return items.length > 0 ? items : undefined
+}
+
 function indexSources(sources: SourceRecord[]) {
   const map = new Map<string, SourceRecord>()
 
@@ -142,7 +176,7 @@ function withPeriodMetadata(
   }
 }
 
-function buildLeaderRecords(sourceMap: Map<string, SourceRecord>) {
+function buildDemoLeaderRecords(sourceMap: Map<string, SourceRecord>) {
   return demoLeaders
     .map<LeaderRecord>((leader) => {
       const copyOverride = supplementalLeaderCopyBySlug[leader.slug]
@@ -169,6 +203,73 @@ function buildLeaderRecords(sourceMap: Map<string, SourceRecord>) {
     .sort((left, right) => left.startYear - right.startYear)
 }
 
+function mapLeaderDoc(doc: any, sourceMap: Map<string, SourceRecord>): LeaderRecord {
+  return {
+    displayName: typeof doc.displayName === 'string' ? doc.displayName : undefined,
+    endYear: doc.endYear,
+    id: String(doc.id),
+    isFeaturedChairmanHighlight: Boolean(doc.isFeaturedChairmanHighlight),
+    name: doc.name,
+    officeLabel: doc.officeLabel,
+    officeType: doc.officeType === 'party-chairman' ? 'party-chairman' : 'general-secretary',
+    overview: toPlainText(doc.overview),
+    portraitUrl:
+      typeof doc.portrait?.url === 'string'
+        ? doc.portrait.url
+        : typeof doc.portraitUrl === 'string'
+          ? doc.portraitUrl
+          : undefined,
+    slug: doc.slug,
+    sources: Array.isArray(doc.sources)
+      ? doc.sources
+          .map((source: any) => sourceMap.get(String(source.id)))
+          .filter(Boolean) as SourceRecord[]
+      : [],
+    startYear: doc.startYear,
+    summary: doc.summary ?? '',
+    tenureLabel: typeof doc.tenureLabel === 'string' ? doc.tenureLabel : undefined,
+    terms: Array.isArray(doc.terms)
+      ? doc.terms
+          .filter(
+            (term: any) =>
+              typeof term?.startYear === 'number' &&
+              typeof term?.endYear === 'number' &&
+              typeof term?.label === 'string',
+          )
+          .map((term: any) => ({
+            endYear: term.endYear,
+            label: term.label,
+            startYear: term.startYear,
+          }))
+      : undefined,
+  }
+}
+
+function mapLeaderReferences(doc: any): LeaderContentReferenceSet {
+  return {
+    campaignSlugs: normalizeRelationshipSlugArray(doc.relatedCampaigns),
+    eventSlugs: normalizeRelationshipSlugArray(doc.relatedEvents),
+    placeSlugs: normalizeRelationshipSlugArray(doc.relatedPlaces),
+    quizSlugs: normalizeRelationshipSlugArray(doc.relatedQuizzes),
+  }
+}
+
+function buildLeaderReferenceMap(docs: any[]) {
+  const map = new Map<string, LeaderContentReferenceSet>(
+    Object.entries(leaderContentReferencesBySlug).map(([slug, refs]) => [slug, { ...refs }]),
+  )
+
+  for (const doc of docs) {
+    if (typeof doc?.slug !== 'string') {
+      continue
+    }
+
+    map.set(doc.slug, mapLeaderReferences(doc))
+  }
+
+  return map
+}
+
 function buildFallbackSnapshot(): ExplorerSnapshot {
   if (fallbackSnapshotCache) {
     return fallbackSnapshotCache
@@ -192,7 +293,10 @@ function buildFallbackSnapshot(): ExplorerSnapshot {
     .sort((left, right) => left.displayOrder - right.displayOrder)
 
   const periodMap = new Map(periods.map((period) => [period.slug, period]))
-  const leaders = buildLeaderRecords(sourceMap)
+  const leaders = buildDemoLeaderRecords(sourceMap)
+  leaderReferenceMapCache = new Map<string, LeaderContentReferenceSet>(
+    Object.entries(leaderContentReferencesBySlug).map(([slug, refs]) => [slug, { ...refs }]),
+  )
 
   const { epochs: generatedEpochs, units: generatedUnits } = buildHistoricalBoundaryBundle()
 
@@ -346,14 +450,22 @@ function mapSourceDoc(doc: any): SourceRecord {
 
 function mapPeriodDoc(doc: any): PeriodRecord {
   const featuredLeaderSlug =
-    typeof doc.featuredLeaderSlug === 'string'
-      ? doc.featuredLeaderSlug
-      : typeof doc.leaderSlug === 'string'
-        ? doc.leaderSlug
-        : undefined
+    typeof doc.featuredLeader?.slug === 'string'
+      ? doc.featuredLeader.slug
+      : typeof doc.featuredLeaderSlug === 'string'
+        ? doc.featuredLeaderSlug
+        : typeof doc.leaderSlug === 'string'
+          ? doc.leaderSlug
+          : undefined
+
+  const officialLeaderSlugs =
+    normalizeRelationshipSlugArray(doc.officialLeaders) ??
+    normalizeStringArray(doc.officialLeaderSlugs) ??
+    normalizeStringArray(doc.leaderSlugs)
 
   return withPeriodMetadata({
     accentColor: doc.accentColor ?? '#ab2f24',
+    displayOrder: typeof doc.displayOrder === 'number' ? doc.displayOrder : undefined,
     endYear: doc.endYear,
     featuredLeaderSlug,
     id: String(doc.id),
@@ -364,10 +476,7 @@ function mapPeriodDoc(doc: any): PeriodRecord {
         : typeof doc.officeLabel === 'string'
           ? doc.officeLabel
           : undefined,
-    officialLeaderSlugs:
-      normalizeStringArray(doc.officialLeaderSlugs) ??
-      normalizeStringArray(doc.leaderSlugs) ??
-      (featuredLeaderSlug ? [featuredLeaderSlug] : undefined),
+    officialLeaderSlugs: officialLeaderSlugs ?? (featuredLeaderSlug ? [featuredLeaderSlug] : undefined),
     overview: toPlainText(doc.overview),
     periodType: doc.periodType === 'formation' || doc.periodType === 'party-era' ? doc.periodType : undefined,
     slug: doc.slug,
@@ -484,6 +593,7 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
     const [
       sourceDocs,
       periodDocs,
+      leaderDocs,
       adminUnitDocs,
       boundaryEpochDocs,
       placeDocs,
@@ -493,7 +603,8 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
       quizDocs,
     ] = await Promise.all([
       payload.find({ collection: 'sources', depth: 0, limit: 100, pagination: false, where }),
-      payload.find({ collection: 'periods', depth: 0, limit: 100, pagination: false, where }),
+      payload.find({ collection: 'periods', depth: 1, limit: 100, pagination: false, where }),
+      payload.find({ collection: 'leaders', depth: 1, limit: 100, pagination: false, where }),
       payload.find({
         collection: 'historical-admin-units',
         depth: 1,
@@ -554,7 +665,14 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
     )
     const periodMap = new Map(periods.map((period) => [period.id, period]))
     const periodMapBySlug = new Map(periods.map((period) => [period.slug, period]))
-    const leaders = buildLeaderRecords(sourceMap)
+    const payloadLeaders = leaderDocs.docs.map((doc: any) => mapLeaderDoc(doc, sourceMap))
+    const supplementalLeaders = buildDemoLeaderRecords(sourceMap).filter(
+      (leader) => !payloadLeaders.some((item) => item.slug === leader.slug),
+    )
+    const leaders = [...payloadLeaders, ...supplementalLeaders].sort(
+      (left, right) => left.startYear - right.startYear,
+    )
+    leaderReferenceMapCache = buildLeaderReferenceMap(leaderDocs.docs)
 
     const adminUnits = adminUnitDocs.docs.map((doc: any) => mapHistoricalAdminUnitDoc(doc, sourceMap))
     const adminUnitMap = new Map(adminUnits.map((unit) => [unit.id, unit]))
@@ -950,7 +1068,7 @@ function buildLeaderSelectionContext(
 
   const featuredPeriods = snapshot.periods.filter((period) => periodHasFeaturedLeader(period, leader.slug))
   const officialPeriods = snapshot.periods.filter((period) => periodHasOfficialLeader(period, leader.slug))
-  const refs = leaderContentReferencesBySlug[leader.slug]
+  const refs = leaderReferenceMapCache.get(leader.slug) ?? leaderContentReferencesBySlug[leader.slug]
 
   return {
     campaignSlugs: new Set(refs?.campaignSlugs ?? []),
