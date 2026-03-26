@@ -203,6 +203,115 @@ function buildDemoLeaderRecords(sourceMap: Map<string, SourceRecord>) {
     .sort((left, right) => left.startYear - right.startYear)
 }
 
+function buildGeneratedBoundaryRecords(sourceMap: Map<string, SourceRecord>) {
+  const { epochs: generatedEpochs, units: generatedUnits } = buildHistoricalBoundaryBundle()
+
+  const adminUnits: HistoricalAdminUnitRecord[] = generatedUnits.map((unit) => ({
+    canonicalSlug: unit.canonicalSlug,
+    changeSlug: unit.changeSlug,
+    changeType: unit.changeType,
+    changeYear: unit.changeYear,
+    displayColor: unit.displayColor,
+    id: makeRecordId('admin-unit', unit.slug),
+    labelPoint: {
+      latitude: unit.labelPoint.latitude,
+      longitude: unit.labelPoint.longitude,
+    },
+    memberProvinceSlugs: unit.memberProvinceSlugs,
+    predecessorCanonicalSlugs: unit.predecessorCanonicalSlugs,
+    slug: unit.slug,
+    sources: unit.sourceSlugs.map((slug) => sourceMap.get(slug)!).filter(Boolean),
+    summary: unit.summary,
+    title: unit.title,
+    unitType: unit.unitType,
+    validFromYear: unit.validFromYear,
+    validToYear: unit.validToYear,
+  }))
+
+  const adminUnitMap = new Map(adminUnits.map((unit) => [unit.slug, unit]))
+
+  const boundaryEpochs: BoundaryEpochRecord[] = generatedEpochs.map((epoch) => ({
+    boundaryFeatures: epoch.boundaryFeatures,
+    id: epoch.id,
+    labelFeatures: epoch.labelFeatures,
+    slug: epoch.slug,
+    sources: epoch.sourceSlugs.map((slug) => sourceMap.get(slug)!).filter(Boolean),
+    summary: epoch.summary,
+    title: epoch.title,
+    units: epoch.unitSlugs.map((slug) => adminUnitMap.get(slug)!).filter(Boolean),
+    validFromYear: epoch.validFromYear,
+    validToYear: epoch.validToYear,
+  }))
+
+  return { adminUnits, boundaryEpochs }
+}
+
+function normalizeSlugSet(slugs: string[]) {
+  return [...new Set(slugs)].sort((left, right) => left.localeCompare(right, 'vi'))
+}
+
+function sameSlugSet(left: string[], right: string[]) {
+  const normalizedLeft = normalizeSlugSet(left)
+  const normalizedRight = normalizeSlugSet(right)
+
+  if (normalizedLeft.length !== normalizedRight.length) {
+    return false
+  }
+
+  return normalizedLeft.every((slug, index) => slug === normalizedRight[index])
+}
+
+function featureCount(collection?: { features?: unknown[] } | null) {
+  return Array.isArray(collection?.features) ? collection.features.length : 0
+}
+
+function shouldReplaceAdminUnitWithGenerated(
+  payloadUnit: HistoricalAdminUnitRecord | undefined,
+  generatedUnit: HistoricalAdminUnitRecord,
+) {
+  if (!payloadUnit) {
+    return true
+  }
+
+  return (
+    payloadUnit.validFromYear !== generatedUnit.validFromYear ||
+    payloadUnit.validToYear !== generatedUnit.validToYear ||
+    payloadUnit.unitType !== generatedUnit.unitType ||
+    !sameSlugSet(payloadUnit.memberProvinceSlugs, generatedUnit.memberProvinceSlugs) ||
+    !sameSlugSet(payloadUnit.predecessorCanonicalSlugs, generatedUnit.predecessorCanonicalSlugs)
+  )
+}
+
+function remapBoundaryEpochUnits(
+  epoch: BoundaryEpochRecord,
+  adminUnitMapBySlug: Map<string, HistoricalAdminUnitRecord>,
+): BoundaryEpochRecord {
+  return {
+    ...epoch,
+    units: epoch.units.map((unit) => adminUnitMapBySlug.get(unit.slug) ?? unit),
+  }
+}
+
+function shouldReplaceBoundaryEpochWithGenerated(
+  payloadEpoch: BoundaryEpochRecord | undefined,
+  generatedEpoch: BoundaryEpochRecord,
+) {
+  if (!payloadEpoch) {
+    return true
+  }
+
+  return (
+    payloadEpoch.validFromYear !== generatedEpoch.validFromYear ||
+    payloadEpoch.validToYear !== generatedEpoch.validToYear ||
+    !sameSlugSet(
+      payloadEpoch.units.map((unit) => unit.slug),
+      generatedEpoch.units.map((unit) => unit.slug),
+    ) ||
+    featureCount(payloadEpoch.boundaryFeatures) !== featureCount(generatedEpoch.boundaryFeatures) ||
+    featureCount(payloadEpoch.labelFeatures) !== featureCount(generatedEpoch.labelFeatures)
+  )
+}
+
 function mapLeaderDoc(doc: any, sourceMap: Map<string, SourceRecord>): LeaderRecord {
   return {
     displayName: typeof doc.displayName === 'string' ? doc.displayName : undefined,
@@ -306,44 +415,7 @@ function buildFallbackSnapshot(): ExplorerSnapshot {
     Object.entries(leaderContentReferencesBySlug).map(([slug, refs]) => [slug, { ...refs }]),
   )
 
-  const { epochs: generatedEpochs, units: generatedUnits } = buildHistoricalBoundaryBundle()
-
-  const adminUnits: HistoricalAdminUnitRecord[] = generatedUnits.map((unit) => ({
-    canonicalSlug: unit.canonicalSlug,
-    changeSlug: unit.changeSlug,
-    changeType: unit.changeType,
-    changeYear: unit.changeYear,
-    displayColor: unit.displayColor,
-    id: makeRecordId('admin-unit', unit.slug),
-    labelPoint: {
-      latitude: unit.labelPoint.latitude,
-      longitude: unit.labelPoint.longitude,
-    },
-    memberProvinceSlugs: unit.memberProvinceSlugs,
-    predecessorCanonicalSlugs: unit.predecessorCanonicalSlugs,
-    slug: unit.slug,
-    sources: unit.sourceSlugs.map((slug) => sourceMap.get(slug)!).filter(Boolean),
-    summary: unit.summary,
-    title: unit.title,
-    unitType: unit.unitType,
-    validFromYear: unit.validFromYear,
-    validToYear: unit.validToYear,
-  }))
-
-  const adminUnitMap = new Map(adminUnits.map((unit) => [unit.slug, unit]))
-
-  const boundaryEpochs: BoundaryEpochRecord[] = generatedEpochs.map((epoch) => ({
-    boundaryFeatures: epoch.boundaryFeatures,
-    id: epoch.id,
-    labelFeatures: epoch.labelFeatures,
-    slug: epoch.slug,
-    sources: epoch.sourceSlugs.map((slug) => sourceMap.get(slug)!).filter(Boolean),
-    summary: epoch.summary,
-    title: epoch.title,
-    units: epoch.unitSlugs.map((slug) => adminUnitMap.get(slug)!).filter(Boolean),
-    validFromYear: epoch.validFromYear,
-    validToYear: epoch.validToYear,
-  }))
+  const { adminUnits, boundaryEpochs } = buildGeneratedBoundaryRecords(sourceMap)
 
   const places: PlaceRecord[] = mergedDemoPlaces.map((place) => ({
     body: place.body,
@@ -682,10 +754,40 @@ async function buildPayloadSnapshot(): Promise<ExplorerSnapshot | null> {
     )
     leaderReferenceMapCache = buildLeaderReferenceMap(leaderDocs.docs)
 
-    const adminUnits = adminUnitDocs.docs.map((doc: any) => mapHistoricalAdminUnitDoc(doc, sourceMap))
-    const adminUnitMap = new Map(adminUnits.map((unit) => [unit.id, unit]))
-    const boundaryEpochs = boundaryEpochDocs.docs.map((doc: any) =>
-      mapBoundaryEpochDoc(doc, adminUnitMap, sourceMap),
+    const payloadAdminUnits = adminUnitDocs.docs.map((doc: any) => mapHistoricalAdminUnitDoc(doc, sourceMap))
+    const payloadAdminUnitsBySlug = new Map(payloadAdminUnits.map((unit) => [unit.slug, unit]))
+    const { adminUnits: generatedAdminUnits, boundaryEpochs: generatedBoundaryEpochs } =
+      buildGeneratedBoundaryRecords(sourceMap)
+
+    for (const generatedUnit of generatedAdminUnits) {
+      const payloadUnit = payloadAdminUnitsBySlug.get(generatedUnit.slug)
+
+      if (shouldReplaceAdminUnitWithGenerated(payloadUnit, generatedUnit)) {
+        payloadAdminUnitsBySlug.set(generatedUnit.slug, generatedUnit)
+      }
+    }
+
+    const adminUnits = [...payloadAdminUnitsBySlug.values()].sort(
+      (left, right) =>
+        left.validFromYear - right.validFromYear || left.title.localeCompare(right.title, 'vi'),
+    )
+    const adminUnitMapById = new Map(adminUnits.map((unit) => [unit.id, unit]))
+    const adminUnitMapBySlug = new Map(adminUnits.map((unit) => [unit.slug, unit]))
+    const payloadBoundaryEpochs = boundaryEpochDocs.docs.map((doc: any) =>
+      remapBoundaryEpochUnits(mapBoundaryEpochDoc(doc, adminUnitMapById, sourceMap), adminUnitMapBySlug),
+    )
+    const payloadBoundaryEpochsBySlug = new Map(payloadBoundaryEpochs.map((epoch) => [epoch.slug, epoch]))
+
+    for (const generatedEpoch of generatedBoundaryEpochs) {
+      const payloadEpoch = payloadBoundaryEpochsBySlug.get(generatedEpoch.slug)
+
+      if (shouldReplaceBoundaryEpochWithGenerated(payloadEpoch, generatedEpoch)) {
+        payloadBoundaryEpochsBySlug.set(generatedEpoch.slug, generatedEpoch)
+      }
+    }
+
+    const boundaryEpochs = [...payloadBoundaryEpochsBySlug.values()].sort(
+      (left, right) => left.validFromYear - right.validFromYear,
     )
 
     const payloadPlaces = placeDocs.docs.map((doc) => mapPlaceDoc(doc, periodMap, sourceMap))
