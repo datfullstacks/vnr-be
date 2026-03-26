@@ -1244,7 +1244,21 @@ function overlayMatchesLeader(overlay: OverlayRecord, context: LeaderSelectionCo
 }
 
 function quizMatchesLeader(quiz: QuizRecord, context: LeaderSelectionContext) {
-  return context.periodSlugs.has(quiz.period.slug)
+  return context.quizSlugs.has(quiz.slug) || context.periodSlugs.has(quiz.period.slug)
+}
+
+function matchesQuizQuery(quiz: QuizRecord, query?: string) {
+  if (!query?.trim()) {
+    return true
+  }
+
+  const normalizedQuery = query.trim().toLowerCase()
+
+  return (
+    quiz.title.toLowerCase().includes(normalizedQuery) ||
+    quiz.summary.toLowerCase().includes(normalizedQuery) ||
+    quiz.period.title.toLowerCase().includes(normalizedQuery)
+  )
 }
 
 function resolveActiveYear(snapshot: ExplorerSnapshot, filters: SearchState) {
@@ -1409,6 +1423,40 @@ export function filterSnapshot(snapshot: ExplorerSnapshot, filters: SearchState)
     return withinYearRange(overlay.validFrom, overlay.validTo, filters)
   })
 
+  const hasSliceFilter =
+    Boolean(filters.period || filters.leader) ||
+    typeof filters.year === 'number' ||
+    typeof filters.from === 'number' ||
+    typeof filters.to === 'number'
+
+  const quizzes = snapshot.quizzes.filter((quiz) => {
+    if (filters.period && quiz.period.slug !== filters.period) {
+      return false
+    }
+
+    if (leaderContext && !quizMatchesLeader(quiz, leaderContext)) {
+      return false
+    }
+
+    if (typeof filters.year === 'number' && !periodMatchesYear(quiz.period, filters.year)) {
+      return false
+    }
+
+    if (!matchesQuizQuery(quiz, filters.q)) {
+      return false
+    }
+
+    if (leaderContext?.quizSlugs.has(quiz.slug)) {
+      return true
+    }
+
+    if (hasSliceFilter) {
+      return quizReferencesAnyDirectRecord(quiz, events, campaigns)
+    }
+
+    return true
+  })
+
   return {
     activeBoundaryEpoch,
     activeLeader,
@@ -1421,17 +1469,7 @@ export function filterSnapshot(snapshot: ExplorerSnapshot, filters: SearchState)
     overlays,
     periods,
     places,
-    quizzes: snapshot.quizzes.filter((quiz) => {
-      if (filters.period && quiz.period.slug !== filters.period) {
-        return false
-      }
-
-      if (leaderContext && !quizMatchesLeader(quiz, leaderContext)) {
-        return false
-      }
-
-      return true
-    }),
+    quizzes,
     sources: snapshot.sources,
   }
 }
