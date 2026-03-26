@@ -63,9 +63,9 @@ export const supplementalLeaderCopyBySlug: Record<
   },
   'le-kha-phieu': {
     overview:
-      'Lê Khả Phiêu gắn với yêu cầu xây dựng, chỉnh đốn Đảng ở cuối thế kỷ XX và những bước chuyển quan trọng của tiến trình hội nhập kinh tế quốc tế, trong đó có Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000.',
+      'Lê Khả Phiêu mở đầu nhiệm kỳ từ Hội nghị Trung ương 4 khóa VIII tháng 12/1997, gắn với yêu cầu xây dựng, chỉnh đốn Đảng ở cuối thế kỷ XX và những bước chuyển quan trọng của tiến trình hội nhập kinh tế quốc tế, trong đó có Hiệp định Thương mại Việt Nam - Hoa Kỳ năm 2000.',
     summary:
-      'Tổng Bí thư của giai đoạn nhấn mạnh chỉnh đốn Đảng và mở thêm cửa cho hội nhập kinh tế quốc tế.',
+      'Tổng Bí thư của giai đoạn nhấn mạnh chỉnh đốn Đảng, mở thêm cửa cho hội nhập kinh tế quốc tế và định hình chặng chuyển tiếp cuối thế kỷ XX.',
   },
   'nong-duc-manh': {
     overview:
@@ -399,6 +399,27 @@ export const supplementalLeaderEvents: DemoEvent[] = [
     summary: 'Cột mốc lớn cuối nhiệm kỳ Đỗ Mười, tiếp tục định hình nhịp phát triển sau chặng đầu đổi mới.',
     title: 'Đại hội VIII của Đảng năm 1996',
     topics: ['organization', 'strategy'],
+  },
+  {
+    content:
+      'Hội nghị lần thứ tư Ban Chấp hành Trung ương khóa VIII tháng 12/1997 bầu Lê Khả Phiêu giữ cương vị Tổng Bí thư. Đây là mốc mở đầu nhiệm kỳ của đồng chí trong bối cảnh đất nước tiếp tục đổi mới và xử lý nhiều yêu cầu xây dựng Đảng, hội nhập kinh tế quốc tế ở cuối thế kỷ XX.',
+    datePrecision: 'month',
+    displayYear: 1997,
+    modernLocation: {
+      label: 'Hà Nội',
+      latitude: 21.0285,
+      longitude: 105.8542,
+      province: 'Hà Nội',
+    },
+    period: '1997-2001',
+    places: ['tru-so-trung-uong-dang'],
+    region: 'north',
+    slug: 'hoi-nghi-trung-uong-4-khoa-viii-1997',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    startDate: '1997-12-01T00:00:00.000Z',
+    summary: 'Mốc mở đầu nhiệm kỳ Lê Khả Phiêu với việc được bầu làm Tổng Bí thư tháng 12/1997.',
+    title: 'Hội nghị Trung ương 4 khóa VIII bầu Lê Khả Phiêu làm Tổng Bí thư',
+    topics: ['organization', 'leadership'],
   },
   {
     content:
@@ -1134,6 +1155,16 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
     questions: [
       {
         explanation:
+          'Hội nghị Trung ương 4 khóa VIII tháng 12/1997 là mốc mở đầu nhiệm kỳ của Lê Khả Phiêu khi đồng chí được bầu làm Tổng Bí thư.',
+        options: [
+          { isCorrect: true, label: 'Hội nghị Trung ương 4 khóa VIII tháng 12/1997' },
+          { isCorrect: false, label: 'Đại hội VI của Đảng năm 1986' },
+          { isCorrect: false, label: 'Đại hội IX của Đảng năm 2001' },
+        ],
+        prompt: 'Mốc nào mở đầu trực tiếp nhiệm kỳ của Lê Khả Phiêu?',
+      },
+      {
+        explanation:
           'Nghị quyết Trung ương 6 lần 2 khóa VIII năm 1999 nhấn mạnh nhiệm vụ xây dựng, chỉnh đốn Đảng trong thời kỳ Lê Khả Phiêu.',
         options: [
           { isCorrect: true, label: 'Nghị quyết Trung ương 6 lần 2 khóa VIII năm 1999' },
@@ -1164,10 +1195,14 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
     ],
     relatedCampaigns: [],
-    relatedEvents: ['nghi-quyet-trung-uong-6-lan-2-1999', 'hiep-dinh-thuong-mai-viet-my-2000'],
+    relatedEvents: [
+      'hoi-nghi-trung-uong-4-khoa-viii-1997',
+      'nghi-quyet-trung-uong-6-lan-2-1999',
+      'hiep-dinh-thuong-mai-viet-my-2000',
+    ],
     slug: 'quiz-le-kha-phieu-1997-2001',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
-    summary: 'Ôn tập nhanh về Lê Khả Phiêu qua nhiệm vụ chỉnh đốn Đảng và bước mở rộng hội nhập kinh tế quốc tế.',
+    summary: 'Ôn tập nhanh về Lê Khả Phiêu qua mốc mở đầu nhiệm kỳ năm 1997, nhiệm vụ chỉnh đốn Đảng và bước mở rộng hội nhập kinh tế quốc tế.',
     title: 'Ôn tập Lê Khả Phiêu 1997-2001',
   },
   {
