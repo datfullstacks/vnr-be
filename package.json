@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc --noEmit",
     "dev": "tsx watch ./bin/www.ts",
+    "sync:cms:leadership": "tsx ./scripts/sync-leadership-cms.ts",
     "start": "tsx ./bin/www.ts",
     "generate:types": "payload generate:types"
   },

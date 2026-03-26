@@ -264,7 +264,15 @@ function buildLeaderReferenceMap(docs: any[]) {
       continue
     }
 
-    map.set(doc.slug, mapLeaderReferences(doc))
+    const current = map.get(doc.slug) ?? {}
+    const next = mapLeaderReferences(doc)
+
+    map.set(doc.slug, {
+      campaignSlugs: next.campaignSlugs ?? current.campaignSlugs,
+      eventSlugs: next.eventSlugs ?? current.eventSlugs,
+      placeSlugs: next.placeSlugs ?? current.placeSlugs,
+      quizSlugs: next.quizSlugs ?? current.quizSlugs,
+    })
   }
 
   return map

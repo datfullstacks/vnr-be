@@ -27,6 +27,7 @@
     "app.ts",
     "bin/**/*.ts",
     "routes/**/*.ts",
+    "scripts/**/*.ts",
     "src/**/*.ts",
     "payload.config.ts"
   ],
