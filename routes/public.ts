@@ -11,6 +11,11 @@ import {
   getPlace,
   getQuiz,
 } from '../src/lib/content-service.js'
+import {
+  getPartyHistoryGame,
+  openPartyHistoryLeaderboardStream,
+  submitPartyHistoryScore,
+} from '../src/lib/party-game-service.js'
 
 const router = express.Router()
 
@@ -126,6 +131,37 @@ router.get('/quizzes/:slug', async (req, res, next) => {
     }
 
     res.json(quiz)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/games/party-history-rush', async (_req, res, next) => {
+  try {
+    const game = await getPartyHistoryGame()
+    res.json(game)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/games/party-history-rush/submit', async (req, res, next) => {
+  try {
+    const result = await submitPartyHistoryScore({
+      durationMs: Number(req.body?.durationMs),
+      score: Number(req.body?.score),
+      username: String(req.body?.username ?? ''),
+    })
+    res.json(result)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/games/party-history-rush/stream', async (req, res, next) => {
+  try {
+    const cleanup = openPartyHistoryLeaderboardStream(res)
+    req.on('close', cleanup)
   } catch (error) {
     next(error)
   }
