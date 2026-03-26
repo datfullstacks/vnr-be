@@ -51,9 +51,9 @@ export const supplementalLeaderCopyBySlug: Record<
   },
   'nguyen-van-linh': {
     overview:
-      'Nguyễn Văn Linh gắn với bước mở đầu của công cuộc đổi mới, nhấn mạnh yêu cầu nhìn thẳng vào sự thật, điều chỉnh tư duy phát triển và đưa các quyết sách cải cách đi vào đời sống sản xuất, xã hội.',
+      'Nguyễn Văn Linh gắn với bước mở đầu của công cuộc đổi mới, nhấn mạnh yêu cầu nhìn thẳng vào sự thật, thúc đẩy tinh thần tự phê bình qua loạt bài "Những việc cần làm ngay", đồng thời đưa các quyết sách cải cách như Nghị quyết 10 năm 1988 đi vào đời sống sản xuất và khép lại nhiệm kỳ bằng Đại hội VII năm 1991.',
     summary:
-      'Tổng Bí thư mở đầu đổi mới, gắn với Đại hội VI năm 1986 và các quyết sách tháo gỡ cho sản xuất, nhất là trong nông nghiệp.',
+      'Tổng Bí thư mở đầu đổi mới, gắn với Đại hội VI năm 1986, loạt bài "Những việc cần làm ngay", Nghị quyết 10 năm 1988 và chặng chuyển sang Đại hội VII năm 1991.',
   },
   'do-muoi': {
     overview:
@@ -357,6 +357,27 @@ export const supplementalLeaderPlaces: DemoPlace[] = [
 ]
 
 export const supplementalLeaderEvents: DemoEvent[] = [
+  {
+    content:
+      'Loạt bài "Những việc cần làm ngay" năm 1987 tạo dấu ấn mạnh trong đời sống chính trị - xã hội đầu thời kỳ đổi mới, nhấn mạnh yêu cầu nói đi đôi với làm, chống quan liêu, tiêu cực và thúc đẩy tinh thần tự phê bình, sửa đổi trong bộ máy.',
+    datePrecision: 'year',
+    displayYear: 1987,
+    modernLocation: {
+      label: 'Hà Nội',
+      latitude: 21.0285,
+      longitude: 105.8542,
+      province: 'Hà Nội',
+    },
+    period: '1986-1991',
+    places: ['tru-so-trung-uong-dang'],
+    region: 'north',
+    slug: 'nhung-viec-can-lam-ngay-1987',
+    sources: ['dang-cong-san-viet-nam', 'tu-lieu-van-kien-dang'],
+    startDate: '1987-01-01T00:00:00.000Z',
+    summary: 'Dấu ấn chính luận và tự phê bình đầu thời kỳ đổi mới, gắn trực tiếp với Nguyễn Văn Linh.',
+    title: 'Loạt bài "Những việc cần làm ngay" năm 1987',
+    topics: ['organization', 'society'],
+  },
   {
     content:
       'Hội nghị Ban Chấp hành Trung ương tháng 10/1930 tại Hương Cảng do Trần Phú chủ trì, đã thông qua nhiều văn kiện quan trọng về tình hình, nhiệm vụ, điều lệ và công tác tổ chức. Hội nghị đồng thời kiện toàn Ban Chấp hành Trung ương chính thức và bầu Trần Phú làm Tổng Bí thư đầu tiên của Đảng.',
@@ -994,6 +1015,26 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
       {
         explanation:
+          'Loạt bài "Những việc cần làm ngay" là dấu ấn chính luận rất đặc trưng của Nguyễn Văn Linh trong những năm đầu đổi mới, nhấn mạnh chống quan liêu, tiêu cực và đòi hỏi nói đi đôi với làm.',
+        options: [
+          { isCorrect: true, label: 'Loạt bài "Những việc cần làm ngay" năm 1987' },
+          { isCorrect: false, label: 'Luận cương chính trị tháng 10/1930' },
+          { isCorrect: false, label: 'Hiệp định Paris năm 1973' },
+        ],
+        prompt: 'Dấu ấn chính luận nào gắn trực tiếp với Nguyễn Văn Linh trong những năm đầu đổi mới?',
+      },
+      {
+        explanation:
+          'Đại hội VII năm 1991 xác nhận tiếp tục đổi mới và thông qua Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội vào cuối nhiệm kỳ Nguyễn Văn Linh.',
+        options: [
+          { isCorrect: true, label: 'Đại hội VII của Đảng năm 1991' },
+          { isCorrect: false, label: 'Đại hội III của Đảng năm 1960' },
+          { isCorrect: false, label: 'Đại hội XI của Đảng năm 2011' },
+        ],
+        prompt: 'Đại hội nào khép lại chặng đầu của công cuộc đổi mới vào cuối nhiệm kỳ Nguyễn Văn Linh?',
+      },
+      {
+        explanation:
           'Hội trường Ba Đình là địa danh nổi bật gắn với Đại hội VI trong lát cắt trình bày của site.',
         options: [
           { isCorrect: true, label: 'Hội trường Ba Đình' },
@@ -1004,10 +1045,15 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
     ],
     relatedCampaigns: [],
-    relatedEvents: ['dai-hoi-vi-1986', 'nghi-quyet-10-1988'],
+    relatedEvents: [
+      'dai-hoi-vi-1986',
+      'nhung-viec-can-lam-ngay-1987',
+      'nghi-quyet-10-1988',
+      'dai-hoi-vii-1991',
+    ],
     slug: 'quiz-nguyen-van-linh-1986-1991',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
-    summary: 'Ôn tập nhanh về Nguyễn Văn Linh, Đại hội VI và bước đầu của công cuộc đổi mới.',
+    summary: 'Ôn tập nhanh về Nguyễn Văn Linh qua Đại hội VI, "Những việc cần làm ngay", Nghị quyết 10 và chặng chuyển sang Đại hội VII.',
     title: 'Ôn tập Nguyễn Văn Linh 1986-1991',
   },
   {
