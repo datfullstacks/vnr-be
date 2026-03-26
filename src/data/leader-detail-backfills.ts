@@ -69,9 +69,9 @@ export const supplementalLeaderCopyBySlug: Record<
   },
   'nong-duc-manh': {
     overview:
-      'Nông Đức Mạnh gắn với giai đoạn đẩy mạnh phát triển và hội nhập sâu hơn, trong đó Đại hội IX xác lập nhịp phát triển mới và việc gia nhập WTO năm 2007 đánh dấu bước hội nhập toàn cầu nổi bật.',
+      'Nông Đức Mạnh gắn với giai đoạn đẩy mạnh phát triển và hội nhập sâu hơn, trong đó Đại hội IX năm 2001 xác lập nhịp phát triển mới, Đại hội X năm 2006 tiếp tục định hình phương hướng giữa nhiệm kỳ và việc gia nhập WTO năm 2007 đánh dấu bước hội nhập toàn cầu nổi bật.',
     summary:
-      'Tổng Bí thư của chặng tăng tốc hội nhập, gắn với Đại hội IX năm 2001 và cột mốc gia nhập WTO năm 2007.',
+      'Tổng Bí thư của chặng tăng tốc hội nhập, gắn với Đại hội IX năm 2001, Đại hội X năm 2006 và cột mốc gia nhập WTO năm 2007.',
   },
   'nguyen-phu-trong': {
     overview:
@@ -420,6 +420,28 @@ export const supplementalLeaderEvents: DemoEvent[] = [
     summary: 'Mốc mở đầu nhiệm kỳ Lê Khả Phiêu với việc được bầu làm Tổng Bí thư tháng 12/1997.',
     title: 'Hội nghị Trung ương 4 khóa VIII bầu Lê Khả Phiêu làm Tổng Bí thư',
     topics: ['organization', 'leadership'],
+  },
+  {
+    content:
+      'Đại hội X của Đảng năm 2006 diễn ra trong bối cảnh đất nước đã qua chặng đầu đổi mới và bước vào yêu cầu đẩy mạnh công nghiệp hóa, hiện đại hóa, chuẩn bị cho nhịp hội nhập sâu hơn với kinh tế thế giới. Đây là cột mốc lớn giữa nhiệm kỳ của Nông Đức Mạnh.',
+    datePrecision: 'range',
+    displayYear: 2006,
+    endDate: '2006-04-25T00:00:00.000Z',
+    modernLocation: {
+      label: 'Hà Nội',
+      latitude: 21.0285,
+      longitude: 105.8542,
+      province: 'Hà Nội',
+    },
+    period: '2001-2011',
+    places: ['trung-tam-hoi-nghi-quoc-gia'],
+    region: 'north',
+    slug: 'dai-hoi-x-2006',
+    sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
+    startDate: '2006-04-18T00:00:00.000Z',
+    summary: 'Cột mốc lớn giữa nhiệm kỳ Nông Đức Mạnh, tiếp tục định hình phương hướng phát triển và hội nhập.',
+    title: 'Đại hội X của Đảng năm 2006',
+    topics: ['organization', 'strategy'],
   },
   {
     content:
@@ -1220,6 +1242,16 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
       {
         explanation:
+          'Đại hội X năm 2006 là cột mốc lớn giữa nhiệm kỳ Nông Đức Mạnh, tiếp tục định hình nhịp phát triển và chuẩn bị cho bước hội nhập sâu hơn.',
+        options: [
+          { isCorrect: true, label: 'Đại hội X của Đảng năm 2006' },
+          { isCorrect: false, label: 'Đại hội VII của Đảng năm 1991' },
+          { isCorrect: false, label: 'Đại hội XIII của Đảng năm 2021' },
+        ],
+        prompt: 'Mốc nào phản ánh rõ nhịp giữa nhiệm kỳ của Nông Đức Mạnh?',
+      },
+      {
+        explanation:
           'Việt Nam gia nhập WTO ngày 11/1/2007 là cột mốc hội nhập toàn cầu nổi bật của giai đoạn này.',
         options: [
           { isCorrect: true, label: 'Việt Nam gia nhập WTO năm 2007' },
@@ -1240,10 +1272,10 @@ export const supplementalLeaderQuizzes: DemoQuiz[] = [
       },
     ],
     relatedCampaigns: [],
-    relatedEvents: ['dai-hoi-ix-2001', 'viet-nam-gia-nhap-wto-2007'],
+    relatedEvents: ['dai-hoi-ix-2001', 'dai-hoi-x-2006', 'viet-nam-gia-nhap-wto-2007'],
     slug: 'quiz-nong-duc-manh-2001-2011',
     sources: ['tu-lieu-van-kien-dang', 'dang-cong-san-viet-nam'],
-    summary: 'Ôn tập nhanh về Nông Đức Mạnh qua Đại hội IX và cột mốc gia nhập WTO năm 2007.',
+    summary: 'Ôn tập nhanh về Nông Đức Mạnh qua Đại hội IX, Đại hội X và cột mốc gia nhập WTO năm 2007.',
     title: 'Ôn tập Nông Đức Mạnh 2001-2011',
   },
   {
