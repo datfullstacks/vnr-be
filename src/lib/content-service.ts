@@ -1221,7 +1221,7 @@ function resolveLeaderForYear(snapshot: ExplorerSnapshot, year: number, activePe
       return coveringLeader
     }
 
-    return matchingInPeriod[0] ?? null
+    return null
   }
 
   if (activePeriod?.periodType === 'formation') {
