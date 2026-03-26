@@ -11,6 +11,7 @@ const QUESTION_LIMIT = 10
 const QUESTION_CACHE_TTL_MS = 5 * 60_000
 const QUESTION_ROTATION_WINDOW_MS = 15 * 60_000
 const RESET_TOKEN_FALLBACK = 'vnr-party-reset-1930'
+const QUESTION_TIME_LIMIT_SECONDS_FALLBACK = 20
 
 type PartyGameQuestion = {
   correctIndex: number
@@ -46,6 +47,7 @@ type PartyGamePayload = LeaderboardPayload & {
   questionCount: number
   questions: PartyGameQuestion[]
   summary: string
+  timePerQuestionSeconds: number
   title: string
 }
 
@@ -73,6 +75,16 @@ const streamClients = new Map<string, StreamClient>()
 
 function resolveResetToken() {
   return process.env.PARTY_GAME_RESET_TOKEN?.trim() || RESET_TOKEN_FALLBACK
+}
+
+function resolveTimePerQuestionSeconds() {
+  const configured = Number(process.env.PARTY_GAME_TIME_PER_QUESTION_SECONDS)
+
+  if (!Number.isFinite(configured)) {
+    return QUESTION_TIME_LIMIT_SECONDS_FALLBACK
+  }
+
+  return Math.max(5, Math.min(120, Math.round(configured)))
 }
 
 function hashSeed(value: string) {
@@ -234,6 +246,7 @@ export async function getPartyHistoryGame(): Promise<PartyGamePayload> {
     questionCount: questions.length,
     questions,
     summary: GAME_SUMMARY,
+    timePerQuestionSeconds: resolveTimePerQuestionSeconds(),
     title: GAME_TITLE,
     ...currentLeaderboardPayload(),
   }
