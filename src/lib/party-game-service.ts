@@ -11,7 +11,7 @@ const QUESTION_LIMIT = 10
 const QUESTION_CACHE_TTL_MS = 5 * 60_000
 const QUESTION_ROTATION_WINDOW_MS = 15 * 60_000
 const RESET_TOKEN_FALLBACK = 'vnr-party-reset-1930'
-const QUESTION_TIME_LIMIT_SECONDS_FALLBACK = 20
+const QUESTION_TIME_LIMIT_SECONDS_FALLBACK = 10
 
 type PartyGameQuestion = {
   correctIndex: number
